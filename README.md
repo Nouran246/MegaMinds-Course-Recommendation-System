@@ -1,10 +1,11 @@
 # Course Recommendation System
-# Description:
+
+## Description:
 Develop a course recommendation system that suggests relevant courses or programs to students based on their
 interests, career aspirations, and academic performance. This system aims to guide students in making informed
 decisions about their educational pathways, enhancing their overall learning experience
 
-# Key Features:
+## Key Features:
 1. User Registration & Authentication:
 o Users can sign up as students, instructors, or admins.
 o Implement secure access with email verification and password reset functionalities.
@@ -37,7 +38,7 @@ Students can provide feedback on course recommendations and their experiences, a
 algorithms and improve future suggestions.
 Admins and instructors can access aggregated feedback to identify trends and enhance courseofferings.
 
-# Authors
+## Authors
 - [@Nouran Hassan](https://github.com/Nouran246)
 - [@Malak Mohamed](https://github.com/MalakMohameed)
 - [@Yahia-Elshobokshy](https://github.com/Yahia-Elshobokshy)
