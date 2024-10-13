@@ -38,3 +38,8 @@ algorithms and improve future suggestions.
 Admins and instructors can access aggregated feedback to identify trends and enhance courseofferings.
 
 # Authors
+- [@Nouran Hassan](https://github.com/Nouran246)
+- [@Malak Mohamed](https://github.com/MalakMohameed)
+- [@Yahia-Elshobokshy](https://github.com/Yahia-Elshobokshy)
+- [@Laila Amgad](https://github.com/Laila4563)
+- [@Roaa Khaled](https://github.com/Rowlkh)
