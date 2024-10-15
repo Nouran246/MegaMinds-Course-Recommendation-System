@@ -1,11 +1,18 @@
 # Course Recommendation System
-https://trello.com/b/MzcCsVLv/software-project
+
+ Working Method:
+     Agile -> Kanban
+     
+    https://trello.com/b/MzcCsVLv/software-project
+     
 ## Description:
+
 Develop a course recommendation system that suggests relevant courses or programs to students based on their
 interests, career aspirations, and academic performance. This system aims to guide students in making informed
 decisions about their educational pathways, enhancing their overall learning experience
 
 ## Key Features:
+
 1. User Registration & Authentication:
 o Users can sign up as students, instructors, or admins.
 o Implement secure access with email verification and password reset functionalities.
