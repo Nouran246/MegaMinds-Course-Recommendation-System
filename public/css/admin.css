@@ -1,0 +1,19 @@
+body .maincontainer {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+main .container .row h1 {
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.active {
+  background-color: #d2c1ff !important;
+  color: #fff !important;
+}
+
+.subtable {
+  float: right;
+  padding-top: 1rem;
+}

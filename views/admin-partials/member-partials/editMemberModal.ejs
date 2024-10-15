@@ -1,0 +1,173 @@
+<!-- Edit User Modal -->
+<div
+  class="modal fade"
+  id="editMember"
+  tabindex="-1"
+  aria-labelledby="editMemberLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editMemberLabel">Edit User</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-user-form" class="user-form needs-validation" novalidate>
+          <!-- User ID (hidden) -->
+          <input type="hidden" id="edit-user-id" name="userId" value="" />
+
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="edit-user-name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="edit-user-name"
+              placeholder="Enter name"
+              name="userName"
+              required
+            />
+            <div id="edit-userName-error" class="invalid-feedback"></div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="mb-3">
+            <label for="edit-user-phone" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="edit-user-phone"
+              placeholder="Enter phone number"
+              name="userPhone"
+              required
+            />
+            <div id="edit-userPhone-error" class="invalid-feedback">
+              Please enter a valid phone number (10 digits).
+            </div>
+          </div>
+
+          <!-- University ID -->
+          <div class="mb-3">
+            <label for="edit-user-universityId" class="form-label"
+              >University ID</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="edit-user-universityId"
+              placeholder="Enter university ID"
+              name="userUniversityId"
+              required
+            />
+            <div id="edit-userUniversityId-error" class="invalid-feedback">
+              Please enter a valid university ID (e.g., 2021/00977).
+            </div>
+          </div>
+
+          <!-- Department -->
+          <div class="mb-3">
+            <label for="edit-user-department" class="form-label"
+              >Department</label
+            >
+            <select
+              class="form-control"
+              id="edit-user-department"
+              name="userDepartment"
+              required
+            >
+              <option value="">Select Department</option>
+              <option value="Information Technology">
+                Information Technology
+              </option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Public Relations">Public Relations</option>
+              <option value="Media">Media</option>
+              <option value="Coordination">Coordination</option>
+              <option value="Technical Coaching">Technical Coaching</option>
+            </select>
+            <div id="edit-userDepartment-error" class="invalid-feedback"></div>
+          </div>
+
+          <!-- Year -->
+          <div class="mb-3">
+            <label for="edit-user-year" class="form-label">Year</label>
+            <select
+              class="form-control"
+              id="edit-user-year"
+              name="userYear"
+              required
+            >
+              <option value="">Select Year</option>
+              <option value="24/25">24/25</option>
+              <option value="25/26">25/26</option>
+              <option value="26/27">26/27</option>
+              <option value="27/28">27/28</option>
+            </select>
+            <div id="edit-userYear-error" class="invalid-feedback"></div>
+          </div>
+
+          <!-- Board Member -->
+          <div class="form-check mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="edit-user-boardMember"
+              name="isBoardMember"
+            />
+            <label class="form-check-label" for="edit-user-boardMember"
+              >Board Member</label
+            >
+          </div>
+
+          <!-- Points -->
+          <div class="mb-3">
+            <label for="edit-user-points" class="form-label">Points</label>
+            <input
+              type="number"
+              class="form-control"
+              id="edit-user-points"
+              placeholder="Enter points"
+              name="userPoints"
+              required
+            />
+            <div id="edit-userPoints-error" class="invalid-feedback"></div>
+          </div>
+
+          <!-- Warnings -->
+          <div class="mb-3">
+            <label class="form-label">Warnings</label>
+            <div id="edit-user-warnings"></div>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              id="add-warning"
+            >
+              Add Warning
+            </button>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="save-changes">
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/editMember.js"></script>
