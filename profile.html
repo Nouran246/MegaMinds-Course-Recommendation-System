@@ -15,6 +15,17 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
+    <!-- Bootstrap CSS (Make sure this is included) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS (with bundle including Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
@@ -27,18 +38,26 @@ TemplateMo 569 Edu Meeting
 https://templatemo.com/tm-569-edu-meeting
 
 -->
-<style>
-       .nav-tabs .nav-link {
-        color:black;
-        font-weight: 400;
-    }
+    <style>
+        .apply-now .container {
+            display: flex;
+            justify-content: center;
+        }
 
-    .nav-tabs .nav-link.active {
-        color: #FFBF00; 
-        font-weight: 400;
+        .nav-tabs .nav-link {
+            color: black;
+            font-weight: 400;
+        }
 
-    }
-</style>
+        .nav-tabs .nav-link.active {
+            color: #f5a425;
+            font-weight: 400;
+
+        }
+        
+
+        
+    </style>
 </head>
 
 <body>
@@ -105,133 +124,260 @@ https://templatemo.com/tm-569-edu-meeting
             </div>
         </div>
     </header>
+
     <section class="apply-now" id="apply">
-        
+
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 align-self-center">
-                    <div class="row">
+                <div class="col-lg-6" style="background-color:white; width:280px;height:330px;">
 
-            <div class="col-lg-12" style="width:350px;">
-                <div class="accordions is-first-expanded" style="width:250px; height:300px;">
-                    <img src="assets/images/course-02.jpg" class="card-img-top" style="width:150px; height:150px; object-fit: cover; border-radius:50%;">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label" style="font-weight: bold; margin: 20px 20px 10px; text-decoration: solid;">Nouran Hassan</label>
-                    <div class="edit-user-image" style="font-weight:bold; text-align: center; color:#FFBF00;">Edit Profile Image</div>
-                    </div>
-                </div>
-                
-              </div>
-                    </div>
-                </div>
-              <!-- info here -->
-              <div class="col-lg-6">
-                <div class="item">
-                    <!-- Tabs for User Info Section -->
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="basicInfo-tab" data-bs-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="learningPath-tab" data-bs-toggle="tab" href="#learningPath" role="tab" aria-controls="learningPath" aria-selected="false">Learning Path</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="progress-tab" data-bs-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false">Progress</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <!-- Basic Info Tab -->
-                        <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-                            <div class="row" style="margin-top: 20px;">
-                                <!-- Name Input -->
-                                <div class="col-6">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" class="form-control" value="Nouran Hassan">
-                                </div>
-                                <!-- Email Input -->
-                                <div class="col-6">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" class="form-control" value="nouran@example.com">
-                                </div>
-                                <!-- Phone input dropdown-->
-                                <div class="col-6">
-                                    <label for="phone">Phone</label>
-                                    <div class="input-group">
-                                        <select class="form-select" id="phoneCode">
-                                            <option value="+20">+20 (Egypt)</option>
-                                            <option value="+1">+1 (USA/Canada)</option>
-                                            <option value="+44">+44 (UK)</option>
-                                            <option value="+49">+49 (Germany)</option>
-                                            <option value="+33">+33 (France)</option>
-                                        </select>
-                                        <input type="tel" id="phone" class="form-control" placeholder="123 456 7890">
-                                    </div>
-                                </div>
-                                <!-- University Dropdown -->
-                                <div class="col-6">
-                                    <label for="university">University</label>
-                                    <select id="university" class="form-select">
-                                        <option value="MIU">Misr International University</option>
-                                        <option value="AUC">The American University in Cairo</option>
-                                        <option value="CairoU">Cairo University</option>
-                                        <option value="TantaU">Tanta University</option>
-                                    </select>
-                                </div>
-                                <!-- Degree Program Dropdown -->
-                                <div class="col-6">
-                                    <label for="degreeProgram">Degree Program</label>
-                                    <select id="degreeProgram" class="form-select">
-                                        <option value="Bachelors">Bachelor's</option>
-                                        <option value="Masters">Master's</option>
-                                        <option value="PhD">PhD</option>
-                                        <option value="Diploma">Diploma</option>
-                                    </select>
-                                </div>
-                                <!-- Major Input -->
-                                <div class="col-6">
-                                    <label for="major">Major</label>
-                                    <select id="major" class="form-select">
-                                        <option value="Computer Science">Computer Science</option>
-                                        <option value="Electrical Engineering">Electrical Engineering</option>
-                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                        <option value="Business Administration">Business Administration</option>
-                                        <option value="Mathematics">Mathematics</option>
-                                        <option value="Physics">Physics</option>
-                                    </select>
-                                </div>
-                                <!-- Location Dropdown for Country -->
-                                <div class="col-6">
-                                    <label for="location">Location</label>
-                                    <select id="location" class="form-select">
-                                        <option value="Cairo, Egypt">Cairo, Egypt</option>
-                                        <option value="New York, USA">New York, USA</option>
-                                        <option value="London, UK">London, UK</option>
-                                        <option value="Berlin, Germany">Berlin, Germany</option>
-                                        <option value="Paris, France">Paris, France</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <button class="btn btn-primary" id="saveChanges" style="background-color: #FFBF00; color: white; border-color: #FFBF00;">Save Changes</button>
-                                    <button class="btn btn-secondary" id="resetChanges">Reset</button>
-                                </div>
+                    <div class="item" style="text-align:center; height:320px; background-color: white;">
+                        <div class="profile-img" style="text-align: center; margin-right:12px;">
+                            <img src="assets/images/course-02.jpg" id="profile-img" alt="Profile Image"
+                                style="width:150px; height:150px; object-fit: cover; border-radius:50%;">
+                        </div>
+
+                        <div class="info" style="margin-top: 5px;">
+                            <label for="userName" id="label-name" class="form-label"
+                                style="font-weight: bold; margin: 20px 20px 10px; text-decoration: solid;">
+                                Nouran Hassan</label>
+                            <div class="main-button-yellow" style="text-align:center;">
+                                <div id="edit-img-btn"><a href="#">Edit Image</a></div>
+                                <input type="file" id="profileImage" name="profileImage"
+                                    accept="image/png, image/jpeg, image/jpg" style="display:none;">
+                                <div id="error-image-message" class="error-message"
+                                    style="color: red; font-size: 12px; display: none; font-weight: bold;"></div>
+
+
                             </div>
                         </div>
-            
-                        <!-- Learning Path Tab -->
-                        <div class="tab-pane fade" id="learningPath" role="tabpanel" aria-labelledby="learningPath-tab">
-                            <p>This is where the user's learning path will be displayed.</p>
-                        </div>
-            
-                        <!-- Progress Tab -->
-                        <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
-                            <p>This is where the user's progress will be shown.</p>
+                    </div>
+                </div>
+
+
+                <!-- info here -->
+                <div class="col-lg-6" style="width:900px;">
+                    <div class="item">
+                        <!-- Tabs for User Info Section -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="basicInfo-tab" data-bs-toggle="tab" href="#basicInfo"
+                                    role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="interest-tab" data-bs-toggle="tab" href="#interest"
+                                    role="tab" aria-controls="interest" aria-selected="false">Your interests</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="progress-tab" data-bs-toggle="tab" href="#progress" role="tab"
+                                    aria-controls="progress" aria-selected="false">Your progress</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Basic Info Tab -->
+                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                aria-labelledby="basicInfo-tab">
+                                <div class="row" style="margin-top: 20px;">
+                                    <!-- Name Input -->
+                                    <div class="col-6">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" class="form-control" value="Nouran Hassan">
+                                    </div>
+                                    <!-- Email Input -->
+                                    <div class="col-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" class="form-control"
+                                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                                            value="nouran@example.com">
+                                        <div id="error-email-message" class="error-message"
+                                            style="color: red; font-size: 12px; display: none; font-weight:400;">
+                                        </div>
+                                    </div>
+                                    <!-- Phone input dropdown-->
+                                    <div class="col-6">
+                                        <label for="phone">Phone</label>
+                                        <div class="input-group">
+                                            <select class="form-select" id="phoneCode">
+                                                <option value="+20">+20 (Egypt)</option>
+                                                <option value="+1">+1 (USA/Canada)</option>
+                                                <option value="+44">+44 (UK)</option>
+                                                <option value="+49">+49 (Germany)</option>
+                                                <option value="+33">+33 (France)</option>
+                                            </select>
+                                            <input type="tel" id="phone" name="invalid-number" class="form-control"
+                                                value="1234567890" pattern="^\d{10}$">
+                                        </div>
+                                        <div id="error-phone-message" class="error-message"
+                                            style="color: red; font-size: 12px; display: none; font-weight: 400;">
+                                        </div>
+                                    </div>
+
+                                    <!-- University Dropdown -->
+                                    <div class="col-6">
+                                        <label for="university">University</label>
+                                        <select id="university" class="form-select">
+                                            <option value="MIU">Misr International University</option>
+                                            <option value="AUC">The American University in Cairo</option>
+                                            <option value="CairoU">Cairo University</option>
+                                            <option value="TantaU">Tanta University</option>
+                                        </select>
+                                    </div>
+                                    <!-- Degree Program Dropdown -->
+                                    <div class="col-6">
+                                        <label for="degreeProgram">Degree Program</label>
+                                        <select id="degreeProgram" class="form-select">
+                                            <option value="Bachelors">Bachelor's</option>
+                                            <option value="Masters">Master's</option>
+                                            <option value="PhD">PhD</option>
+                                            <option value="Diploma">Diploma</option>
+                                        </select>
+                                    </div>
+                                    <!-- Major Input -->
+                                    <div class="col-6">
+                                        <label for="major">Major</label>
+                                        <select id="major" class="form-select">
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="Electrical Engineering">Electrical Engineering</option>
+                                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                            <option value="Business Administration">Business Administration</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                            <option value="Physics">Physics</option>
+                                        </select>
+                                    </div>
+                                    <!-- Location Dropdown for Country -->
+                                    <div class="col-6">
+                                        <label for="location">Location</label>
+                                        <select id="location" class="form-select">
+                                            <option value="Cairo, Egypt">Cairo, Egypt</option>
+                                            <option value="New York, USA">New York, USA</option>
+                                            <option value="London, UK">London, UK</option>
+                                            <option value="Berlin, Germany">Berlin, Germany</option>
+                                            <option value="Paris, France">Paris, France</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <button class="btn btn-primary" id="saveChanges"
+                                            style=" background-color:#f5a425; color: white; border-color: #FFBF00;">Save
+                                            Changes</button>
+                                        <button class="btn btn-secondary" id="resetChanges">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Learning Path Tab -->
+                            <div class="tab-pane fade" id="interest" role="tabpanel"
+                                aria-labelledby="interest">
+
+                                <div class="row" style="margin-top: 20px;">
+                                    <!-- Desired Career -->
+                                    <div class="col-6">
+                                        <label for="career">Desired Career</label>
+                                        <select id="career" class="form-select">
+                                            <option value="Software Engineer">Software Engineer</option>
+                                            <option value="Data Scientist">Data Scientist</option>
+                                            <option value="AI Researcher">AI Researcher</option>
+                                            <option value="Web Developer">Web Developer</option>
+                                            <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                                            <option value="Project Manager">Project Manager</option>
+                                            <option value="Bioinformatician">Bioinformatician</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Email Input -->
+                                    <div class="dropdown" id="subjects-dropdown">
+                                        <button class="dropdown-btn" id="subjects-btn">Select Subjects</button>
+                                        <div class="dropdown-content">
+                                            <label><input type="checkbox" value="Computer Science"> Computer Science</label>
+                                            <label><input type="checkbox" value="Mathematics"> Mathematics</label>
+                                            <label><input type="checkbox" value="Physics"> Physics</label>
+                                            <label><input type="checkbox" value="Biology"> Biology</label>
+                                            <label><input type="checkbox" value="AI"> Artificial Intelligence</label>
+                                            <label><input type="checkbox" value="Data Science"> Data Science</label>
+                                        </div>
+                                    </div>
+                                    <!-- Phone input dropdown-->
+                                    <div class="col-6">
+                                        <label for="phone">Phone</label>
+                                        <div class="input-group">
+                                            <select class="form-select" id="phoneCode">
+                                                <option value="+20">+20 (Egypt)</option>
+                                                <option value="+1">+1 (USA/Canada)</option>
+                                                <option value="+44">+44 (UK)</option>
+                                                <option value="+49">+49 (Germany)</option>
+                                                <option value="+33">+33 (France)</option>
+                                            </select>
+                                            <input type="tel" id="phone" name="invalid-number" class="form-control"
+                                                value="1234567890" pattern="^\d{10}$">
+                                        </div>
+                                        <div id="error-phone-message" class="error-message"
+                                            style="color: red; font-size: 12px; display: none; font-weight: 400;">
+                                        </div>
+                                    </div>
+
+                                    <!-- University Dropdown -->
+                                    <div class="col-6">
+                                        <label for="university">University</label>
+                                        <select id="university" class="form-select">
+                                            <option value="MIU">Misr International University</option>
+                                            <option value="AUC">The American University in Cairo</option>
+                                            <option value="CairoU">Cairo University</option>
+                                            <option value="TantaU">Tanta University</option>
+                                        </select>
+                                    </div>
+                                    <!-- Degree Program Dropdown -->
+                                    <div class="col-6">
+                                        <label for="degreeProgram">Degree Program</label>
+                                        <select id="degreeProgram" class="form-select">
+                                            <option value="Bachelors">Bachelor's</option>
+                                            <option value="Masters">Master's</option>
+                                            <option value="PhD">PhD</option>
+                                            <option value="Diploma">Diploma</option>
+                                        </select>
+                                    </div>
+                                    <!-- Major Input -->
+                                    <div class="col-6">
+                                        <label for="major">Major</label>
+                                        <select id="major" class="form-select">
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="Electrical Engineering">Electrical Engineering</option>
+                                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                            <option value="Business Administration">Business Administration</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                            <option value="Physics">Physics</option>
+                                        </select>
+                                    </div>
+                                    <!-- Location Dropdown for Country -->
+                                    <div class="col-6">
+                                        <label for="location">Location</label>
+                                        <select id="location" class="form-select">
+                                            <option value="Cairo, Egypt">Cairo, Egypt</option>
+                                            <option value="New York, USA">New York, USA</option>
+                                            <option value="London, UK">London, UK</option>
+                                            <option value="Berlin, Germany">Berlin, Germany</option>
+                                            <option value="Paris, France">Paris, France</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <button class="btn btn-primary" id="saveChanges"
+                                            style=" background-color:#f5a425; color: white; border-color: #FFBF00;">Save
+                                            Changes</button>
+                                        <button class="btn btn-secondary" id="resetChanges">Reset</button>
+                                    </div>
+                                </div>
+                            
+                                
+                            </div>
+
+                            <!-- Progress Tab -->
+                            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
+                                <p>This is where the user's progress will be shown.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-            
-            
-            </div>  
         </div>
         <div class="footer">
             <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
@@ -259,53 +405,127 @@ https://templatemo.com/tm-569-edu-meeting
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
-        //according to loftblog tut
-        $('.nav li:first').addClass('active');
-
-        var showSection = function showSection(section, isAnimate) {
-            var
-                direction = section.replace(/#/, ''),
-                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-                reqSectionPos = reqSection.offset().top - 0;
-
-            if (isAnimate) {
-                $('body, html').animate({
-                    scrollTop: reqSectionPos
-                },
-                    800);
+        /* triggering edit btn + img input + validation for file type and uploading the img (changing src img) */
+        document.getElementById('edit-img-btn').onclick = () => document.getElementById('profileImage').click();
+        document.getElementById('profileImage').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            // Check if file is an image
+            if (file && file.type.startsWith('image/')) {
+                reader.onload = function (e) {
+                    document.getElementById('profile-img').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             } else {
-                $('body, html').scrollTop(reqSectionPos);
+                const errorMessage = document.getElementById('error-image-message');
+                errorMessage.textContent = 'Invalid file type (PNG,JPEG,JPG)';
+                errorMessage.style.display = 'block';
+                setTimeout(function () {
+                    errorMessage.style.display = 'none';
+                }, 4000);
             }
 
+        });
+
+        /* save changed info + reset recenlty added info */
+
+        const initialValues = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phoneCode: document.getElementById('phoneCode').value,
+            phone: document.getElementById('phone').value,
+            university: document.getElementById('university').value,
+            degreeProgram: document.getElementById('degreeProgram').value,
+            major: document.getElementById('major').value,
+            location: document.getElementById('location').value,
+            labelName: document.getElementById('label-name').innerText
         };
 
-        var checkSection = function checkSection() {
-            $('.section').each(function () {
-                var
-                    $this = $(this),
-                    topEdge = $this.offset().top - 80,
-                    bottomEdge = topEdge + $this.height(),
-                    wScroll = $(window).scrollTop();
-                if (topEdge < wScroll && bottomEdge > wScroll) {
-                    var
-                        currentId = $this.data('section'),
-                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-                    reqLink.closest('li').addClass('active').
-                        siblings().removeClass('active');
-                }
+        document.getElementById('resetChanges').addEventListener('click', () => {
+            document.getElementById('name').value = initialValues.name;
+            document.getElementById('email').value = initialValues.email;
+            document.getElementById('phoneCode').value = initialValues.phoneCode;
+            document.getElementById('phone').value = initialValues.phone;
+            document.getElementById('university').value = initialValues.university;
+            document.getElementById('degreeProgram').value = initialValues.degreeProgram;
+            document.getElementById('major').value = initialValues.major;
+            document.getElementById('location').value = initialValues.location;
+        });
+        document.getElementById('saveChanges').addEventListener('click', () => {
+            initialValues.name = document.getElementById('name').value;
+            document.getElementById('label-name').innerText = initialValues.name;
+            initialValues.email = document.getElementById('email').value;
+            initialValues.phoneCode = document.getElementById('phoneCode').value;
+            initialValues.phone = document.getElementById('phone').value;
+            initialValues.university = document.getElementById('university').value;
+            initialValues.degreeProgram = document.getElementById('degreeProgram').value;
+            initialValues.major = document.getElementById('major').value;
+            initialValues.location = document.getElementById('location').value;
+        });
+
+        function validateForm() {
+            let email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let phonePattern = /^\d{10}$/;
+
+            let emailErrorMessage = document.getElementById('error-email-message');
+            let phoneErrorMessage = document.getElementById('error-phone-message');
+
+            // Email validation
+            if (!emailPattern.test(email)) {
+                emailErrorMessage.textContent = 'Invalid email (e.g. name@domain.com)';
+                emailErrorMessage.style.display = 'block';
+                setTimeout(function () {
+                    emailErrorMessage.style.display = 'none';
+                }, 4000);
+            } else {
+                emailErrorMessage.style.display = 'none';
+            }
+
+            // Phone number validation
+            if (!phonePattern.test(phone)) {
+                phoneErrorMessage.textContent = 'Invalid phone number (e.g. 123 456 7890)';
+                phoneErrorMessage.style.display = 'block';
+                setTimeout(function () {
+                    phoneErrorMessage.style.display = 'none';
+                }, 4000);
+            } else {
+                phoneErrorMessage.style.display = 'none';
+            }
+
+        }
+
+        // Attach the validation to the "Save Changes" button
+        document.getElementById('saveChanges').addEventListener('click', function (event) {
+            event.preventDefault();  // Prevent the form from submitting
+            validateForm();
+        });
+
+
+        /* Tab Switching*/
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var hash = window.location.hash;
+            if (hash) {
+                var tab = new bootstrap.Tab(document.querySelector(hash));
+                tab.show();
+            }
+        });
+
+        // Enable tab switching and update the URL when tabs are clicked
+        document.querySelectorAll('#myTab a').forEach(function (tab) {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
+                var activeTab = new bootstrap.Tab(this);
+                activeTab.show();
+                window.location.hash = this.getAttribute('href');  // Update the URL hash
             });
-        };
-
-        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
-            e.preventDefault();
-            showSection($(this).attr('href'), true);
         });
 
-        $(window).scroll(function () {
-            checkSection();
-        });
     </script>
-    
+
 </body>
 
 
