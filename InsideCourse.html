@@ -190,120 +190,130 @@
     <script>
         // Load the IFrame Player API code asynchronously
         var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('lesson-video', {
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Start tracking video progress
-            setInterval(checkVideoProgress, 1000); // Check every second
-        }
-
-        function onPlayerStateChange(event) {
-            // You can handle video state changes here if needed
-        }
-
-        // Navigation functionality for Previous and Next buttons
-        $(window).scroll(function () {
-            checkSection();
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('lesson-video', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
         });
+    }
 
-        var checkSection = function checkSection() {
-            $('.lesson-section').each(function () {
-                var $this = $(this),
-                    topEdge = $this.offset().top - 80,
-                    bottomEdge = topEdge + $this.height(),
-                    wScroll = $(window).scrollTop();
+    function onPlayerReady(event) {
+        // Start tracking video progress
+        setInterval(checkVideoProgress, 1000); // Check every second
+    }
 
-                if (topEdge < wScroll && bottomEdge > wScroll) {
-                    var currentId = $this.attr('id'),
-                        reqLink = $('li.list-group-item').filter(function () {
-                            return $(this).data('target') === currentId;
-                        });
-                    $('li.list-group-item.active').removeClass('active');
-                    reqLink.addClass('active');
-                }
-            });
-        };
+    function onPlayerStateChange(event) {
+        // You can handle video state changes here if needed
+    }
 
-        var lectures = [
-            {
-                title: "Lesson 1: Basics",
-                description: "Brief description of the Basics lecture content.",
-                videoId: "8j9b_9Zy8C8" // Short video ID 1 (accessible)
-            },
-            {
-                title: "Lesson 2: Advanced Topics",
-                description: "Overview of advanced topics in Computer Science.",
-                videoId: "x9Erz5I4oT0" // Short video ID 2 (accessible)
-            },
-            {
-                title: "Lesson 3: Data Structures",
-                description: "Introduction to various data structures.",
-                videoId: "eWm1YpHIVrM" // Short video ID 3 (accessible)
+    // Navigation functionality for Previous and Next buttons
+    $(window).scroll(function () {
+        checkSection();
+    });
+
+    var checkSection = function checkSection() {
+        $('.lesson-section').each(function () {
+            var $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var currentId = $this.attr('id'),
+                    reqLink = $('li.list-group-item').filter(function () {
+                        return $(this).data('target') === currentId;
+                    });
+                $('li.list-group-item.active').removeClass('active');
+                reqLink.addClass('active');
             }
-        ];
+        });
+    };
 
-        var currentLectureIndex = 0;
 
-        var loadLecture = function (index) {
-            $('#lesson-title').text(lectures[index].title);
-            $('#lesson-description').text(lectures[index].description);
-            $('#lesson-video').attr('src', "https://www.youtube.com/embed/" + lectures[index].videoId);
-            $('li.list-group-item').removeClass('active');
-            $('li.list-group-item').eq(index).addClass('active');
-
-            currentLectureIndex = index; // Update the current index
-        };
-
-        document.getElementById('nextButton').onclick = function () {
-            if (currentLectureIndex < lectures.length - 1) {
-                loadLecture(currentLectureIndex + 1);
-            }
-        };
-
-        document.getElementById('prevButton').onclick = function () {
-            if (currentLectureIndex > 0) {
-                loadLecture(currentLectureIndex - 1);
-            }
-        };
-
-        // Check video progress and mark as done
-        var videoDuration = 0;
-
-        function checkVideoProgress() {
-            if (player && player.getCurrentTime && player.getDuration) {
-                var currentTime = player.getCurrentTime();
-                videoDuration = player.getDuration();
-
-                // Check if 80% of the video has been watched
-                if (currentTime >= 0.8 * videoDuration) {
-                    markAsDone(currentLectureIndex);
-                }
-            }
+    var lectures = [
+        {
+            title: "Lesson 1: Basics",
+            description: "Brief description of the Basics lecture content.",
+            videoId: "M7lc1UVf-VE" // Short video ID 1 (accessible)
+        },
+        {
+            title: "Lesson 2: Advanced Topics",
+            description: "Overview of advanced topics in Computer Science.",
+            videoId: "9bZkp7q19f0" // Short video ID 2 (accessible)
+        },
+        {
+            title: "Lesson 3: Data Structures",
+            description: "Introduction to various data structures.",
+            videoId: "BBvod49uySQ" // Short video ID 3 (accessible)
         }
+    ];
 
-        function markAsDone(index) {
-            var lessonItem = $('li.list-group-item').eq(index);
-            if (!lessonItem.hasClass('done')) {
-                lessonItem.addClass('done');
-                lessonItem.append(' ✔'); // Append a check mark
-            }
+    var currentLectureIndex = 0;
+
+    var loadLecture = function (index) {
+        $('#lesson-title').text(lectures[index].title);
+        $('#lesson-description').text(lectures[index].description);
+        $('#lesson-video').attr('src', "https://www.youtube.com/embed/" + lectures[index].videoId);
+        $('li.list-group-item').removeClass('active');
+        $('li.list-group-item').eq(index).addClass('active');
+
+        currentLectureIndex = index; // Update the current index
+    };
+
+    document.getElementById('nextButton').onclick = function () {
+        if (currentLectureIndex < lectures.length - 1) {
+            loadLecture(currentLectureIndex + 1);
         }
+    };
 
-        // Initial load
-        loadLecture(currentLectureIndex);
-    </script>
+    document.getElementById('prevButton').onclick = function () {
+        if (currentLectureIndex > 0) {
+            loadLecture(currentLectureIndex - 1);
+        }
+    };
+
+    // Check video progress and mark as done
+    var videoDuration = 0;
+
+    function checkVideoProgress() {
+    if (player && player.getCurrentTime && player.getDuration) {
+        var currentTime = player.getCurrentTime();
+        videoDuration = player.getDuration();
+
+        // Log current time and duration for debugging
+        console.log(`Current Time: ${currentTime}, Duration: ${videoDuration}`);
+
+        // Check if 80% of the video has been watched
+        if (currentTime >= 0.8 * videoDuration) {
+            markAsDone(currentLectureIndex);
+        }
+    }
+}
+function onPlayerReady(event) {
+    // Start tracking video progress
+    setInterval(checkVideoProgress, 1000); // Check every second
+}
+
+function markAsDone(index) {
+    var lessonItem = $('li.list-group-item').eq(index);
+    if (!lessonItem.hasClass('done')) {
+        lessonItem.addClass('done');
+        lessonItem.append(' ✔'); // Append a check mark
+        console.log(`Lesson ${index + 1} marked as done.`);
+    }
+}
+
+
+    // Initial load
+    loadLecture(currentLectureIndex);
+</script>
 </body>
 
 </html>
