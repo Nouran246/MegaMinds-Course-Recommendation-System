@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
     <title>Education Template - Meeting Detail Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
@@ -21,154 +18,159 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<!--
 
-TemplateMo 569 Edu Meeting
+    <style>
+        .list-group-item.active {
+            background-color: #007bff; /* Change this color as needed */
+            color: white; /* Change text color for contrast */
+        }
 
-https://templatemo.com/tm-569-edu-meeting
+        p,
+        h2 .mb-3 {
+            color: white;
+        }
 
--->
-<style>
+        .mb-3 {
+            color: white;
+        }
 
-p,h2 .mb-3{
-  color:white;
-}
-.mb-3{
-  color:white;
-}
+        .embed-responsive {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            padding: 0;
+            overflow: hidden;
+        }
 
-</style>
-  </head>
+        .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
 
 <body>
 
-   
-
-  <!-- Sub Header -->
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-sm-8">
-          <div class="left-content">
-            <p>This is an <em>educational</em> website.</p>
-          </div>
+    <!-- Sub Header -->
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="left-content">
+                        <p>This is an <em>educational</em> website.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="right-icons">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-sm-4">
-          <div class="right-icons">
-            <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">MegaMinds</a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="Courses.html">My Courses</a></li>
+                            <li class="has-sub">
+                                <a href="javascript:void(0)">Meetings</a>
+                                <ul class="sub-menu">
+                                    <li><a href="Courses.html">Upcoming Meetings</a></li>
+                                    <li><a href="meeting-details.html">Meeting Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="cart-page.html">Cart</a></li>
+                            <li><a href="Courses.html">My Profile</a></li>
+                            <li><a href="index.html">Sign Out</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
-                      <a href="index.html" class="logo">
-                          MegaMinds
-                      </a>
-                      <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
-                      <ul class="nav">
-                          <li><a href="Courses.html">My Courses</a></li>
-                         
-                          <li class="has-sub">
-                              <a href="javascript:void(0)">Meetings</a>
-                              <ul class="sub-menu">
-                                  <li><a href="Courses.html">Upcoming Meetings</a></li>
-                                  <li><a href="meeting-details.html">Meeting Details</a></li>
-                              </ul>
-                          </li>
-                          <li><a href="cart-page.html">Cart</a></li> 
-                          <li><a href="Courses.html">My Profile</a></li> 
-                          <li><a href="index.html">Sign Out</a></li> 
-                      </ul>        
-                      <a class='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      <!-- ***** Menu End ***** -->
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
-  <section class="heading-page header-text" id="top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h6>Improve your programming knowledge </h6>
-          <h2>Introduction to Computer Science </h2>
+    <section class="heading-page header-text" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>Improve your programming knowledge </h6>
+                    <h2>Introduction to Computer Science </h2>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="meetings-page" id="meetings">
-    
-    <section class="course-content">
-      <div class="container">
-          <div class="row">
-              <!-- Sidebar for course outline -->
-              <nav class="col-md-3">
-                  <h5>Course Outline</h5>
-                  <ul class="list-group">
-                      <li class="list-group-item">Introduction</li>
-                      <li class="list-group-item">Lesson 1: Basics</li>
-                      <li class="list-group-item">Lesson 2: Advanced Topics</li>
-                      <!-- More lessons here -->
-                  </ul>
-              </nav>
+    <section class="meetings-page" id="meetings">
 
-              <!-- Main content area for the video and details -->
-              <main class="col-md-9">
-                  <div class="mb-3">
-                      <h2>Lecture Title</h2>
-                      <p>Brief description of the lecture content.</p>
-                  </div>
+        <section class="course-content">
+            <div class="container">
+                <div class="row">
+                    <!-- Sidebar for course outline -->
+                    <nav class="col-md-3">
+                        <h5>Course Outline</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item active" data-index="0">Lesson 1: Basics</li>
+                            <li class="list-group-item" data-index="1">Lesson 2: Advanced Topics</li>
+                            <li class="list-group-item" data-index="2">Lesson 3: Data Structures</li>
+                        </ul>
+                    </nav>
 
-                  <div class="embed-responsive embed-responsive-16by9 mb-4">
-                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/example" allowfullscreen></iframe>
-                  </div>
+                    <!-- Main content area for the video and details -->
+                    <main class="col-md-9">
+                        <div id="lesson-container" class="lesson-section mb-3">
+                            <h2 id="lesson-title">Lesson 1: Basics</h2>
+                            <p id="lesson-description">Brief description of the Basics lecture content.</p>
+                            <div class="embed-responsive mb-4">
+                                <iframe id="lesson-video" class="embed-responsive-item" src="https://www.youtube.com/embed/example1" allowfullscreen></iframe>
+                            </div>
+                        </div>
 
-                  <div class="d-flex justify-content-between">
-                      <button class="btn btn-secondary">Previous</button>
-                      <button class="btn btn-primary">Next</button>
-                  </div>
-              </main>
-          </div>
-      </div>
-  </section>     
-             
-          
-           
-      
-   
-   
-    <div class="footer">
-      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
-          <br>
-          Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
-          <br>
-          Distibuted By: <a href="https://themewagon.com" target="_blank" title="Build Better UI, Faster">ThemeWagon</a>
-        </p>
-    </div>
-  </section>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-secondary" id="prevButton">Previous</button>
+                            <button class="btn btn-primary" id="nextButton">Next</button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
 
+        <div class="footer">
+            <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
+                <br>
+                Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                <br>
+                Distributed By: <a href="https://themewagon.com" target="_blank" title="Build Better UI, Faster">ThemeWagon</a>
+            </p>
+        </div>
+    </section>
 
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -180,54 +182,67 @@ p,h2 .mb-3{
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
-        //according to loftblog tut
-        $('.nav li:first').addClass('active');
-
-        var showSection = function showSection(section, isAnimate) {
-          var
-          direction = section.replace(/#/, ''),
-          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-          reqSectionPos = reqSection.offset().top - 0;
-
-          if (isAnimate) {
-            $('body, html').animate({
-              scrollTop: reqSectionPos },
-            800);
-          } else {
-            $('body, html').scrollTop(reqSectionPos);
-          }
-
-        };
+        // Navigation functionality for Previous and Next buttons
+        $(window).scroll(function () {
+            checkSection();
+        });
 
         var checkSection = function checkSection() {
-          $('.section').each(function () {
-            var
-            $this = $(this),
-            topEdge = $this.offset().top - 80,
-            bottomEdge = topEdge + $this.height(),
-            wScroll = $(window).scrollTop();
-            if (topEdge < wScroll && bottomEdge > wScroll) {
-              var
-              currentId = $this.data('section'),
-              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-              reqLink.closest('li').addClass('active').
-              siblings().removeClass('active');
-            }
-          });
+            $('.lesson-section').each(function () {
+                var $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var currentId = $this.attr('id'),
+                        reqLink = $('li.list-group-item').filter(function () {
+                            return $(this).text().toLowerCase().includes(currentId.replace('lesson-', ''));
+                        });
+
+                    reqLink.addClass('active').siblings().removeClass('active');
+                }
+            });
         };
 
-        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
-          e.preventDefault();
-          showSection($(this).attr('href'), true);
-        });
+        const lectures = [
+            { title: 'Lesson 1: Basics', description: 'Brief description of the Basics lecture content.', src: 'https://www.youtube.com/embed/example1' },
+            { title: 'Lesson 2: Advanced Topics', description: 'Brief description of the Advanced Topics lecture content.', src: 'https://www.youtube.com/embed/example2' },
+            { title: 'Lesson 3: Data Structures', description: 'Brief description of Data Structures lecture content.', src: 'https://www.youtube.com/embed/example3' }
+        ];
 
-        $(window).scroll(function () {
-          checkSection();
-        });
+        let currentLectureIndex = 0;
+
+        const loadLecture = (index) => {
+            if (index >= 0 && index < lectures.length) {
+                const lecture = lectures[index];
+                document.getElementById('lesson-title').innerText = lecture.title;
+                document.getElementById('lesson-description').innerText = lecture.description;
+                document.getElementById('lesson-video').src = lecture.src;
+
+                // Update active class on the sidebar
+                $('li.list-group-item').removeClass('active');
+                $('li.list-group-item').eq(index).addClass('active');
+
+                currentLectureIndex = index; // Update the current index
+            }
+        };
+
+        document.getElementById('nextButton').onclick = function () {
+            if (currentLectureIndex < lectures.length - 1) {
+                loadLecture(currentLectureIndex + 1);
+            }
+        };
+
+        document.getElementById('prevButton').onclick = function () {
+            if (currentLectureIndex > 0) {
+                loadLecture(currentLectureIndex - 1);
+            }
+        };
+
+        // Initial load
+        loadLecture(currentLectureIndex);
     </script>
 </body>
-
-
-  </body>
 
 </html>
