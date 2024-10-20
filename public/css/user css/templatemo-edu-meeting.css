@@ -155,7 +155,7 @@ body {
   }
 }
 
-.main-button-red a {
+#join {
   font-size: 13px;
   color: #fff;
   background-color: #a12c2f;
@@ -167,7 +167,7 @@ body {
   transition: all .3s;
 }
 
-.main-button-red a:hover {
+#join :hover {
   opacity: 0.9;
 }
 
@@ -749,7 +749,7 @@ banner
   max-width: 570px;
 }
 
-.main-banner .caption .main-button-red {
+.main-banner .caption #join {
   margin-top: 30px;
 }
 
@@ -933,13 +933,13 @@ section.upcoming-meetings .categories ul li a:hover {
   color: #a12c2f;
 }
 
-section.upcoming-meetings .categories .main-button-red {
+section.upcoming-meetings .categories #join{
   border-top: 1px solid #eee;
   padding-top: 30px;
   margin-top: 15px;
 }
 
-section.upcoming-meetings .categories .main-button-red a {
+section.upcoming-meetings .categories #join {
   width: 100%;
   text-align: center;
 }
@@ -1550,11 +1550,11 @@ section.meetings-page .pagination ul li a {
   transition: all .3s;
 }
 
-section.meetings-page .main-button-red {
+section.meetings-page #join {
   text-align: center;
 }
 
-section.meetings-page .main-button-red a {
+section.meetings-page #join{
   padding: 12px 60px;
   text-align: center;
   margin-top: 30px;
@@ -1774,7 +1774,7 @@ responsive
     font-size: 22px;
   }
 
-  .main-banner .caption .main-button-red {
+  .main-banner .caption #join {
     margin-top: 15px;
   }
 
@@ -1828,180 +1828,4 @@ responsive
     color: #1f272b;
   }
 
-}
-/* login form design */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Modal content */
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Close button (X) */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Input fields */
-input[type="email"], input[type="password"], input[type="fullname"] {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 15px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-/* Password container for toggle */
-.password-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-a.forgot-password {
-  display: block;
-  margin-bottom: 20px;
-  text-align: right;
-  text-decoration: none;
-  color: #0073e6;
-}
-
-a.forgot-password:hover {
-  text-decoration: underline;
-}
-
-/* Submit button */
-button.login-btn {
-  background-color: #0073e6;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-}
-
-button.login-btn:hover {
-  background-color: #005bb5;
-}
-
-/* Divider for alternative logins */
-.divider {
-  margin: 20px 0;
-  font-weight: bold;
-  position: relative;
-  text-align: center;
-}
-
-.divider:before, .divider:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 45%;
-  height: 1px;
-  background-color: #ccc;
-}
-
-.divider:before {
-  left: 0;
-}
-
-.divider:after {
-  right: 0;
-}
-
-/* Social login buttons */
-button.google-btn, .microsoft-btn, .apple-btn{
-  background-color: white;
-  color: #333;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-button.google-btn:hover {
-  border-color: #db4437;
-}
-button.microsoft-btn:hover {
-  border-color: #42b242;
-}
-
-button.apple-btn:hover {
-  border-color: #000;
-}
-
-/* Sign up link */
-p {
-  margin-top: 10px;
-  text-align: center;
-}
-
-p a {
-  color: #0073e6;
-  text-decoration: none;
-}
-
-p a:hover {
-  text-decoration: underline;
-}
-/* Google button */
-button.google-btn, .microsoft-btn, .apple-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px; /* Adjust based on your needs */
-  size: 1px;
-}
-
-/* Google icon */
-.google-icon {
-  width: 20px; /* Set the size of the logo */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 8px; /* Space between logo and text */
 }
