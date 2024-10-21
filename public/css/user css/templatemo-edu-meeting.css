@@ -1159,7 +1159,7 @@ courses
 
 section.our-courses {
   background-image: url(../../images/meetings-bg.jpg);
-  background-position: center center;
+  background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
