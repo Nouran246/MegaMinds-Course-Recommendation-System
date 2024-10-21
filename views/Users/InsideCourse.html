@@ -179,6 +179,10 @@ button:hover {
                             <li class="list-group-item active" data-index="0">Lesson 1: Basics</li>
                             <li class="list-group-item" data-index="1">Lesson 2: Advanced Topics</li>
                             <li class="list-group-item" data-index="2">Lesson 3: Data Structures</li>
+                            <li class="list-group-item" data-index="3">Lesson 4: Object Oriented Programming</li>
+                            <li class="list-group-item" data-index="4">Lesson 5: Operating Systems</li>
+                            <li class="list-group-item" data-index="5">Lesson 6: Artificial Intelligence</li>
+                            <li class="list-group-item" data-index="6">Lesson 7: Machine Learning</li>
                         </ul>
                     </nav>
 
@@ -200,7 +204,9 @@ button:hover {
                 </div>
             </div>
             <div class="discussion-container">
+                <br><br>
                 <h1>Course Discussion</h1>
+                <br>
                 <form id="discussionForm">
                     <input type="text" id="userNameInput" placeholder="Your Name" required>
                     <textarea id="userCommentInput" placeholder="Write your comment here..." required></textarea>
@@ -289,20 +295,36 @@ button:hover {
         {
             title: "Lesson 1: Basics",
             description: "Brief description of the Basics lecture content.",
-            videoId: "M7lc1UVf-VE" // Short video ID 1 (accessible)
+            videoId: "X1CgO3mV9SE" // Short video ID 1 (accessible)
         },
         {
             title: "Lesson 2: Advanced Topics",
             description: "Overview of advanced topics in Computer Science.",
-            videoId: "9bZkp7q19f0" // Short video ID 2 (accessible)
+            videoId: "M7lc1UVf-VE" // Short video ID 2 (accessible)
         },
         {
             title: "Lesson 3: Data Structures",
             description: "Introduction to various data structures.",
             videoId: "BBvod49uySQ" // Short video ID 3 (accessible)
+        },
+        {
+            title: "Lesson 4: Object Oriented Programming",
+            description: "Introduction to various data structures.",
+            videoId: "9bZkp7q19f0" // Short video ID 3 (accessible)
+        } , {
+            title: "Lesson 5: Operating Systems",
+            description: "Introduction to various data structures.",
+            videoId: "X1CgO3mV9SE" // Short video ID 3 (accessible)
+        }  ,{
+            title: "Lesson 6: Artificial Intelligence",
+            description: "Introduction to various data structures.",
+            videoId: "sNJYdAPK06Q" // Short video ID 3 (accessible)
+        } , {
+            title: "Lesson 7: Machine Learning",
+            description: "Introduction to various data structures.",
+            videoId: "llByJkqSdlE" // Short video ID 3 (accessible)
         }
     ];
-
     var currentLectureIndex = 0;
 
     var loadLecture = function (index) {
