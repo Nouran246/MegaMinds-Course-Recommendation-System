@@ -58,6 +58,63 @@
             height: 100%;
             border: 0;
         }
+        .discussion-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.discussion-container h1, .discussion-container h2 {
+    color: #333;
+}
+
+#discussionForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#userNameInput, #userCommentInput {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #7a1616;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7a1616;
+}
+
+#discussionCommentsSection {
+    margin-top: 20px;
+}
+
+.discussion-comment {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.discussion-comment .comment-username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.discussion-comment .comment-text {
+    margin-top: 5px;
+}
     </style>
 </head>
 
@@ -137,6 +194,21 @@
                             <button class="btn btn-primary" id="nextButton">Next</button>
                         </div>
                     </main>
+                </div>
+            </div>
+            <div class="discussion-container">
+                <h1>Course Discussion</h1>
+                <form id="discussionForm">
+                    <input type="text" id="userNameInput" placeholder="Your Name" required>
+                    <textarea id="userCommentInput" placeholder="Write your comment here..." required></textarea>
+                    <button type="submit">Post Comment</button>
+                </form>
+        
+                <div id="discussionCommentsSection">
+                    <h2>Comments</h2>
+                    <div id="discussionCommentsList">
+                        <!-- Comments will appear here -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -286,6 +358,42 @@ function markAsDone(index) {
 
     // Initial load
     loadLecture(currentLectureIndex);
+
+    document.getElementById("discussionForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get user inputs
+    const userName = document.getElementById("userNameInput").value.trim();
+    const userComment = document.getElementById("userCommentInput").value.trim();
+
+    if (userName && userComment) {
+        addDiscussionComment(userName, userComment);
+        
+        // Clear the input fields after posting
+        document.getElementById("userNameInput").value = '';
+        document.getElementById("userCommentInput").value = '';
+    }
+});
+
+function addDiscussionComment(userName, userComment) {
+    // Create elements
+    const commentDiv = document.createElement("div");
+    commentDiv.classList.add("discussion-comment");
+
+    const userElement = document.createElement("div");
+    userElement.classList.add("comment-username");
+    userElement.textContent = userName;
+
+    const textElement = document.createElement("div");
+    textElement.classList.add("comment-text");
+    textElement.textContent = userComment;
+
+    // Append elements
+    commentDiv.appendChild(userElement);
+    commentDiv.appendChild(textElement);
+    document.getElementById("discussionCommentsList").appendChild(commentDiv);
+}
+
 </script>
 </body>
 
