@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>Education Template - Meeting Detail Page</title>
+    <title>Course Content</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
@@ -292,17 +292,61 @@ button:hover {
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="../../public/js/user js/jquery.min.js"></script>
-    <script src="../../public/js/user js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/js/user js/bootstrap.min.js"></script>
 
     <script src="../../public/js/user js/isotope.min.js"></script>
     <script src="../../public/js/user js/owl-carousel.js"></script>
     <script src="../../public/js/user js/lightbox.js"></script>
-    <script src="../../public/js/user js/js/tabs.js"></script>
-    <script src="../../public/js/user js/js/video.js"></script>
-    <script src="../../public/js/user js/js/slick-slider.js"></script>
-    <script src="../../public/js/user js/js/custom.js"></script>
+    <script src="../../public/js/user js/tabs.js"></script>
+    <script src="../../public/js/user js/isotope.js"></script>
+    <script src="../../public/js/user js/video.js"></script>
+    <script src="../../public/js/user js/slick-slider.js"></script>
+    <script src="../../public/js/user js/custom.js"></script>
     <script>
-        // Load the IFrame Player API code asynchronously
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
         var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
