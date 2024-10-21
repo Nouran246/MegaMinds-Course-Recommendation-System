@@ -1,0 +1,148 @@
+.list-group-item.active {
+    background-color: #721010; /* Change this color as needed */
+    color: white; /* Change text color for contrast */
+    border-color: #721010; 
+}
+#nextButton{
+    background-color: #721010;
+    border-color:  #721010;;
+}
+
+#nextButton:hover{
+    border-color: #721010;
+    background-color: #721010;
+}
+#nextButton:active{
+    border-color: #721010;
+    background-color: #721010;
+}
+
+
+.list-group-item.done {
+    color: green; /* Change text color for completed lessons */
+    text-decoration: line-through; /* Strikethrough for completed lessons */
+}
+
+p,
+h2 .mb-3 {
+    color: white;
+}
+
+.mb-3 {
+    color: white;
+}
+
+.embed-responsive {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.embed-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.discussion-container {
+max-width: 600px; /* Limit the width of the discussion container */
+margin: 20px auto; /* Center container horizontally */
+padding: 20px;
+border-radius: 10px;
+background-color: #ffffff; /* White background for the discussion */
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.discussion-container h1 {
+font-size: 1.5rem; /* Heading size */
+color: #333333; /* Dark gray for contrast */
+margin-bottom: 15px; /* Space below heading */
+}
+
+#discussionForm {
+display: flex;
+flex-direction: column; /* Stack form elements vertically */
+}
+
+#userNameInput, #userCommentInput {
+margin-bottom: 15px; /* Space between input fields */
+padding: 12px; /* Increased padding for comfort */
+border: 1px solid #cccccc; /* Light border */
+border-radius: 5px; /* Rounded corners */
+font-size: 1rem; /* Consistent font size */
+color: #333333; /* Dark text for readability */
+background-color: #f9f9f9; /* Light gray background for inputs */
+}
+
+button {
+padding: 12px; /* Consistent padding */
+background-color: #721010; /* Green background color */
+color: #ffffff; /* White text color */
+border: none;
+border-radius: 5px; /* Rounded corners */
+cursor: pointer;
+font-size: 1rem; /* Consistent font size */
+transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+button:hover {
+background-color: #721010; /* Darker green on hover */
+}
+
+#discussionCommentsSection {
+margin-top: 20px; /* Space above comments section */
+}
+
+.discussion-comment {
+background-color: #f1f1f1; /* Light gray background for comments */
+border: 1px solid #e0e0e0; /* Slightly darker border */
+border-radius: 5px; /* Rounded corners */
+padding: 10px; /* Padding for comments */
+margin-bottom: 10px; /* Space between comments */
+}
+
+.discussion-comment .comment-username {
+font-weight: bold; /* Emphasized username */
+color: #2c3e50; /* Darker color for username */
+}
+
+.discussion-comment .comment-text {
+margin-top: 5px; /* Space above comment text */
+color: #444444; /* Dark gray for comment text */
+}
+.like-button,
+.dislike-button,
+.reply-button {
+margin: 5px;
+padding: 5px 10px;
+background-color: #721010; /* Change button color */
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.like-button:hover,
+.dislike-button:hover,
+.reply-button:hover {
+background-color: #a61717; /* Darker shade on hover */
+}
+
+.replies-container {
+margin-top: 10px;
+margin-left: 20px; /* Indent replies */
+border-left: 1px solid #ddd; /* Vertical line for replies */
+padding-left: 10px;
+color:white;
+background-color: transparent;
+}
+
+.reply {
+color: Black; /* Light background for replies */
+}
