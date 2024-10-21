@@ -26,3 +26,18 @@ h3.text-center {
     margin-bottom: 30px;
     font-weight: bold;
 }
+button {
+    padding: 10px 20px;
+    background-color: #871717; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Increased for softer corners */
+    cursor: pointer; /* Change cursor on hover */
+    margin-left: 500px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+button:hover {
+    background-color: #6f0f0f; /* Darker shade for hover effect */
+}
+ 
