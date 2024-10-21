@@ -118,6 +118,35 @@ button:hover {
 .discussion-comment .comment-text {
     margin-top: 5px;
 }
+.like-button,
+.dislike-button,
+.reply-button {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #721010; /* Change button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.like-button:hover,
+.dislike-button:hover,
+.reply-button:hover {
+    background-color: #a61717; /* Darker shade on hover */
+}
+
+.replies-container {
+    margin-top: 10px;
+    margin-left: 20px; /* Indent replies */
+    border-left: 1px solid #ddd; /* Vertical line for replies */
+    padding-left: 10px;
+}
+
+.reply {
+    color: #f9f9f9; /* Light background for replies */
+}
+
     </style>
 </head>
 
@@ -420,6 +449,72 @@ function addDiscussionComment(userName, userComment) {
     commentDiv.appendChild(textElement);
     document.getElementById("discussionCommentsList").appendChild(commentDiv);
 }
+$(document).ready(function () {
+    // Handle comment submission
+    $('#discussionForm').on('submit', function (e) {
+        e.preventDefault();
+        
+        const username = $('#userNameInput').val();
+        const commentText = $('#userCommentInput').val();
+        
+        // Create the comment element
+        const commentDiv = $('<div class="discussion-comment"></div>');
+        commentDiv.append(`<div class="comment-username">${username}</div>`);
+        commentDiv.append(`<div class="comment-text">${commentText}</div>`);
+        
+        // Add like, dislike, and reply buttons
+        const likeButton = $('<button class="like-button">👍 Like</button>');
+        const dislikeButton = $('<button class="dislike-button">👎 Dislike</button>');
+        const replyButton = $('<button class="reply-button">💬 Reply</button>');
+        
+        const repliesContainer = $('<div class="replies-container"></div>');
+
+        // Append buttons to comment
+        commentDiv.append(likeButton);
+        commentDiv.append(dislikeButton);
+        commentDiv.append(replyButton);
+        commentDiv.append(repliesContainer);
+
+        // Update comment list
+        $('#discussionCommentsList').append(commentDiv);
+
+        // Clear input fields
+        $('#userNameInput').val('');
+        $('#userCommentInput').val('');
+
+        // Handle like button click
+        likeButton.on('click', function () {
+            alert(`${username} liked this comment!`);
+            // You can implement further like functionality here
+        });
+
+        // Handle dislike button click
+        dislikeButton.on('click', function () {
+            alert(`${username} disliked this comment!`);
+            // You can implement further dislike functionality here
+        });
+
+        // Handle reply button click
+        replyButton.on('click', function () {
+            const replyInput = $('<input type="text" class="reply-input" placeholder="Your reply..." />');
+            const replySubmitButton = $('<button class="reply-submit">Post Reply</button>');
+            
+            repliesContainer.append(replyInput);
+            repliesContainer.append(replySubmitButton);
+            
+            // Handle reply submission
+            replySubmitButton.on('click', function () {
+                const replyText = replyInput.val();
+                if (replyText) {
+                    const replyDiv = $('<div class="reply"></div>');
+                    replyDiv.text(`${username} replied: ${replyText}`);
+                    repliesContainer.append(replyDiv);
+                    replyInput.val(''); // Clear reply input
+                }
+            });
+        });
+    });
+});
 
 </script>
 </body>
