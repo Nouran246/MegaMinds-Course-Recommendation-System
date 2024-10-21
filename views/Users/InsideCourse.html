@@ -291,6 +291,7 @@ button:hover {
     };
 
 
+
     var lectures = [
         {
             title: "Lesson 1: Basics",
@@ -327,58 +328,59 @@ button:hover {
     ];
     var currentLectureIndex = 0;
 
-    var loadLecture = function (index) {
-        $('#lesson-title').text(lectures[index].title);
-        $('#lesson-description').text(lectures[index].description);
-        $('#lesson-video').attr('src', "https://www.youtube.com/embed/" + lectures[index].videoId);
-        $('li.list-group-item').removeClass('active');
-        $('li.list-group-item').eq(index).addClass('active');
+var loadLecture = function (index) {
+    $('#lesson-title').text(lectures[index].title);
+    $('#lesson-description').text(lectures[index].description);
+    $('#lesson-video').attr('src', "https://www.youtube.com/embed/" + lectures[index].videoId);
+    $('li.list-group-item').removeClass('active');
+    $('li.list-group-item').eq(index).addClass('active');
 
-        currentLectureIndex = index; // Update the current index
-    };
+    currentLectureIndex = index; // Update the current index
+};
 
-    document.getElementById('nextButton').onclick = function () {
-        if (currentLectureIndex < lectures.length - 1) {
-            loadLecture(currentLectureIndex + 1);
-        }
-    };
+document.getElementById('nextButton').onclick = function () {
+    if (currentLectureIndex < lectures.length - 1) {
+        loadLecture(currentLectureIndex + 1);
+    }
+};
 
-    document.getElementById('prevButton').onclick = function () {
-        if (currentLectureIndex > 0) {
-            loadLecture(currentLectureIndex - 1);
-        }
-    };
+document.getElementById('prevButton').onclick = function () {
+    if (currentLectureIndex > 0) {
+        loadLecture(currentLectureIndex - 1);
+    }
+};
 
-    // Check video progress and mark as done
-    var videoDuration = 0;
+// Check video progress and mark as done
+var videoDuration = 0;
 
-    function checkVideoProgress() {
-    if (player && player.getCurrentTime && player.getDuration) {
-        var currentTime = player.getCurrentTime();
-        videoDuration = player.getDuration();
+function checkVideoProgress() {
+if (player && player.getCurrentTime && player.getDuration) {
+    var currentTime = player.getCurrentTime();
+    videoDuration = player.getDuration();
 
-        // Log current time and duration for debugging
-        console.log(`Current Time: ${currentTime}, Duration: ${videoDuration}`);
+    // Log current time and duration for debugging
+    console.log(`Current Time: ${currentTime}, Duration: ${videoDuration}`);
 
-        // Check if 80% of the video has been watched
-        if (currentTime >= 0.8 * videoDuration) {
-            markAsDone(currentLectureIndex);
-        }
+    // Check if 80% of the video has been watched
+    if (currentTime >= 0.8 * videoDuration) {
+        markAsDone(currentLectureIndex);
     }
 }
+}
 function onPlayerReady(event) {
-    // Start tracking video progress
-    setInterval(checkVideoProgress, 1000); // Check every second
+// Start tracking video progress
+setInterval(checkVideoProgress, 1000); // Check every second
 }
 
 function markAsDone(index) {
-    var lessonItem = $('li.list-group-item').eq(index);
-    if (!lessonItem.hasClass('done')) {
-        lessonItem.addClass('done');
-        lessonItem.append(' ✔'); // Append a check mark
-        console.log(`Lesson ${index + 1} marked as done.`);
-    }
+var lessonItem = $('li.list-group-item').eq(index);
+if (!lessonItem.hasClass('done')) {
+    lessonItem.addClass('done');
+    lessonItem.append(' ✔'); // Append a check mark
+    console.log(`Lesson ${index + 1} marked as done.`);
 }
+}
+
 
 
     // Initial load
