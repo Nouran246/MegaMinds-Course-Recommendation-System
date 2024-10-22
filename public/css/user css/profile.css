@@ -1,5 +1,5 @@
 
-/* public/css/profile.css */
+/* public\css\user css\profile.css*/
 
 .apply-now .container {
     display: flex;
@@ -61,5 +61,8 @@
     background-color: #f5a425;
 }
 
-
-
+/* to prevent the window from moving weirdly after tab switching */
+.tab-content {
+    min-height: 400px; /* Adjust this to fit your content */
+    transition: min-height 0.3s ease;
+}

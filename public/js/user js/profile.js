@@ -1,4 +1,4 @@
-/* public/js/profile.js */
+/* public\js\user js\profile.js */
 
 
 /* triggering edit btn + img input + validation for file type and uploading the img (changing src img) */
@@ -110,12 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Enable tab switching and update the URL when tabs are clicked
+/* Enable tab switching and update the URL when tabs are clicked */
+
 document.querySelectorAll('#myTab a').forEach(function (tab) {
     tab.addEventListener('click', function (e) {
         e.preventDefault();
         var activeTab = new bootstrap.Tab(this);
         activeTab.show();
-        window.location.hash = this.getAttribute('href');  // Update the URL hash
+        // Prevent jumping to anchor
+        window.history.pushState(null, null, this.getAttribute('href'));
     });
 });
