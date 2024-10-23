@@ -1166,7 +1166,13 @@ section.our-courses {
   padding-top: 140px;
   padding-bottom: 130px;
 }
-
+.our-courses .item{
+  height: 350px; /* Adjust the height as needed */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .our-courses .item .down-content {
   background-color: #fff;
 }
