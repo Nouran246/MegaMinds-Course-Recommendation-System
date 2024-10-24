@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
-  `UserName` varchar(50) NOT NULL,
+  `FName` varchar(50) NOT NULL,
+  `LName` varchar(50) NOT NULL,
   `Password` varchar(10) NOT NULL,
   `UserType_id` int(11) NOT NULL,
   `Email` varchar(150) NOT NULL
@@ -39,12 +40,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `UserName`, `Password`, `UserType_id`, `Email`) VALUES
-(1, 'Malak', '123', 1, 'malak@gmail.com'),
-(2, 'Laila', '123', 1, 'laila@gmail.com'),
-(3, 'Nouran', '123', 1, 'nouran@gmail.com'),
-(4, 'Roaa', '123', 1, 'roaa@gmail.com'),
-(5, 'Yahia', '123', 2, 'yahia@gmail.com');
+INSERT INTO `users` (`ID`, `FName`, `LName`, `Password`, `UserType_id`, `Email`) VALUES
+(1, 'Malak','Mourad', '123', 1, 'malak@gmail.com'),
+(2, 'Laila','Elsewedy', '123', 1, 'laila@gmail.com'),
+(3, 'Nouran','Khairat','123', 1, 'nouran@gmail.com'),
+(4, 'Roaa','Bassiouny', '123', 1, 'roaa@gmail.com'),
+(5, 'Yahia','Awad', '123', 2, 'yahia@gmail.com');
 
 --
 -- Indexes for dumped tables
