@@ -105,17 +105,17 @@
             </a>
           </li>
           <li>
-            <a href="dashboard.html" class="nav-link">
+            <a href="dashboard.php" class="nav-link">
               Dashboard
             </a>
           </li>
           <li>
-            <a href="members.html" class="nav-link">
+            <a href="members.php" class="nav-link">
               Members
             </a>
           </li>
           <li>
-            <a href="courses.html" class="nav-link">
+            <a href="courses.php" class="nav-link">
               Courses
             </a>
           </li>

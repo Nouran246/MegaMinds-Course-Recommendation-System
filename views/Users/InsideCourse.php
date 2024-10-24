@@ -33,25 +33,25 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         MegaMinds
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="Courses.html" class="active">My Courses</a></li>
+                        <li><a href="Courses.php" class="active">My Courses</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Meetings</a>
                             <ul class="sub-menu">
-                                <li><a href="meetings.html">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.html">Meeting Details</a></li>
+                                <li><a href="meetings.php">Upcoming Meetings</a></li>
+                                <li><a href="meeting-details.php">Meeting Details</a></li>
                             </ul>
                         </li>
-                        <li><a href="cart-page.html">Cart</a></li> 
+                        <li><a href="cart-page.php">Cart</a></li> 
 
-                        <li><a href="profile.html">My Profile</a></li> 
+                        <li><a href="profile.php">My Profile</a></li> 
                         
-                        <li><a href="index.html">Sign out</a></li> 
+                        <li><a href="index.php">Sign out</a></li> 
 
                     </ul>        
                     <a class='menu-trigger'>

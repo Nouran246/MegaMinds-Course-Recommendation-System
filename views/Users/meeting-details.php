@@ -43,24 +43,24 @@ https://templatemo.com/tm-569-edu-meeting
               <div class="col-12">
                   <nav class="main-nav">
                       <!-- ***** Logo Start ***** -->
-                      <a href="index.html" class="logo">
+                      <a href="index.php" class="logo">
                           MegaMinds
                       </a>
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
-                          <li><a href="Courses.html">My Courses</a></li>
+                          <li><a href="Courses.php">My Courses</a></li>
                          
                           <li class="has-sub">
                               <a href="javascript:void(0)">Meetings</a>
                               <ul class="sub-menu">
-                                  <li><a href="Courses.html">Upcoming Meetings</a></li>
-                                  <li><a href="meeting-details.html">Meeting Details</a></li>
+                                  <li><a href="Courses.php">Upcoming Meetings</a></li>
+                                  <li><a href="meeting-details.php">Meeting Details</a></li>
                               </ul>
                           </li>
-                          <li><a href="cart-page.html">Cart</a></li> 
-                          <li><a href="Courses.html">My Profile</a></li> 
-                          <li><a href="index.html">Sign Out</a></li> 
+                          <li><a href="cart-page.php">Cart</a></li> 
+                          <li><a href="Courses.php">My Profile</a></li> 
+                          <li><a href="index.php">Sign Out</a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>
@@ -98,10 +98,10 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/single-meeting.jpg" alt=""></a>
+                  <a href="meeting-details.php"><img src="../../public/images/single-meeting.jpg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.html"><h4>Online Teaching and Learning Tools</h4></a>
+                  <a href="meeting-details.php"><h4>Online Teaching and Learning Tools</h4></a>
                   <p>Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22795-008, Brazil</p>
                   <p class="description">
                     This is an edu meeting HTML CSS template provided by <a href="https://templatemo.com/" target="_blank" rel="nofollow">TemplateMo website</a>. This is a Bootstrap v5.1.3 layout. If you need more free website templates like this one, please visit our website TemplateMo. Please tell your friends about our website. Thank you. If you want to get the latest collection of HTML CSS templates for your websites, you may visit <a rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a working contact form script, please visit <a href="https://templatemo.com/contact" target="_parent">our contact page</a> for more info.
@@ -138,7 +138,7 @@ https://templatemo.com/tm-569-edu-meeting
                           <li><a href="#">Behance</a></li>
                         </ul>
                         <div class="main-button-red">
-                          <button onclick="window.location.href='cart-page.html'">Add To Cart</button>
+                          <button onclick="window.location.href='cart-page.php'">Add To Cart</button>
                         </div>
                         
                       </div>

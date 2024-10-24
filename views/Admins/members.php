@@ -112,17 +112,17 @@
           </a>
         </li>
         <li>
-          <a href="dashboard.html" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>">
+          <a href="dashboard.php" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>">
             Dashboard
           </a>
         </li>
         <li>
-          <a href="members.html" class="nav-link <%= title === 'Members' ? 'active' : '' %>">
+          <a href="members.php" class="nav-link <%= title === 'Members' ? 'active' : '' %>">
             Members
           </a>
         </li>
         <li>
-          <a href="blogs.html" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
+          <a href="blogs.php" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
             Courses
           </a>
         </li>

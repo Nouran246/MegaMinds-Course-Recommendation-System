@@ -39,23 +39,23 @@ https://templatemo.com/tm-569-edu-meeting
               <div class="col-12">
                   <nav class="main-nav">
                       <!-- ***** Logo Start ***** -->
-                      <a href="index.html" class="logo">
+                      <a href="index.php" class="logo">
                           MegaMinds
                       </a>
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
-                          <li><a href="Courses.html" >My Courses</a></li>
+                          <li><a href="Courses.php" >My Courses</a></li>
                           <li class="has-sub">
                               <a href="javascript:void(0)">Meetings</a>
                               <ul class="sub-menu">
-                                  <li><a href="Courses.html">Upcoming Meetings</a></li>
-                                  <li><a href="meeting-details.html">Meeting Details</a></li>
+                                  <li><a href="Courses.php">Upcoming Meetings</a></li>
+                                  <li><a href="meeting-details.php">Meeting Details</a></li>
                               </ul>
                           </li>
-                          <li><a href="cart-page.html" class="active">My Cart</a></li> 
-                          <li><a href="profile.html">My Profile</a></li> 
-                          <li><a href="index.html">Sign Out</a></li> 
+                          <li><a href="cart-page.php" class="active">My Cart</a></li> 
+                          <li><a href="profile.php">My Profile</a></li> 
+                          <li><a href="index.php">Sign Out</a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>
@@ -94,10 +94,10 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="date">
                     <h6>Jan <span>3</span></h6>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/single-meeting.jpg" alt=""></a>
+                  <a href="meeting-details.php"><img src="../../public/images/single-meeting.jpg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.html"><h4>Online Teaching and Learning Tools</h4></a>
+                  <a href="meeting-details.php"><h4>Online Teaching and Learning Tools</h4></a>
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="hours">
@@ -126,10 +126,10 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/single-meeting.jpg" alt=""></a>
+                  <a href="meeting-details.php"><img src="../../public/images/single-meeting.jpg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.html"><h4>Online Teaching and Learning Tools</h4></a>
+                  <a href="meeting-details.php"><h4>Online Teaching and Learning Tools</h4></a>
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="hours">

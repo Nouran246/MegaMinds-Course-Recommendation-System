@@ -30,25 +30,25 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         MEGAMINDS
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="Courses.html" class="active">My Courses</a></li>
+                        <li><a href="Courses.php" class="active">My Courses</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Meetings</a>
                             <ul class="sub-menu">
-                                <li><a href="meetings.html">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.html">Meeting Details</a></li>
+                                <li><a href="meetings.php">Upcoming Meetings</a></li>
+                                <li><a href="meeting-details.php">Meeting Details</a></li>
                             </ul>
                         </li>
-                        <li><a href="cart-page.html">Cart</a></li> 
+                        <li><a href="cart-page.php">Cart</a></li> 
 
-                        <li><a href="profile.html">My Profile</a></li> 
+                        <li><a href="profile.php">My Profile</a></li> 
                         
-                        <li><a href="index.html">Sign out</a></li> 
+                        <li><a href="index.php">Sign out</a></li> 
 
                     </ul>        
                     <a class='menu-trigger'>
@@ -166,7 +166,7 @@
               <li><a href="#">Phasellus nec sapien</a></li>
             </ul>
             <div class="main-button-red">
-              <a href="meetings.html">All Upcoming Meetings</a>
+              <a href="meetings.php">All Upcoming Meetings</a>
             </div>
           </div>
         </div>
@@ -178,13 +178,13 @@
                   <div class="price">
                     <span>$22.00</span>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/meeting-01.jpg" alt="New Lecturer Meeting"></a>
+                  <a href="meeting-details.php"><img src="../../public/images/meeting-01.jpg" alt="New Lecturer Meeting"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6>Nov <span>10</span></h6>
                   </div>
-                  <a href="meeting-details.html"><h4>Interview preparation Session</h4></a>
+                  <a href="meeting-details.php"><h4>Interview preparation Session</h4></a>
                   <p>Get expert advice on how to ace technical and behavioral interviews, with tips on answering common questions and showcasing your skills.</p>
                 </div>
               </div>
@@ -195,13 +195,13 @@
                   <div class="price">
                     <span>$36.00</span>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/meeting-02.jpg" alt="Online Teaching"></a>
+                  <a href="meeting-details.php"><img src="../../public/images/meeting-02.jpg" alt="Online Teaching"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6>Nov <span>24</span></h6>
                   </div>
-                  <a href="meeting-details.html"><h4>Online Teaching Techniques</h4></a>
+                  <a href="meeting-details.php"><h4>Online Teaching Techniques</h4></a>
                   <p>Learn effective methods to deliver engaging and interactive lessons in a virtual environment, designed to enhance online education.</p>
                 </div>
               </div>
@@ -212,13 +212,13 @@
                   <div class="price">
                     <span>$14.00</span>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/meeting-03.jpg" alt="Higher Education"></a>
+                  <a href="meeting-details.php"><img src="../../public/images/meeting-03.jpg" alt="Higher Education"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6>Nov <span>26</span></h6>
                   </div>
-                  <a href="meeting-details.html"><h4>How to write a cv</h4></a>
+                  <a href="meeting-details.php"><h4>How to write a cv</h4></a>
                   <p>Master the art of crafting a professional and compelling CV that highlights your strengths and sets you apart in the job market.</p>
                 </div>
               </div>
@@ -229,13 +229,13 @@
                   <div class="price">
                     <span>$48.00</span>
                   </div>
-                  <a href="meeting-details.html"><img src="../../public/images/meeting-04.jpg" alt="Student Training"></a>
+                  <a href="meeting-details.php"><img src="../../public/images/meeting-04.jpg" alt="Student Training"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
                     <h6>Nov <span>30</span></h6>
                   </div>
-                  <a href="meeting-details.html"><h4>Student Training Meetup</h4></a>
+                  <a href="meeting-details.php"><h4>Student Training Meetup</h4></a>
                   <p>A hands-on workshop that provides students with practical training and insights into industry-relevant tools and technologies.
                   </p>
                 </div>
