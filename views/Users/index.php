@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
 
   </head>
-
 <body>
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
@@ -32,12 +31,12 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        MegaMinds
+                        MEGAMINDS
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="Courses.html" class="active">My Courses</a></li>
+                        <li><a href="Courses.php" class="active">My Courses</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Meetings</a>
                             <ul class="sub-menu">
