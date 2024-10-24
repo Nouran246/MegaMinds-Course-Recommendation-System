@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,11 @@
     <title>Register</title>
     <script src="../../public/js/signup_and_in.js"></script>
     <link rel="stylesheet" href="../../public/css/templatemo-edu-meeting.css"></head>
-    <link href="../../public/css/signup_and_in.css" rel="stylesheet">
+    <link href="..\..\public\css\user css\signup_and_in.css" rel="stylesheet">
+    
+  
+<!--     <link href="..\..\MegaMinds-Course-Recommendation-System\public\css\user css\bootstrap.min.css" rel="stylesheet">
+ -->
 <body>
             
              <div class="scroll-to-section">
@@ -57,9 +61,12 @@
                             Continue with Apple
                         </button>
                       
-                        <p>Already has an account? <a href="index.html">Sign in</a></p>
+                        <p>Already has an account? <a href="index.php">Sign in</a></p>
                     </form>
                 </div>
             </div>
+            <script src="../../public/js/user js/Signin_and_up.js"></script>
+
 </body>
-</html> -->
+
+</html> 

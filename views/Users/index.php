@@ -36,19 +36,20 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="Courses.php" class="active">My Courses</a></li>
-                        <li class="has-sub">
+                        <li><a href="#courses">Courses</a></li>
+                       <!--  <li class="has-sub">
                             <a href="javascript:void(0)">Meetings</a>
                             <ul class="sub-menu">
                                 <li><a href="meetings.php">Upcoming Meetings</a></li>
                                 <li><a href="meeting-details.php">Meeting Details</a></li>
                             </ul>
-                        </li>
-                        <li><a href="cart-page.php">Cart</a></li> 
+                        </li> -->
+<!--                         <li><a href="cart-page.php">Cart</a></li> 
+ --><!--                         <li><a href="profile.php">My Profile</a></li> 
+ -->                        
+                        <li><a href="#contact">Contact Us</a></li> 
+                        <li><a href="login.php">Sign In</a></li> 
 
-                        <li><a href="profile.php">My Profile</a></li> 
-                        
-                        <li><a href="index.php">Sign out</a></li> 
 
                     </ul>        
                     <a class='menu-trigger'>

@@ -24,7 +24,7 @@
     $_SESSION["LName"]=$row["LastName"];
     $_SESSION["Email"]=$row["Email"];
     $_SESSION["Password"]=$row["Password"];   
-    header("Location:index.php?login=success");
+    header("Location:courses.php?login=success");
 
   }
   else{

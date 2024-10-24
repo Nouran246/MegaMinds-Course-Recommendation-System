@@ -7,7 +7,15 @@
      <script src="public/js/signup_and_in.js"></script> 
     <link rel="stylesheet" href="../../public/css/templatemo-edu-meeting.css"></head>
     <link href="../../public/css/signup_and_in.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/css/user css/signup_and_in.css" rel="stylesheet">
 
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
 <body>
 
 <div class="scroll-to-section">
@@ -59,7 +67,7 @@
 </div>
 <?php
 
-include '../database/login.php';
+include '/xampp/htdocs/MegaMinds-Course-Recommendation-System/public/database/DB.php';
 
 ?>
 
