@@ -3,7 +3,7 @@
    session_start();
 
    //include database connection file
-   include_once "includes/dbh.inc.php";
+   include_once "includes/DB.php";
    
    //grab data from user and see if it exists in database
    if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -24,7 +24,7 @@
     $_SESSION["LName"]=$row["LastName"];
     $_SESSION["Email"]=$row["Email"];
     $_SESSION["Password"]=$row["Password"];   
-    header("Location:courses.php?login=success");
+    header("Location:Courses.php?login=success");
 
   }
   else{

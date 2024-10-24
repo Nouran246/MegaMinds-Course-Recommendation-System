@@ -1,3 +1,5 @@
+/* public\css\user css\signup_and_in.css */
+
 /* login form design */
 .modal {
     display: none;
@@ -42,7 +44,7 @@
   }
   
   /* Input fields */
-  input[type="email"], input[type="password"], input[type="fullname"] {
+  input[type="email"], input[type="password"], input[type="FName"],input[type="LName"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0 15px 0;

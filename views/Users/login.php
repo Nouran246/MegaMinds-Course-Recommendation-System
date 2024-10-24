@@ -4,46 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
-     <script src="public/js/signup_and_in.js"></script> 
-    <link rel="stylesheet" href="../../public/css/templatemo-edu-meeting.css"></head>
-    <link href="../../public/css/signup_and_in.css" rel="stylesheet">
-  <!-- Bootstrap core CSS -->
-  <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../public/css/user css/signup_and_in.css" rel="stylesheet">
+    <script src="../../public/js/signup_and_in.js"></script> <!-- Make sure this path is correct -->
 
+    <!-- Bootstrap core CSS -->
+    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="../../public/css/signup_and_in.css" rel="stylesheet">
+    <link href="../../public/css/templatemo-edu-meeting.css" rel="stylesheet">
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="../../public/css/user css/owl.css">
     <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+</head>
 <body>
 
 <div class="scroll-to-section">
     <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
 </div>
 
-
 <div id="loginModal" class="modal" style="display: none;">
-    
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Welcome back</h2>
-        <form>
-        
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+        <form method="post">
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
 
-         
-            <label for="password">Password</label>
+            <label for="Password">Password</label>
             <div class="password-container">
-                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                <input type="password" id="Password" name="Password" placeholder="Enter your Password" required>
                 <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
             </div>
 
-            
             <a href="#" class="forgot-password">Forgot password?</a>
 
-    
             <button type="submit" class="login-btn">Login</button>
 
             <div class="divider">or</div>
@@ -60,17 +56,15 @@
                 Continue with Apple
             </button>
 
-          
             <p>New to the site? <a href="register.html">Sign up</a></p>
         </form>
     </div>
 </div>
+
 <?php
-
-include '/xampp/htdocs/MegaMinds-Course-Recommendation-System/public/database/DB.php';
-
+// Make sure the path to DB.php is correct
+include_once "../../public/database/DB.php";
 ?>
 
 </body>
-
 </html>
