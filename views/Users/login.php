@@ -63,7 +63,7 @@
 
 <?php
 // Make sure the path to DB.php is correct
-include_once "../../public/database/DB.php";
+include_once "../../public/includes/DB.php";
 ?>
 
 </body>

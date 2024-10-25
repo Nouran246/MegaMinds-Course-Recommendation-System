@@ -44,14 +44,16 @@
   }
   
   /* Input fields */
-  input[type="email"], input[type="password"], input[type="FName"],input[type="LName"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 15px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"]{
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 15px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
   }
   
   /* Password container for toggle */
