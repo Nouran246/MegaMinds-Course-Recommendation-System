@@ -20,11 +20,11 @@
    if($row=mysqli_fetch_array($result)) {
     
     $_SESSION["ID"]=$row[0];
-    $_SESSION["FName"]=$row["FirstName"];
-    $_SESSION["LName"]=$row["LastName"];
+    $_SESSION["FName"]=$row["FName"];
+    $_SESSION["LName"]=$row["LName"];
     $_SESSION["Email"]=$row["Email"];
     $_SESSION["Password"]=$row["Password"];   
-    header("Location:Courses.php?login=success");
+    header("Location:./../views/Users/Courses.php?login=success");
 
   }
   else{

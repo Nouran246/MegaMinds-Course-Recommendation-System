@@ -74,8 +74,7 @@ https://templatemo.com/tm-569-edu-meeting
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h6>Hello, Nouran Hassan !</h6>
-          <h2>Let's dive into learning</h2>
+        <h6>Hello, <?php echo isset($_SESSION['FName']) ? $_SESSION['FName'] : 'Guest'; ?> <?php echo isset($_SESSION['LName']) ? $_SESSION['LName'] : ''; ?>!</h6>          <h2>Let's dive into learning</h2>
         </div>
       </div>
     </div>
@@ -290,7 +289,11 @@ https://templatemo.com/tm-569-edu-meeting
     <script src="../../public/js/user js/custom.js"></script>
     <script src="../../public/js/user js/courses.js"></script>
    
-</body>
+    <?php
+session_start(); // Ensure session is started
+$_SESSION['FName'] = $row['FName']; // Replace $row with the actual variable holding the user's data
+$_SESSION['LName'] = $row['LName'];
+?>
 
 
   </body>
