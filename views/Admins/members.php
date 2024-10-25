@@ -104,7 +104,7 @@ try {
                         <td><?php echo htmlspecialchars($user['Lname']); ?></td>
                         <td><?php echo htmlspecialchars($user['Email']); ?></td>
                         <td>
-                            <button class="btn btn-warning btn-sm" onclick="editUser(<?php echo $user['id']; ?>)">Edit</button>
+                            <button class="btn btn-warning btn-sm edit-button" data-id="<?php echo $user['id']; ?>" data-fname="<?php echo htmlspecialchars($user['Fname']); ?>" data-lname="<?php echo htmlspecialchars($user['Lname']); ?>" data-email="<?php echo htmlspecialchars($user['Email']); ?>">Edit</button>
                             <button class="btn btn-danger btn-sm delete-button" data-id="<?php echo $user['id']; ?>">Delete</button>
                         </td>
                     </tr>
@@ -117,6 +117,42 @@ try {
     <nav>
       <ul class="pagination justify-content-center" id="pagination-controls"></ul>
     </nav>
+
+    <!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="editForm">
+        <div class="modal-body">
+          <input type="hidden" id="editUserId" name="id" />
+          <div class="mb-3">
+            <label for="editFname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="editFname" name="Fname"  />
+            <div class="invalid-feedback" id="fnameError" style="display:none; color: red;">First name is required.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editLname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="editLname" name="Lname"  />
+            <div class="invalid-feedback" id="lnameError" style="display:none; color: red;">Last name is required.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editEmail" name="Email"  />
+            <div class="invalid-feedback" id="emailError" style="display:none; color: red;">Please enter a valid email address.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
@@ -139,41 +175,8 @@ try {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        let userIdToDelete = null;
+    <script src="../../public/js/admin js/members.js"></script>
 
-        // Show modal and store user ID when delete button is clicked
-        $('.delete-button').on('click', function () {
-          userIdToDelete = $(this).data('id');
-          $('#deleteConfirmationModal').modal('show');
-        });
 
-        // Handle delete confirmation in modal
-        $('#confirmDelete').on('click', function () {
-          if (userIdToDelete) {
-            $.ajax({
-              url: '../../public/database/deleteUser.php', // Replace with actual delete script path
-              type: 'POST',
-              data: { id: userIdToDelete },
-              success: function (response) {
-                alert(response.message || 'User deleted successfully.'); // Show message
-                location.reload(); // Reload the page to reflect changes
-              },
-              error: function () {
-                alert('Error deleting user. Please try again.');
-              }
-            });
-            $('#deleteConfirmationModal').modal('hide'); // Hide modal after confirmation
-            userIdToDelete = null; // Reset user ID
-          }
-        });
-      });
-
-      function editUser(userId) {
-        // Redirect to edit user page (replace with your actual edit URL)
-        window.location.href = `editMember.php?id=${userId}`;
-      }
-    </script>
   </body>
 </html>
