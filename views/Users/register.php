@@ -100,7 +100,7 @@
         <div class="modal-content">
         <span class="close" onclick="window.location.href='index.php'">&times;</span>
             <h2>Sign up</h2>
-            <form action="../../database/Signup.php" method="POST" id = "signupModal">
+            <form action="../../public/database/Signup.php" method="POST" id = "signupModal">
                 <label for="FName">First Name</label>
                 <input type="text" id="FName" name="FName" placeholder="Enter your First Name">
                 <p id="firstnameError" class="error-message"></p>
