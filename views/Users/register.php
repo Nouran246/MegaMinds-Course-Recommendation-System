@@ -100,29 +100,29 @@
         <div class="modal-content">
         <span class="close" onclick="window.location.href='index.php'">&times;</span>
             <h2>Sign up</h2>
-            <form action="../../public/database/Signup.php" method="POST">
+            <form action="../../public/database/Signup.php" method="POST" id = "signupModal">
                 <label for="FName">First Name</label>
-                <input type="text" id="FName" name="FName" placeholder="Enter your First Name" required>
+                <input type="text" id="FName" name="FName" placeholder="Enter your First Name">
                 <p id="firstnameError" class="error-message"></p>
 
                 <label for="LName">Last Name</label>
-                <input type="text" id="LName" name="LName" placeholder="Enter your Last Name" required>
+                <input type="text" id="LName" name="LName" placeholder="Enter your Last Name" >
                 <p id="lastnameError" class="error-message"></p>
 
                 <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
+                <input type="email" id="Email" name="Email" placeholder="Enter your Email" >
                 <p id="emailError" class="error-message"></p>
 
                 <label for="Password">Password</label>
                 <div class="password-container">
-                    <input type="password" id="Password" name="Password" placeholder="Enter a Password" required>
+                    <input type="password" id="Password" name="Password" placeholder="Enter a Password" >
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
                 <p id="passwordError" class="error-message"></p>
 
                 <label for="password">Confirm Password</label>
                 <div class="password-container">
-                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your Password" required>
+                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your Password" >
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
                 <p id="confirmPasswordError" class="error-message"></p>

@@ -1,5 +1,5 @@
 // Get modal elements
-var signUpModal = document.getElementById("signUpModal form");
+var signUpModal = document.getElementById("signUpModal");
 var closeSignUp = signUpModal.getElementsByClassName("close")[0];
 
 // Function to show the sign-up modal
@@ -36,8 +36,9 @@ function togglePassword() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("#signUpModal form"); // Use form inside the modal
+
+    
+    const form = document.querySelector("#signupModal"); // Correct form selector
 
     form.addEventListener("submit", function (event) {
         // Clear previous error messages
@@ -106,4 +107,4 @@ document.addEventListener("DOMContentLoaded", function () {
             errorElement.style.display = "none";
         });
     }
-});
+
