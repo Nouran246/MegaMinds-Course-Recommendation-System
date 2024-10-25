@@ -5,7 +5,7 @@ include_once "../../public/includes/DB.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data and sanitize it
     $Email = htmlspecialchars($_POST["Email"]);
-    $Password = htmlspecialchars($_POST["Password"]); // Get raw password input
+    $Password = htmlspecialchars($_POST["Password"]); // Raw password input
 
     // SQL Query to select the user
     $sql = "SELECT FName, LName, Password, role FROM users WHERE Email = '$Email'";
@@ -15,8 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
 
-        // Verify the password without hashing it
-        if (password_verify($Password, $user['Password'])) {
+        // Debugging: Print fetched email and password hashes
+        echo "Email entered: " . $Email . "<br>";
+        echo "Password entered: " . $Password . "<br>";
+        echo "Password hash from DB: " . $user['Password'] . "<br>";
+
+        // Verify the password without hashing it again
+        if ($Password === $user['Password']) {
             // Store user information in session
             $_SESSION['FName'] = $user['FName']; // Store first name
             $_SESSION['LName'] = $user['LName']; // Store last name
