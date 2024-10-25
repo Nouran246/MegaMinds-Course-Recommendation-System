@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start(); // Ensure session is started
 
+?>
   <head>
 
     <meta charset="utf-8">
@@ -289,11 +292,7 @@ https://templatemo.com/tm-569-edu-meeting
     <script src="../../public/js/user js/custom.js"></script>
     <script src="../../public/js/user js/courses.js"></script>
    
-    <?php
-session_start(); // Ensure session is started
-$_SESSION['FName'] = $row['FName']; // Replace $row with the actual variable holding the user's data
-$_SESSION['LName'] = $row['LName'];
-?>
+ 
 
 
   </body>
