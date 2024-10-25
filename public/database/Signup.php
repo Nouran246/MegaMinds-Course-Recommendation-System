@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Include the database connection file
 include_once "../../public/includes/DB.php";
 // Existing PHP code

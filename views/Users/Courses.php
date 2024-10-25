@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start(); // Ensure session is started
+session_start();
 
 ?>
   <head>
@@ -77,7 +77,8 @@ https://templatemo.com/tm-569-edu-meeting
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-        <h6>Hello, <?php echo isset($_SESSION['FName']) ? $_SESSION['FName'] : 'Guest'; ?> <?php echo isset($_SESSION['LName']) ? $_SESSION['LName'] : ''; ?>!</h6>          <h2>Let's dive into learning</h2>
+        <h6>Hello, <?php echo isset($_SESSION['FName']) ? $_SESSION['FName'] : 'Guest'; ?> <?php echo isset($_SESSION['LName']) ? $_SESSION['LName'] : ''; ?>!</h6>      
+            <h2>Let's dive into learning</h2>
         </div>
       </div>
     </div>
@@ -293,6 +294,16 @@ https://templatemo.com/tm-569-edu-meeting
     <script src="../../public/js/user js/courses.js"></script>
    
  
+
+<?php
+session_start();
+// Assuming you have already verified the user's credentials
+
+// Example: Storing user data in session after successful login or signup
+$_SESSION['FName'] = $user['FName']; // Replace with actual user data
+$_SESSION['LName'] = $user['LName']; // Replace with actual user data
+?>
+
 
 
   </body>
