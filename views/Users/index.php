@@ -780,7 +780,7 @@ session_start();
   <!--  </div>
 </div> -->
 </body>
-<!--  <script src="../../public/js/user js/Signin_and_up.js"></script>
- -->
+ <script src="../../public/js/user js/Signin_and_up.js"></script>
+
 
 </html>
