@@ -36,9 +36,9 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="h3">Admin Dashboard</h1>
           <nav>
-            <a href="/admin/dashboard" class="text-white">Dashboard</a>
-            <a href="/admin/members" class="text-white ml-3">Members</a>
-            <a href="/admin/settings" class="text-white ml-3">Settings</a>
+            <a href="dashboard.php" class="text-white">Dashboard</a>
+            <a href="members.php" class="text-white ml-3">Members</a>
+            <a href="courses.php" class="text-white ml-3">Settings</a>
             <a href="/logout" class="text-white ml-3">Logout</a>
           </nav>
         </div>
