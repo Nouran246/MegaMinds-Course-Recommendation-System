@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2024 at 02:16 PM
+-- Generation Time: Oct 25, 2024 at 03:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -36,22 +36,21 @@ CREATE TABLE `users` (
   `FName` varchar(50) NOT NULL,
   `LName` varchar(50) NOT NULL,
   `Email` varchar(255) DEFAULT NULL,
-  `Password` int(11) NOT NULL
+  `Password` int(11) NOT NULL,
+  `role` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`) VALUES
-(13, 'Roaa', 'Khaled', 'Roaa@gmail', 123),
-(15, 'Mayada', 'ElHenawy', 'Mayada@gma', 555),
-(21, 'karma', 'el sayed', 'karma@gmai', 222),
-(22, 'Nouran', 'hesham', 'haha@gmail', 555),
-(23, '', '', 'Roaa@gmail', 0),
-(24, '', '', 'Roaa@gmail', 0),
-(25, 'Nouran', 'Hassan', 'Nouran@gmail.com', 1234),
-(26, '', '', 'Nouran@gmail.com', 0);
+INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `role`) VALUES
+(25, 'Nouran', 'Hassan', 'Nouran@gmail.com', 1234, 2),
+(27, 'Roaa', 'Khaled', 'Roaa@gmail.com', 246, 1),
+(36, 'jana', 'Hassan', 'haha@gmail.com', 0, 1),
+(37, 'salma ', 'ahmed', 'salma@gmail.com', 111, 1),
+(38, 'yahia', 'tamer', 'yahia@gmail.com', 222, 1),
+(39, 'mayar', 'khaled', 'mayar@gmail.com', 333, 1);
 
 --
 -- Indexes for dumped tables
@@ -71,7 +70,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
