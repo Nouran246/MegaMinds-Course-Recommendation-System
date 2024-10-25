@@ -1,3 +1,29 @@
+<?php
+// Database connection settings
+$host = 'localhost'; // Replace with your database host
+$dbname = 'megaminds'; // Replace with your database name
+$username = 'root'; // Replace with your database username
+$password = ''; // Replace with your database password
+
+try {
+    // Create a new PDO instance for database connection
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // Set PDO error mode to exception for better error handling
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Prepare and execute the query to fetch users
+    $stmt = $pdo->prepare("SELECT id, Fname, Lname, Email FROM users");
+    $stmt->execute();
+    
+    // Fetch all users as an associative array
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+} catch (PDOException $e) {
+    // Handle database connection errors
+    die("Database connection failed: " . $e->getMessage());
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -122,7 +148,7 @@
           </a>
         </li>
         <li>
-          <a href="blogs.php" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
+          <a href="courses.php" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
             Courses
           </a>
         </li>
@@ -138,148 +164,43 @@
         <div class="col">
           <h1>Users</h1>
         </div>
-        <div class="col text-right">
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMemberModal">
-            Add Member
-          </button>
-          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#filterModal">
-            Filter
-          </button>
-          <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#sortModal">
-            Sort
-          </button>
-          <button class="btn btn-primary" id="export-btn">Export to Excel</button>
-        </div>
       </div>
       <div class="row mb-4">
         <div class="col">
           <input type="text" id="search-bar" class="form-control" placeholder="Search by name..." />
         </div>
       </div>
-      <div class="table-responsive" style="max-height: 75vh">
-        <table class="table table-bordered table-striped table-hover">
-          <thead class="sticky-top bg-light">
+      <div class="table-responsive" style="max-height: 75vh;">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="sticky-top bg-light">
             <tr>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Address</th>
-              <th>Department</th>
-
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Actions</th>
             </tr>
-          </thead>
-          <tbody id="member-table-body"></tbody>
-        </table>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($user['Fname']); ?></td>
+                    <td><?php echo htmlspecialchars($user['Lname']); ?></td>
+                    <td><?php echo htmlspecialchars($user['Email']); ?></td>
+                    <td>
+                    <button class="btn btn-warning btn-sm" onclick="editUser(<?php echo $user['id']; ?>)">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteUser(<?php echo $user['id']; ?>)">Delete</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
       </div>
       <nav>
         <ul class="pagination justify-content-center" id="pagination-controls"></ul>
       </nav>
-    </div>
-
-    <!-- Add Member Modal -->
-<div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addMemberModalLabel">Add Member</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="add-member-form" action="/admin/addMember" method="post" class="user-form">
-          <!-- Form fields -->
-          <!-- Name -->
-          <div class="mb-3">
-            <label for="add-user-name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="add-user-name" placeholder="Enter name" name="userName" />
-            <div id="add-name-error" class="invalid-feedback"></div>
-          </div>
-          <!-- Phone Number -->
-          <div class="mb-3">
-            <label for="add-user-phone" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="add-user-phone" placeholder="Enter phone number" name="userPhone" />
-            <div id="add-phone-error" class="invalid-feedback"></div>
-          </div>
-          <!-- University ID -->
-          <div class="mb-3">
-            <label for="add-user-universityId" class="form-label">University ID</label>
-            <input type="text" class="form-control" id="add-user-universityId" placeholder="Enter university ID" name="userUniversityId" />
-            <div id="add-universityId-error" class="invalid-feedback"></div>
-          </div>
-          <!-- Department -->
-          <div class="mb-3">
-            <label for="add-user-department" class="form-label">Department</label>
-            <select class="form-control" id="add-user-department" name="userDepartment">
-              <option value="Information Technology">Information Technology</option>
-              <option value="Human Resources">Human Resources</option>
-              <option value="Public Relations">Public Relations</option>
-              <option value="Media">Media</option>
-              <option value="Coordination">Coordination</option>
-              <option value="Technical Coaching">Technical Coaching</option>
-            </select>
-            <div id="add-department-error" class="invalid-feedback"></div>
-          </div>
-          <!-- Year -->
-          <div class="mb-3">
-            <label for="add-user-year" class="form-label">Year</label>
-            <select class="form-control" id="add-user-year" name="userYear">
-              <option value="24/25">24/25</option>
-              <option value="25/26">25/26</option>
-              <option value="26/27">26/27</option>
-              <option value="27/28">27/28</option>
-            </select>
-            <div id="add-year-error" class="invalid-feedback"></div>
-          </div>
-          <!-- Board Member -->
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="add-user-boardMember" name="isBoardMember" />
-            <label class="form-check-label" for="add-user-boardMember">Board Member</label>
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Member</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteConfirmationLabel">Confirm Deletion</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this user?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Filter Modal -->
-<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="filterModalLabel">Filter Members</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Filter form content -->
-      </div>
-    </div>
-  </div>
-</div>
-
+            </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../public/js/admin js/memberManagement.js"></script>

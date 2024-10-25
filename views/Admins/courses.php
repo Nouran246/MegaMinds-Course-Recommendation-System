@@ -140,23 +140,6 @@
           >
             Add New Blog
           </button>
-          <button
-            class="btn btn-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#filterModal"
-          >
-            Filter
-          </button>
-          <button
-            class="btn btn-info"
-            data-bs-toggle="modal"
-            data-bs-target="#sortModal"
-          >
-            Sort
-          </button>
-          <button class="btn btn-primary" id="export-btn">
-            Export to Excel
-          </button>
         </div>
       </div>
 

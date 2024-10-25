@@ -107,7 +107,7 @@
     <div class="modal-content">
     <span class="close" onclick="window.location.href='index.php'">&times;</span>
     <h2>Welcome back</h2>
-        <form method="post" action=../../public/database/login.php>
+        <form method="post" action=../../database/login.php>
             <label for="Email">Email</label>
             <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
             <label for="Password">Password</label>
