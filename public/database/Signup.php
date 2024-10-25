@@ -9,10 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $LName = htmlspecialchars($_POST["LName"]);
     $Email = htmlspecialchars($_POST["Email"]);
     $Password = htmlspecialchars($_POST["Password"]);
-
+    $role = 1;
     // SQL Query to insert data
-    $sql = "INSERT INTO users (FName, LName, Email, Password) 
-            VALUES ('$FName', '$LName', '$Email', '$Password')";
+    $sql = "INSERT INTO users (FName, LName, Email, Password,role) 
+            VALUES ('$FName', '$LName', '$Email', '$Password','$role')";
 
     // Execute query and check result
     if (mysqli_query($conn, $sql)) {

@@ -3,31 +3,39 @@ session_start();
 include_once "../../public/includes/DB.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Get form data and sanitize it
-  $FName = htmlspecialchars($_POST["FName"]);
-  $LName = htmlspecialchars($_POST["LName"]);
-  $Email = htmlspecialchars($_POST["Email"]);
-  
-  // Hash the password before storing it
-  $Password = password_hash(htmlspecialchars($_POST["Password"]), PASSWORD_DEFAULT);
+    // Get form data and sanitize it
+    $Email = htmlspecialchars($_POST["Email"]);
+    $Password = htmlspecialchars($_POST["Password"]); // Get raw password input
 
-  // SQL Query to insert data
-  $sql = "INSERT INTO users (FName, LName, Email, Password) 
-          VALUES ('$FName', '$LName', '$Email', '$Password')";
+    // SQL Query to select the user
+    $sql = "SELECT FName, LName, Password, role FROM users WHERE Email = '$Email'";
+    $result = mysqli_query($conn, $sql);
 
-  // Execute query and check result
-  if (mysqli_query($conn, $sql)) {
-      $_SESSION['FName'] = $FName; // Store first name
-      $_SESSION['LName'] = $LName; // Store last name
-      // Redirect the user after successful insertion
-      header("Location: ../../views/Users/Courses.php");
-      exit();
-  } else {
-      // Display the error for debugging
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-  }
+    // Check if user exists
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Verify the password without hashing it
+        if (password_verify($Password, $user['Password'])) {
+            // Store user information in session
+            $_SESSION['FName'] = $user['FName']; // Store first name
+            $_SESSION['LName'] = $user['LName']; // Store last name
+            $_SESSION['role'] = $user['role']; // Store user role
+
+            // Redirect based on user role
+            if ($user['role'] == 1) {
+                header("Location: ../../views/Users/Courses.php");
+            } elseif ($user['role'] == 2) {
+                header("Location: ../../views/Admins/dashboard.php");
+            }
+            exit();
+        } else {
+            echo "Invalid password. Please try again.";
+        }
+    } else {
+        echo "No user found with that email address.";
+    }
 }
-
 
 // Close the database connection
 mysqli_close($conn);
