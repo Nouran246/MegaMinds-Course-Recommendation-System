@@ -7,10 +7,6 @@
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
-
-CREATE DATABASE IF NOT EXISTS `megaminds`;
-USE `megaminds`;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
