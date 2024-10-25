@@ -1,8 +1,7 @@
 <?php
 
 // Include the database connection file
-include_once "C:/xampp/htdocs/MegaMinds-Course-Recommendation-System/public/database/DB.php";
-
+include_once "../../public/includes/DB.php";
 // Existing PHP code
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data and sanitize it
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute query and check result
     if (mysqli_query($conn, $sql)) {
         // Redirect the user after successful insertion
-        header("Location: views/Users/Courses.php");
+        header("Location: ../../views/Users/Courses.php");
         exit();
     } else {
         // Display the error for debugging
