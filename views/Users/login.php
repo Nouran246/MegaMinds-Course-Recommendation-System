@@ -103,7 +103,7 @@
     <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
 </div>
 
-<div id="loginModal" class="modal" style="display: none;">
+<div id="loginModal" class="modal" ">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Welcome back</h2>
@@ -135,7 +135,7 @@
                 Continue with Apple
             </button>
 
-            <p>New to the site? <a href="register.html">Sign up</a></p>
+            <p>New to the site? <a href="../../views/Users/register.php">Sign up</a></p>
         </form>
     </div>
 </div>
