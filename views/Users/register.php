@@ -102,27 +102,26 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Sign up</h2>
-            <form>
-
+            <form action="../../public/database/Signup.php" method="POST">
                 <label for="FName">First Name</label>
-                <input type="FName" id="FName" name="FName" placeholder="Enter your First Name" required>
+                <input type="text" id="FName" name="FName" placeholder="Enter your First Name" required>
 
                 <label for="LName">Last Name</label>
-                <input type="LName" id="LName" name="LName" placeholder="Enter your Last Name" required>
+                <input type="text" id="LName" name="LName" placeholder="Enter your Last Name" required>
 
                 <label for="Email">Email</label>
-                <input type="Email" id="Email" name="Email" placeholder="Enter your Email" required>
+                <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
 
 
                 <label for="Password">Password</label>
                 <div class="password-container">
-                    <input type="Password" id="Password" name="Password" placeholder="Enter a Password" required>
+                    <input type="password" id="Password" name="Password" placeholder="Enter a Password" required>
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
 
                 <label for="password">Confirm Password</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" placeholder="Confirm your Password" required>
+                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your Password" required>
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
 

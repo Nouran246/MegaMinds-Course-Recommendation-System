@@ -1,28 +1,32 @@
 <?php
 
-include_once "includes/DB.php";
+// Include the database connection file
+include_once "C:/xampp/htdocs/MegaMinds-Course-Recommendation-System/public/database/DB.php";
 
-// Check if form was submitted
+// Existing PHP code
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// Get form data and sanitize it
-	$Fname = htmlspecialchars($_POST["FName"]);
-	$Lname = htmlspecialchars($_POST["LName"]);
-	$Email = htmlspecialchars($_POST["email"]);  // Fixed 'Email' to 'email'
-	$Password = htmlspecialchars($_POST["password"]); // Fixed 'Password' to 'password'
+    // Get form data and sanitize it
+    $FName = htmlspecialchars($_POST["FName"]);
+    $LName = htmlspecialchars($_POST["LName"]);
+    $Email = htmlspecialchars($_POST["Email"]);
+    $Password = htmlspecialchars($_POST["Password"]);
 
-	// Insert it into the database
-	$sql = "INSERT INTO users(FName, LName, Email, Password) 
-            VALUES('$Fname', '$Lname', '$Email', '$Password')";
+    // SQL Query to insert data
+    $sql = "INSERT INTO users (FName, LName, Email, Password) 
+            VALUES ('$FName', '$LName', '$Email', '$Password')";
 
-	// Execute query and check result
-	if (mysqli_query($conn, $sql)) {
-		// Redirect the user after successful insertion
-		header("Location: Courses.php");
-	} else {
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);  // Add error output for debugging
-	}
+    // Execute query and check result
+    if (mysqli_query($conn, $sql)) {
+        // Redirect the user after successful insertion
+        header("Location: views/Users/Courses.php");
+        exit();
+    } else {
+        // Display the error for debugging
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 }
 
 // Close the database connection
 mysqli_close($conn);
+
 ?>
