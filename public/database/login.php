@@ -3,7 +3,7 @@
    session_start();
 
    //include database connection file
-   include_once "includes/DB.php";
+   include_once "../../public/includes/DB.php";
    
    //grab data from user and see if it exists in database
    if($_SERVER["REQUEST_METHOD"]=="POST"){

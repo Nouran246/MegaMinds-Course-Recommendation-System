@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute query and check result
     if (mysqli_query($conn, $sql)) {
+		$_SESSION['FName'] = $FName; // Store first name
+        $_SESSION['LName'] = $LName; // Store last name
         // Redirect the user after successful insertion
         header("Location: ../../views/Users/Courses.php");
         exit();
