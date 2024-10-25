@@ -110,7 +110,6 @@
         <form method="post" action=../../public/database/login.php>
             <label for="Email">Email</label>
             <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
-
             <label for="Password">Password</label>
             <div class="password-container">
                 <input type="password" id="Password" name="Password" placeholder="Enter your Password" required>
