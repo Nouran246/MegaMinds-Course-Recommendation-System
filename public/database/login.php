@@ -1,38 +1,62 @@
 <?php
-   //start session
+   // Start session
    session_start();
 
-   //include database connection file
+   // Include database connection file
    include_once "../../public/includes/DB.php";
-   
-   //grab data from user and see if it exists in database
-   if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-    $Email=$_POST["Email"];
-	  $Password=$_POST["Password"];
-   
-   //select data from database where email and password matches
+   // Check if the request is a POST request and if the required fields are set
+   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Email"]) && isset($_POST["Password"])) {
 
-  $sql = "Select * from users where Email='$Email' and Password='$Password'";
-  $result = mysqli_query($conn,$sql);
-   //if true then use session variables to use it as long as session is started
+       // Retrieve data from the form
+       $Email = mysqli_real_escape_string($conn, $_POST["Email"]);
+       $Password = $_POST["Password"]; // No need to escape the password, we'll use it to verify
 
-   if($row=mysqli_fetch_array($result)) {
-    
-    $_SESSION["ID"]=$row[0];
-    $_SESSION["FName"]=$row["FName"];
-    $_SESSION["LName"]=$row["LName"];
-    $_SESSION["Email"]=$row["Email"];
-    $_SESSION["Password"]=$row["Password"];   
-    header("Location:./../views/Users/Courses.php?login=success");
+       // Prepare SQL statement to prevent SQL injection
+       $sql = "SELECT * FROM users WHERE Email = ?";
+       $stmt = mysqli_prepare($conn, $sql);
 
-  }
-  else{
+       if ($stmt) {
+           // Bind the email to the statement and execute
+           mysqli_stmt_bind_param($stmt, "s", $Email);
+           mysqli_stmt_execute($stmt);
 
-    echo "Invalid";
-  }
-	
+           // Get the result
+           $result = mysqli_stmt_get_result($stmt);
+
+           // Check if user exists
+           if ($row = mysqli_fetch_assoc($result)) {
+               // Verify the password
+               if (password_verify($Password, $row["Password"])) {
+                   // Set session variables
+                   $_SESSION["ID"] = $row["ID"];
+                   $_SESSION["FName"] = $row["FName"];
+                   $_SESSION["LName"] = $row["LName"];
+                   $_SESSION["Email"] = $row["Email"];
+
+                   // Redirect to Courses page on successful login
+                   header("Location: ./../views/Users/Courses.php?login=success");
+                   exit(); // Make sure to exit after redirection
+               } else {
+                   // Password is incorrect
+                   echo "Invalid login credentials.";
+               }
+           } else {
+               // Email not found
+               echo "Invalid login credentials.";
+           }
+       } else {
+           // Error with SQL statement
+           echo "Error: Could not prepare SQL statement.";
+       }
+
+       // Close the statement
+       mysqli_stmt_close($stmt);
+   } else {
+       // If Email or Password is not set, show an error message
+       echo "Please enter your email and password.";
    }
 
- 
- ?>
+   // Close the database connection
+   mysqli_close($conn);
+?>

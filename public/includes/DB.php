@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$DB = "user";
+$DB = "megaminds";
 
 $conn = mysqli_connect($servername,$username,$password,$DB);
 
