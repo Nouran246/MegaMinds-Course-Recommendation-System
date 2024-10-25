@@ -96,34 +96,36 @@
         <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
     </div>
 
-
-    <div id="loginModal" class="modal">
-
+    <div id="signUpModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+        <span class="close" onclick="window.location.href='index.php'">&times;</span>
             <h2>Sign up</h2>
             <form action="../../public/database/Signup.php" method="POST">
                 <label for="FName">First Name</label>
                 <input type="text" id="FName" name="FName" placeholder="Enter your First Name" required>
+                <p id="firstnameError" class="error-message"></p>
 
                 <label for="LName">Last Name</label>
                 <input type="text" id="LName" name="LName" placeholder="Enter your Last Name" required>
+                <p id="lastnameError" class="error-message"></p>
 
                 <label for="Email">Email</label>
                 <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
-
+                <p id="emailError" class="error-message"></p>
 
                 <label for="Password">Password</label>
                 <div class="password-container">
                     <input type="password" id="Password" name="Password" placeholder="Enter a Password" required>
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
+                <p id="passwordError" class="error-message"></p>
 
                 <label for="password">Confirm Password</label>
                 <div class="password-container">
                     <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your Password" required>
                     <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
                 </div>
+                <p id="confirmPasswordError" class="error-message"></p>
 
                 <button type="submit" class="login-btn">Create Account</button>
 
@@ -147,7 +149,79 @@
         </div>
     </div>
     <script src="../../public/js/user js/Signin_and_up.js"></script>
-
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#signUpModal form"); // Use form inside the modal
 
+    form.addEventListener("submit", function (event) {
+        // Clear previous error messages
+        clearErrorMessages();
+
+        let isValid = true;
+
+        // Validate each field
+        if (document.getElementById("FName").value.trim() === "") {
+            displayErrorMessage("firstnameError", "First Name is required.");
+            isValid = false;
+        }
+        if (document.getElementById("LName").value.trim() === "") {
+            displayErrorMessage("lastnameError", "Last Name is required.");
+            isValid = false;
+        }
+
+        // Validate email
+        const emailInput = document.getElementById("Email");
+        const emailValue = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Basic email format
+
+        if (emailValue === "") {
+            displayErrorMessage("emailError", "Email is required.");
+            isValid = false;
+        } else if (!emailPattern.test(emailValue)) {
+            displayErrorMessage("emailError", "Please enter a valid email address.");
+            isValid = false;
+        }
+
+        // Validate password
+        const passwordInput = document.getElementById("Password");
+        if (passwordInput.value.trim() === "") {
+            displayErrorMessage("passwordError", "Password is required.");
+            isValid = false;
+        }
+
+        // Validate confirm password
+        const confirmPasswordInput = document.getElementById("ConfirmPassword");
+        if (confirmPasswordInput.value.trim() === "") {
+            displayErrorMessage("confirmPasswordError", "Please confirm your password.");
+            isValid = false;
+        } else if (passwordInput.value !== confirmPasswordInput.value) {
+            displayErrorMessage("confirmPasswordError", "Passwords do not match.");
+            isValid = false;
+        }
+
+        // Prevent form submission if there are validation errors
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+
+    // Function to display an error message
+    function displayErrorMessage(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+    }
+
+    // Function to clear all error messages
+    function clearErrorMessages() {
+        const errorMessages = document.querySelectorAll(".error-message");
+        errorMessages.forEach((errorElement) => {
+            errorElement.textContent = "";
+            errorElement.style.display = "none";
+        });
+    }
+});
+
+</script>
 </html>

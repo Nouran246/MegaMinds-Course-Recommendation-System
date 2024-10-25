@@ -96,7 +96,7 @@
     </div>
 
 
-    <div id="loginModal" class="modal">
+<div id="loginModal" class="modal">
 
 
 <div class="scroll-to-section">
@@ -105,8 +105,8 @@
 
 <div id="loginModal" class="modal" >
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Welcome back</h2>
+    <span class="close" onclick="window.location.href='index.php'">&times;</span>
+    <h2>Welcome back</h2>
         <form method="post" action=../../public/database/login.php>
             <label for="Email">Email</label>
             <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
