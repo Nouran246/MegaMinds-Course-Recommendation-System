@@ -38,7 +38,7 @@
           <nav>
             <a href="dashboard.php" class="text-white">Dashboard</a>
             <a href="members.php" class="text-white ml-3">Members</a>
-            <a href="courses.php" class="text-white ml-3">Settings</a>
+            <a href="courses.php" class="text-white ml-3">Courses</a>
             <a href="/logout" class="text-white ml-3">Logout</a>
           </nav>
         </div>

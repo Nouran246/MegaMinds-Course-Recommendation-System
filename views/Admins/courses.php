@@ -167,15 +167,22 @@
               <th>Rating</th>
               <th>Fees</th>
               <th>Tags</th>
+              <th>Operation</th>
             </tr>
           </thead>
           <tbody id="blog-table-body">
             <!-- Example of a blog entry -->
             <tr>
-              <td>Example Blog Title</td>
-              <td>Author Name</td>
+              <td>1</td>
+              <td>cloud</td>
               <td>Short description...</td>
+              <td>beginner</td>
               <td>Mon Oct 02 2024</td>
+              <td>Mon Nov 02 2024</td>
+              <td>1</td>
+              <td>$40</td>
+              <td>ai</td>
+
               <td>
                 <div class="btn-group" role="group">
                   <a

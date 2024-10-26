@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Email does not exist in the database, display alert and redirect
         echo "<script>
-                alert('Email does not exist in our database. Please try again or register.');
+                alert('Email does not exist. Please try again to register.');
                 window.location.href = '../../views/Users/index.php';
               </script>";
     }
