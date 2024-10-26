@@ -141,9 +141,10 @@ try {
           </div>
           <div class="mb-3">
             <label for="editEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="editEmail" name="Email"  />
+            <input type="text" class="form-control" id="editEmail" name="Email"/>
             <div class="invalid-feedback" id="emailError" style="display:none; color: red;">Please enter a valid email address.</div>
           </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

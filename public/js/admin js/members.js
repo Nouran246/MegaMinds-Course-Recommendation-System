@@ -68,7 +68,7 @@ $(document).ready(function () {
         // Validate email format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email === '' || !emailPattern.test(email)) {
-            $('#emailError').show();
+            $('#emailError').text('Please enter a valid email address.').show();
             isValid = false;
         }
 
@@ -78,9 +78,19 @@ $(document).ready(function () {
                 url: '../../public/database/editUser.php',
                 type: 'POST',
                 data: $(this).serialize(),
+                dataType: 'json',
                 success: function (response) {
-                    $('#editModal').modal('hide');
-                    location.reload();
+                    if (response.status === 'success') {
+                        $('#editModal').modal('hide');
+                        location.reload();
+                    } else {
+                        // Display custom error message if email is already in use
+                        if (response.message === 'Email already in use.') {
+                            $('#emailError').text(response.message).show();
+                        } else {
+                            alert(response.message);
+                        }
+                    }
                 },
                 error: function () {
                     alert('Error updating user');
