@@ -39,7 +39,6 @@ function togglePassword() {
 
     
     const form = document.querySelector("#signupModal"); // Correct form selector
-
     form.addEventListener("submit", function (event) {
         // Clear previous error messages
         clearErrorMessages();

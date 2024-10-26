@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Blogs</title>
+    <title>Manage Courses</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -138,7 +138,7 @@
             data-bs-toggle="modal"
             data-bs-target="#addBlogModal"
           >
-            Add New Blog
+            Add New Course
           </button>
         </div>
       </div>
@@ -158,11 +158,15 @@
         <table class="table table-bordered table-striped table-hover">
           <thead class="sticky-top bg-light">
             <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Brief</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th>Course ID</th>
+              <th>Course Name</th>
+              <th>Description</th>
+              <th>level</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Rating</th>
+              <th>Fees</th>
+              <th>Tags</th>
             </tr>
           </thead>
           <tbody id="blog-table-body">

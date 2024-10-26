@@ -143,6 +143,6 @@
 // Make sure the path to DB.php is correct
 include_once "../../public/includes/DB.php";
 ?>
-
+<script src="../../public/js/user js/Signin_and_up.js"></script>
 </body>
 </html>

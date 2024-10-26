@@ -10,6 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email = htmlspecialchars($_POST["Email"]);
     $Password = htmlspecialchars($_POST["Password"]);
     $role = 1;
+
+     // Check if email already exists
+     $checkEmailQuery = "SELECT * FROM users WHERE Email = '$Email'";
+     $result = mysqli_query($conn, $checkEmailQuery);
+ 
+     if (mysqli_num_rows($result) > 0) {
+         // Email already exists, display a message
+         echo "<script>alert('Email is already used. Please try a different email.');</script>";
+     } else {
     // SQL Query to insert data
     $sql = "INSERT INTO users (FName, LName, Email, Password,role) 
             VALUES ('$FName', '$LName', '$Email', '$Password','$role')";
@@ -26,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
-
+}
 // Close the database connection
 mysqli_close($conn);
 

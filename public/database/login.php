@@ -15,12 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
 
-        // Debugging: Print fetched email and password hashes
-        echo "Email entered: " . $Email . "<br>";
-        echo "Password entered: " . $Password . "<br>";
-        echo "Password hash from DB: " . $user['Password'] . "<br>";
-
-        // Verify the password without hashing it again
+        // Verify the password
         if ($Password === $user['Password']) {
             // Store user information in session
             $_SESSION['FName'] = $user['FName']; // Store first name
@@ -35,10 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             exit();
         } else {
-            echo "Invalid password. Please try again.";
+            // Incorrect password, display alert and redirect
+            echo "<script>
+                    alert('Incorrect password. Please try again.');
+                    window.location.href = '../../views/Users/index.php';
+                  </script>";
         }
     } else {
-        echo "No user found with that email address.";
+        // Email does not exist in the database, display alert and redirect
+        echo "<script>
+                alert('Email does not exist in our database. Please try again or register.');
+                window.location.href = '../../views/Users/index.php';
+              </script>";
     }
 }
 
