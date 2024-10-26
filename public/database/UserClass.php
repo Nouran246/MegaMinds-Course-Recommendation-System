@@ -147,7 +147,78 @@ class User {
 //     }
 // }
 }
-class UserType{
-    // 3lshan el pages el mo3ayana el hatetfete7 (permissions)
+class UserType {
+    public $ID;
+    public $UserTypeName;
+    public $ArrayOfPages = [];
+
+    function __construct($id) {
+        if ($id != "") {
+            $sql = "SELECT * FROM usertypes WHERE ID = $id";
+            $result = mysqli_query($GLOBALS['con'], $sql);
+            if ($row = mysqli_fetch_array($result)) {
+                $this->UserTypeName = $row["Name"];
+                $this->ID = $row["ID"];
+                $this->ArrayOfPages = Pages::getPagesForUserType($this->ID);
+            }
+        }
+    }
+
+    // Static method to retrieve all user types from the database
+    static function SelectAllUserTypesInDB() {
+        $sql = "SELECT * FROM usertypes";
+        $TypeDataSet = mysqli_query($GLOBALS['con'], $sql);
+        $Result = [];
+        while ($row = mysqli_fetch_array($TypeDataSet)) {
+            $MyObj = new UserType($row["ID"]);
+            $Result[] = $MyObj;
+        }
+        return $Result;
+    }
 }
-?>
+
+// Class for managing pages and user permissions
+class Pages {
+    public $ID;
+    public $FriendlyName;
+    public $LinkAddress;
+
+    function __construct($id) {
+        if ($id != "") {
+            $sql = "SELECT * FROM pages WHERE ID = $id";
+            $result = mysqli_query($GLOBALS['con'], $sql);
+            if ($row = mysqli_fetch_array($result)) {
+                $this->FriendlyName = $row["FriendlyName"];
+                $this->LinkAddress = $row["Linkaddress"];
+                $this->ID = $row["ID"];
+            }
+        }
+    }
+
+    // Static method to retrieve all pages from the database
+    static function SelectAllPagesInDB() {
+        $sql = "SELECT * FROM pages";
+        $PageDataSet = mysqli_query($GLOBALS['con'], $sql);
+        $Result = [];
+        while ($row = mysqli_fetch_array($PageDataSet)) {
+            $MyObj = new Pages($row["ID"]);
+            $Result[] = $MyObj;
+        }
+        return $Result;
+    }
+
+    // Method to get accessible pages for a specific user type
+    static function getPagesForUserType($userTypeId) {
+        $pages = [];
+        if ($userTypeId == 1) {
+            // Role 1: Limited access (only user pages)
+            $pages[] = 'Users/Courses.php';
+        } elseif ($userTypeId == 2) {
+            // Role 2: Full access (admin pages)
+            $pages[] = 'Admins/dashboard.php';
+            $pages[] = 'Users/Courses.php';
+            // Add more admin pages as needed
+        }
+        return $pages;
+    }
+}

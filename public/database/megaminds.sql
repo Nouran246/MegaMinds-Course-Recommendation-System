@@ -3,14 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2024 at 03:02 PM
+-- Generation Time: Oct 27, 2024 at 01:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
-
-CREATE DATABASE IF NOT EXISTS `megaminds`;
-USE `megaminds`;
-
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `megaminds`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+CREATE TABLE `pages` (
+  `ID` int(11) NOT NULL,
+  `FreindlyName` varchar(50) NOT NULL,
+  `LinkAddress` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,11 +58,29 @@ INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `role`) VALUES
 (36, 'jana', 'Hassan', 'haha@gmail.com', 0, 1),
 (37, 'salma ', 'ahmed', 'salma@gmail.com', 111, 1),
 (38, 'yahia', 'tamer', 'yahia@gmail.com', 222, 1),
-(39, 'mayar', 'khaled', 'mayar@gmail.com', 333, 1);
+(39, 'mayar', 'khaled', 'mayar@gmail.com', 333, 1),
+(40, 'huissen', 'magdy', 'huissen@gmail.com', 123, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usertype`
+--
+
+CREATE TABLE `usertype` (
+  `ID` int(10) NOT NULL,
+  `UserTypeName` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `users`
@@ -64,14 +89,32 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `usertype`
+--
+ALTER TABLE `usertype`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `usertype`
+--
+ALTER TABLE `usertype`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
