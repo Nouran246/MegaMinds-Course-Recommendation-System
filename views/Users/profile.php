@@ -1,8 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
 session_start();
+include_once "../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
+include('UserClass.php');
+
+// Create a PDO connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "megaminds";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Set error mode to exception
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+$user = new User($conn);
+
+// Fetch user ID from the session
+if (!isset($_SESSION['user_id'])) {
+    die('User not logged in.');
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch user data from the database
+$stmt = $conn->prepare("SELECT * FROM users WHERE ID = :id");
+$stmt->execute(['id' => $user_id]);
+$user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Check if user data is found
+if (!$user_data) {
+    die('User not found.');
+}
+
+// Debugging: Print user data
+// Uncomment the following line to see what data is fetched
+// var_dump($user_data);
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Collect form data and sanitize it
+    $fname = htmlspecialchars(trim($_POST['FName']));
+    $lname = htmlspecialchars(trim($_POST['LName']));
+    $email = htmlspecialchars(trim($_POST['Email']));
+
+    // Update the profile
+    if ($user->updateProfile($user_id, $fname, $lname, $email)) {
+        echo "Profile updated!";
+    } else {
+        echo "Error updating profile.";
+    }
+}
 ?>
+
+
+
+
+
+
 <head>
 
     <meta charset="utf-8">
@@ -99,7 +159,7 @@ https://templatemo.com/tm-569-edu-meeting
                         <div class="info" style="margin-top: 5px;">
                             <label for="userName" id="label-name" class="form-label"
                                 style="font-weight: bold; margin: 20px 20px 10px; text-decoration: solid;">
-                                Nouran Hassan</label>
+                                <?= htmlspecialchars($user_data['FName']) ?> <?= htmlspecialchars($user_data['LName']) ?></label>
                             <div class="main-button-yellow" style="text-align:center;">
                                 <div id="edit-img-btn"><a href="#">Edit Image</a></div>
                                 <input type="file" id="profileImage" name="profileImage"
@@ -136,230 +196,205 @@ https://templatemo.com/tm-569-edu-meeting
                             </li>
                         </ul>
 
-                        <div class="tab-content" id="myTabContent">
-                            <!-- Basic Info Tab -->
-                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
-                                aria-labelledby="basicInfo-tab">
-                                <div class="row" style="margin-top: 20px;">
-                                    <!-- Name Input -->
-                                    <div class="col-12">
-                                        <label for="name">Name</label>
-                                        <input type="text" id="name" class="form-control" value="Nouran Hassan">
-                                    </div>
-                                    <!-- Email Input -->
-                                    <div class="col-12">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" class="form-control"
-                                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                                            value="nouran@example.com">
-                                        <div id="error-email-message" class="error-message"
-                                            style="color: red; font-size: 12px; display: none; font-weight:400;">
+                        <form action="profile.php" method="POST">
+                            <div class="tab-content" id="myTabContent"> 
+                                <!-- Basic Info Tab -->
+                                <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                    <div class="row" style="margin-top: 20px;">
+                                        <!-- Name Input -->
+                                        <div class="col-12">
+                                            <label for="FName">First Name</label>
+                                            <input type="text" name="FName" id="FName" class="form-control" value="<?= htmlspecialchars($user_data['FName']) ?>" required>
+                                            <label for="LName">Last Name</label>
+                                            <input type="text" name="LName" id="LName" class="form-control" value="<?= htmlspecialchars($user_data['LName']) ?>" required>
                                         </div>
-                                    </div>
-                                    <!-- Phone input dropdown-->
-                                    <div class="col-12">
-                                        <label for="phone">Phone</label>
-                                        <div class="input-group">
-                                            <select class="form-select" id="phoneCode">
-                                                <option value="+20">+20 (Egypt)</option>
-                                                <option value="+1">+1 (USA/Canada)</option>
-                                                <option value="+44">+44 (UK)</option>
-                                                <option value="+49">+49 (Germany)</option>
-                                                <option value="+33">+33 (France)</option>
+                                        <!-- Email Input -->
+                                        <div class="col-12">
+                                            <label for="Email">Email</label>
+                                            <input type="email" name="Email" id="Email" class="form-control"
+                                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" value="<?= htmlspecialchars($user_data['Email']) ?>" required>
+                                            <div id="error-email-message" class="error-message"
+                                                style="color: red; font-size: 12px; display: none; font-weight:400;"></div>
+                                        </div>
+                                        <!-- Phone input dropdown-->
+                                        <div class="col-12">
+                                            <label for="phone">Phone</label>
+                                            <div class="input-group">
+                                                <select class="form-select" id="phoneCode" name="phoneCode" required>
+                                                    <option value="+20">+20 (Egypt)</option>
+                                                    <option value="+1">+1 (USA/Canada)</option>
+                                                    <option value="+44">+44 (UK)</option>
+                                                    <option value="+49">+49 (Germany)</option>
+                                                    <option value="+33">+33 (France)</option>
+                                                </select>
+                                                <input type="tel" id="phone" name="phone" class="form-control"
+                                                    value="1234567890" pattern="^\d{10}$" required>
+                                            </div>
+                                            <div id="error-phone-message" class="error-message"
+                                                style="color: red; font-size: 12px; display: none; font-weight: 400;"></div>
+                                        </div>
+
+                                        <!-- University Dropdown -->
+                                        <div class="col-12">
+                                            <label for="university">University</label>
+                                            <select id="university" class="form-select" name="university" required>
+                                                <option value="MIU">Misr International University</option>
+                                                <option value="AUC">The American University in Cairo</option>
+                                                <option value="CairoU">Cairo University</option>
+                                                <option value="TantaU">Tanta University</option>
                                             </select>
-                                            <input type="tel" id="phone" name="invalid-number" class="form-control"
-                                                value="1234567890" pattern="^\d{10}$">
                                         </div>
-                                        <div id="error-phone-message" class="error-message"
-                                            style="color: red; font-size: 12px; display: none; font-weight: 400;">
+                                        <!-- Degree Program Dropdown -->
+                                        <div class="col-12">
+                                            <label for="degreeProgram">Degree Program</label>
+                                            <select id="degreeProgram" class="form-select" name="degreeProgram" required>
+                                                <option value="Bachelors">Bachelor's</option>
+                                                <option value="Masters">Master's</option>
+                                                <option value="PhD">PhD</option>
+                                                <option value="Diploma">Diploma</option>
+                                            </select>
+                                        </div>
+                                        <!-- Major Input -->
+                                        <div class="col-12">
+                                            <label for="major">Major</label>
+                                            <select id="major" class="form-select" name="major" required>
+                                                <option value="Computer Science">Computer Science</option>
+                                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                <option value="Business Administration">Business Administration</option>
+                                                <option value="Mathematics">Mathematics</option>
+                                                <option value="Physics">Physics</option>
+                                            </select>
+                                        </div>
+                                        <!-- Location Dropdown for Country -->
+                                        <div class="col-12">
+                                            <label for="location">Location</label>
+                                            <select id="location" class="form-select" name="location" required>
+                                                <option value="Cairo, Egypt">Cairo, Egypt</option>
+                                                <option value="New York, USA">New York, USA</option>
+                                                <option value="London, UK">London, UK</option>
+                                                <option value="Berlin, Germany">Berlin, Germany</option>
+                                                <option value="Paris, France">Paris, France</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <button type="submit" class="btn btn-primary" id="saveChanges"
+                                                style="background-color:#f5a425; color: white; border-color: #FFBF00;">Save
+                                                Changes</button>
+                                            <button type="button" class="btn btn-secondary" id="resetChanges">Reset</button>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- University Dropdown -->
-                                    <div class="col-12">
-                                        <label for="university">University</label>
-                                        <select id="university" class="form-select">
-                                            <option value="MIU">Misr International University</option>
-                                            <option value="AUC">The American University in Cairo</option>
-                                            <option value="CairoU">Cairo University</option>
-                                            <option value="TantaU">Tanta University</option>
-                                        </select>
-                                    </div>
-                                    <!-- Degree Program Dropdown -->
-                                    <div class="col-12">
-                                        <label for="degreeProgram">Degree Program</label>
-                                        <select id="degreeProgram" class="form-select">
-                                            <option value="Bachelors">Bachelor's</option>
-                                            <option value="Masters">Master's</option>
-                                            <option value="PhD">PhD</option>
-                                            <option value="Diploma">Diploma</option>
-                                        </select>
-                                    </div>
-                                    <!-- Major Input -->
-                                    <div class="col-12">
-                                        <label for="major">Major</label>
-                                        <select id="major" class="form-select">
-                                            <option value="Computer Science">Computer Science</option>
-                                            <option value="Electrical Engineering">Electrical Engineering</option>
-                                            <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                            <option value="Business Administration">Business Administration</option>
-                                            <option value="Mathematics">Mathematics</option>
-                                            <option value="Physics">Physics</option>
-                                        </select>
-                                    </div>
-                                    <!-- Location Dropdown for Country -->
-                                    <div class="col-12">
-                                        <label for="location">Location</label>
-                                        <select id="location" class="form-select">
-                                            <option value="Cairo, Egypt">Cairo, Egypt</option>
-                                            <option value="New York, USA">New York, USA</option>
-                                            <option value="London, UK">London, UK</option>
-                                            <option value="Berlin, Germany">Berlin, Germany</option>
-                                            <option value="Paris, France">Paris, France</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 mt-3">
-                                        <button class="btn btn-primary" id="saveChanges"
-                                            style=" background-color:#f5a425; color: white; border-color: #FFBF00;">Save
-                                            Changes</button>
-                                        <button class="btn btn-secondary" id="resetChanges">Reset</button>
+                                <!-- Learning Path Tab -->
+                                <div class="tab-pane fade" id="interest" role="tabpanel" aria-labelledby="interest">
+                                    <div class="row" style="margin-top: 20px;">
+                                        <!-- Skills -->
+                                        <div class="section">
+                                            <label for="skills">Select Skills for Your Learning Plan</label>
+                                            <div class="checkbox-group">
+                                                <input type="checkbox" id="html" name="skills" value="html" checked>
+                                                <label for="html">HTML</label>
+
+                                                <input type="checkbox" id="css" name="skills" value="css">
+                                                <label for="css">CSS</label>
+
+                                                <input type="checkbox" id="js" name="skills" value="js" checked>
+                                                <label for="js">JavaScript</label>
+
+                                                <input type="checkbox" id="python" name="skills" value="python">
+                                                <label for="python">Python</label>
+
+                                                <input type="checkbox" id="java" name="skills" value="java">
+                                                <label for="java">Java</label>
+
+                                                <input type="checkbox" id="react" name="skills" value="react">
+                                                <label for="react">React</label>
+
+                                                <input type="checkbox" id="nodejs" name="skills" value="nodejs" checked>
+                                                <label for="nodejs">Node.js</label>
+
+                                                <input type="checkbox" id="sql" name="skills" value="sql">
+                                                <label for="sql">SQL</label>
+
+                                                <input type="checkbox" id="ruby" name="skills" value="ruby">
+                                                <label for="ruby">Ruby</label>
+
+                                                <input type="checkbox" id="php" name="skills" value="php">
+                                                <label for="php">PHP</label>
+                                            </div>
+                                        </div>
+                                        <!-- Subjects -->
+                                        <div class="section">
+                                            <label for="subjects">Select Subjects</label>
+                                            <div class="checkbox-group">
+                                                <input type="checkbox" id="webDev" name="subjects" value="webDev" checked>
+                                                <label for="webDev">Web Development</label>
+
+                                                <input type="checkbox" id="dataSci" name="subjects" value="dataSci">
+                                                <label for="dataSci">Data Science</label>
+
+                                                <input type="checkbox" id="ai" name="subjects" value="ai" checked>
+                                                <label for="ai">AI & Machine Learning</label>
+
+                                                <input type="checkbox" id="cyberSec" name="subjects" value="cyberSec">
+                                                <label for="cyberSec">Cybersecurity</label>
+
+                                                <input type="checkbox" id="cloud" name="subjects" value="cloud">
+                                                <label for="cloud">Cloud Computing</label>
+                                            </div>
+                                        </div>
+                                        <!-- Careers -->
+                                        <div class="section">
+                                            <label for="career">Select Your Desired Career</label>
+                                            <div class="checkbox-group">
+                                                <input type="checkbox" id="softwareEngineer" name="career" value="Software Engineer">
+                                                <label for="softwareEngineer">Software Engineer</label>
+
+                                                <input type="checkbox" id="dataScientist" name="career" value="Data Scientist" checked>
+                                                <label for="dataScientist">Data Scientist</label>
+
+                                                <input type="checkbox" id="aiResearcher" name="career" value="AI Researcher">
+                                                <label for="aiResearcher">AI Researcher</label>
+
+                                                <input type="checkbox" id="webDeveloper" name="career" value="Web Developer">
+                                                <label for="webDeveloper">Web Developer</label>
+
+                                                <input type="checkbox" id="cybersecurityAnalyst" name="career" value="Cybersecurity Analyst">
+                                                <label for="cybersecurityAnalyst">Cybersecurity Analyst</label>
+
+                                                <input type="checkbox" id="projectManager" name="career" value="Project Manager">
+                                                <label for="projectManager">Project Manager</label>
+
+                                                <input type="checkbox" id="bioinformatician" name="career" value="Bioinformatician">
+                                                <label for="bioinformatician">Bioinformatician</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Learning Style -->
+                                        <div class="section">
+                                            <label for="learningStyle">Preferred Learning Style</label>
+                                            <div class="checkbox-group">
+                                                <input type="checkbox" id="video" name="learningStyle" value="video" checked>
+                                                <label for="video">Video</label>
+
+                                                <input type="checkbox" id="text" name="learningStyle" value="text">
+                                                <label for="text">Text</label>
+
+                                                <input type="checkbox" id="handsOn" name="learningStyle" value="handsOn">
+                                                <label for="handsOn">Hands-On</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <button type="submit" class="btn btn-primary" id="saveLearningPlan"
+                                                style="background-color:#f5a425; color: white; border-color: #FFBF00;">Save Learning
+                                                Plan</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </form>
 
-                            <!-- Learning Path Tab -->
-                            <div class="tab-pane fade" id="interest" role="tabpanel" aria-labelledby="interest">
-
-                                <div class="row" style="margin-top: 20px;">
-
-
-                                    <!-- Skills -->
-                                    <div class="section">
-                                        <label for="skills">Select Skills for Your Learning Plan</label>
-                                        <div class="checkbox-group">
-                                            <input type="checkbox" id="html" name="skills" value="html" checked>
-                                            <label for="html">HTML</label>
-
-                                            <input type="checkbox" id="css" name="skills" value="css">
-                                            <label for="css">CSS</label>
-
-                                            <input type="checkbox" id="js" name="skills" value="js" checked>
-                                            <label for="js">JavaScript</label>
-
-                                            <input type="checkbox" id="python" name="skills" value="python">
-                                            <label for="python">Python</label>
-
-                                            <input type="checkbox" id="java" name="skills" value="java">
-                                            <label for="java">Java</label>
-
-                                            <input type="checkbox" id="react" name="skills" value="react">
-                                            <label for="react">React</label>
-
-                                            <input type="checkbox" id="nodejs" name="skills" value="nodejs" checked>
-                                            <label for="nodejs">Node.js</label>
-
-                                            <input type="checkbox" id="sql" name="skills" value="sql">
-                                            <label for="sql">SQL</label>
-
-                                            <input type="checkbox" id="ruby" name="skills" value="ruby">
-                                            <label for="ruby">Ruby</label>
-
-                                            <input type="checkbox" id="php" name="skills" value="php">
-                                            <label for="php">PHP</label>
-                                        </div>
-                                    </div>
-                                    <!-- Subjects -->
-                                    <div class="section">
-                                        <label for="subjects">Select Subjects</label>
-                                        <div class="checkbox-group">
-                                            <input type="checkbox" id="webDev" name="subjects" value="webDev" checked>
-                                            <label for="webDev">Web Development</label>
-
-                                            <input type="checkbox" id="dataSci" name="subjects" value="dataSci">
-                                            <label for="dataSci">Data Science</label>
-
-                                            <input type="checkbox" id="ai" name="subjects" value="ai" checked>
-                                            <label for="ai">AI & Machine Learning</label>
-
-                                            <input type="checkbox" id="cyberSec" name="subjects" value="cyberSec">
-                                            <label for="cyberSec">Cybersecurity</label>
-
-                                            <input type="checkbox" id="cloud" name="subjects" value="cloud">
-                                            <label for="cloud">Cloud Computing</label>
-                                        </div>
-                                    </div>
-                                    <!-- Careers -->
-                                    <div class="section">
-                                        <label for="career">Select Your Desired Career</label>
-                                        <div class="checkbox-group">
-                                            <input type="checkbox" id="softwareEngineer" name="career"
-                                                value="Software Engineer">
-                                            <label for="softwareEngineer">Software Engineer</label>
-
-                                            <input type="checkbox" id="dataScientist" name="career"
-                                                value="Data Scientist" checked>
-                                            <label for="dataScientist">Data Scientist</label>
-
-                                            <input type="checkbox" id="aiResearcher" name="career"
-                                                value="AI Researcher">
-                                            <label for="aiResearcher">AI Researcher</label>
-
-                                            <input type="checkbox" id="webDeveloper" name="career"
-                                                value="Web Developer">
-                                            <label for="webDeveloper">Web Developer</label>
-
-                                            <input type="checkbox" id="cybersecurityAnalyst" name="career"
-                                                value="Cybersecurity Analyst">
-                                            <label for="cybersecurityAnalyst">Cybersecurity Analyst</label>
-
-                                            <input type="checkbox" id="projectManager" name="career"
-                                                value="Project Manager">
-                                            <label for="projectManager">Project Manager</label>
-
-                                            <input type="checkbox" id="bioinformatician" name="career"
-                                                value="Bioinformatician">
-                                            <label for="bioinformatician">Bioinformatician</label>
-                                        </div>
-                                    </div>
-
-                                    <!--Learning Style -->
-                                    <div class="section">
-                                        <label for="learningStyle">Preferred Learning Style</label>
-                                        <div class="checkbox-group">
-                                            <input type="checkbox" id="video" name="learningStyle" value="video">
-                                            <label for="video">Video Tutorials</label>
-
-                                            <input type="checkbox" id="books" name="learningStyle" value="books"
-                                                checked>
-                                            <label for="books">Books</label>
-
-                                            <input type="checkbox" id="interactive" name="learningStyle"
-                                                value="interactive">
-                                            <label for="interactive">Interactive Exercises</label>
-
-                                            <input type="checkbox" id="projects" name="learningStyle" value="projects">
-                                            <label for="projects">Project-Based Learning</label>
-
-                                            <input type="checkbox" id="mentorship" name="learningStyle"
-                                                value="mentorship" checked>
-                                            <label for="mentorship">Mentorship</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 mt-3">
-                                        <button class="btn btn-primary" id="saveChanges"
-                                            style="background-color:#f5a425; color: white; border-color: #FFBF00;">Save
-                                            Changes</button>
-                                        <button class="btn btn-secondary" id="resetChanges">Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Progress Tab -->
-                            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
-                                <p>This is where the user's progress will be shown.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
