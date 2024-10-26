@@ -26,17 +26,38 @@ class User {
 		}
     }
 
-    // // Method to create a new user
-    // public function createUser($firstName, $lastName, $email, $password, $role = 1) {
-    //     $sql = "INSERT INTO users (FName, LName, Email, Password, role) VALUES (:firstName, :lastName, :email, :password, :role)";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->bindParam(':firstName', $firstName);
-    //     $stmt->bindParam(':lastName', $lastName);
-    //     $stmt->bindParam(':email', $email);
-    //     $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT)); // Encrypt password
-    //     $stmt->bindParam(':role', $role);
-    //     return $stmt->execute();
-    // }
+    static function Signup($FName,$LName,$Email,$Password)	{
+        $FName = htmlspecialchars($_POST["FName"]);
+        $LName = htmlspecialchars($_POST["LName"]);
+        $Email = htmlspecialchars($_POST["Email"]);
+        $Password = htmlspecialchars($_POST["Password"]);
+        $role = 1;
+    
+         // Check if email already exists
+         $checkEmailQuery = "SELECT * FROM users WHERE Email = '$Email'";
+         $result=mysqli_query($GLOBALS['conn'],$checkEmailQuery);
+     
+         if (mysqli_num_rows($result) > 0) {
+             // Email already exists, display a message
+             echo "<script>alert('Email is already used. Please try a different email.');</script>";
+         } else {
+        // SQL Query to insert data
+        $sql = "INSERT INTO users (FName, LName, Email, Password,role) 
+                VALUES ('$FName', '$LName', '$Email', '$Password','$role')";
+    
+        // Execute query and check result
+        if (mysqli_query($GLOBALS['conn'], $sql)) {
+            $_SESSION['FName'] = $FName; // Store first name
+            $_SESSION['LName'] = $LName; // Store last name
+            // Redirect the user after successful insertion
+            header("Location: ../../views/Users/Courses.php");
+            exit();
+        } else {
+            // Display the error for debugging
+            echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['conn']);
+        }
+    }
+	}
 
     
     public static function login($Email,$Password){
