@@ -54,16 +54,6 @@ try {
       </a>
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link <%= title === 'Home' ? 'active' : '' %>">
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="dashboard.php" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>">
-            Dashboard
-          </a>
-        </li>
         <li>
           <a href="members.php" class="nav-link <%= title === 'Members' ? 'active' : '' %>">
             Members

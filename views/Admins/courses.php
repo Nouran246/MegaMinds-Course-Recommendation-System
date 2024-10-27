@@ -8,124 +8,41 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="../../public/css/admin css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../public/css/admin css/site.css" />
+    <link rel="stylesheet" href="../../public/css/admin css/header.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
-    <style>
-      .admin-title {
-        font-size: 2rem;
-        font-weight: bold;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .content {
-        margin-left: 270px;
-        padding: 1rem;
-        width: calc(100% - 250px);
-        transition: margin-left 0.3s ease, width 0.3s ease;
-      }
-      .btn-group .btn {
-        margin-right: 5px;
-      }
-      .btn-group .btn:last-child {
-        margin-right: 0;
-      }
-      .sidebar {
-        width: 250px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background-color: #f8f9fa;
-        border-right: 1px solid #dee2e6;
-        padding: 1rem;
-        transition: transform 0.3s ease;
-        z-index: 1000;
-      }
-      .sidebar .nav-link {
-        color: #333;
-        margin-bottom: 10px;
-      }
-      .sidebar .nav-link.active {
-        background-color: #007bff;
-        color: white;
-        border-radius: 5px;
-      }
-      .toggle-btn {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1100;
-        display: none;
-      }
-      @media (max-width: 768px) {
-        .sidebar {
-          transform: translateX(-100%);
-        }
-        .sidebar.active {
-          transform: translateX(0);
-        }
-        .content {
-          margin-left: 0;
-          width: 100%;
-        }
-        .content.active {
-          margin-left: 250px;
-          width: calc(100% - 250px);
-        }
-        .toggle-btn {
-          display: block;
-        }
-      }
-    </style>
   </head>
   <body>
     <!-- Header -->
-    <header>
-      <button class="btn btn-primary toggle-btn" id="toggleSidebar">
-        Toggle Sidebar
-      </button>
-      <div class="sidebar d-flex flex-column p-3 bg-light" id="sidebar">
-        <a
-          href="/"
-          class="d-flex align-items-center mb-3 text-decoration-none"
-        >
-          <span class="fs-4 admin-title">MegaMinds Admin</span>
-        </a>
-        <hr />
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="/" class="nav-link active">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="dashboard.php" class="nav-link">
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="members.php" class="nav-link">
-              Members
-            </a>
-          </li>
-          <li>
-            <a href="courses.php" class="nav-link">
-              Courses
-            </a>
-          </li>
-        </ul>
-        <hr />
-        <form action="/logout" method="POST">
-          <button type="submit" class="btn btn-danger btn-block">Logout</button>
-        </form>
-      </div>
-    </header>
+    
+    <button class="btn btn-primary toggle-btn" id="toggleSidebar">
+      Toggle Sidebar
+    </button>
+    <div class="sidebar d-flex flex-column p-3 bg-light" id="sidebar">
+      <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
+        <span class="fs-4 admin-title">MegaMinds Admin</span>
+      </a>
+      <hr />
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+          <a href="members.php" class="nav-link <%= title === 'Members' ? 'active' : '' %>">
+            Members
+          </a>
+        </li>
+        <li>
+          <a href="courses.php" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
+            Courses
+          </a>
+        </li>
+      </ul>
+      <hr />
+      <form action="/logout" method="POST">
+        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+      </form>
+    </div>
+    
 
     <div id="content" class="content container mt-5">
       <div class="row mb-4">
