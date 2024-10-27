@@ -120,7 +120,7 @@
 
             <button type="submit" class="login-btn">Login</button>
 
-            <div class="divider">or</div>
+            <!-- <div class="divider">or</div>
             <button type="button" class="google-btn">
                 <img src="../../public/images/google.png" id="google" alt="Google Logo" class="google-icon">
                 Continue with Google
@@ -132,9 +132,9 @@
             <button type="button" class="apple-btn">
                 <img src="../../public/images/apple.png" id="apple" alt="Apple Logo" class="google-icon">
                 Continue with Apple
-            </button>
+            </button> -->
 
-            <p>New to the site? <a href="../../views/Users/register.php">Sign up</a></p>
+            <p>New to site? <a href="../../views/Users/register.php">Sign up</a></p>
         </form>
     </div>
 </div>
