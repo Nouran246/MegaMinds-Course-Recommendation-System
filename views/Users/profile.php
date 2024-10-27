@@ -130,7 +130,7 @@ https://templatemo.com/tm-569-edu-meeting
 
                             <li><a href="profile.php" class="active">My Profile</a></li>
 
-                            <li><a href="index.php">Sign out</a></li>
+                            <li><a href="../../public/database/signout.php?action=signout">Sign out</a></li>
 
                         </ul>
                         <a class='menu-trigger'>
