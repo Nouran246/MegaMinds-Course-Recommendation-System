@@ -102,39 +102,55 @@ class User {
                    </script>";
          }
 	}
-    public function editUser($FName, $LName, $Email) {
-        $FName = htmlspecialchars($FName);
-        $LName = htmlspecialchars($LName);
-        $Email = htmlspecialchars($Email);
-
-        // Check if the email is already in use by another user
-        $sql = "SELECT COUNT(*) FROM users WHERE Email = :email AND ID != :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['email' => $Email, 'id' => $this->ID]);
-        $count = $stmt->fetchColumn();
-
-        if ($count > 0) {
-            return json_encode(['status' => 'error', 'message' => 'Email already in use.']);
-        }
-
-        // Update user information if no duplicate email is found
-        $sql = "UPDATE users SET FName = :fname, LName = :lname, Email = :email WHERE ID = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':fname', $FName);
-        $stmt->bindParam(':lname', $LName);
-        $stmt->bindParam(':email', $Email);
-        $stmt->bindParam(':id', $this->ID, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            $this->FName = $FName;
-            $this->LName = $LName;
-            $this->Email = $Email;
-            return json_encode(['status' => 'success', 'message' => 'User updated successfully']);
-        } else {
-            return json_encode(['status' => 'error', 'message' => 'Failed to update user']);
+    public static function editUser() {
+        try {
+            // Database connection
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+            if (isset($_POST['id']) && isset($_POST['Fname']) && isset($_POST['Lname']) && isset($_POST['Email'])) {
+                $id = $_POST['id'];
+                $fname = $_POST['Fname'];
+                $lname = $_POST['Lname'];
+                $email = $_POST['Email'];
+        
+                // Check if the email already exists for another user
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE Email = :email AND id != :id");
+                $stmt->execute(['email' => $email, 'id' => $id]);
+                $count = $stmt->fetchColumn();
+        
+                if ($count > 0) {
+                    // Email is already in use by another user
+                    echo json_encode(['status' => 'error', 'message' => 'Email already in use.']);
+                    exit;
+                }
+        
+                // Proceed to update the user if no duplicate email is found
+                $stmt = $pdo->prepare("UPDATE users SET Fname = :fname, Lname = :lname, Email = :email WHERE id = :id");
+                $stmt->bindParam(':fname', $fname);
+                $stmt->bindParam(':lname', $lname);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+                if ($stmt->execute()) {
+                    echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to update user']);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
+            }
+        
+        } catch (PDOException $e) {
+            // Output database connection error
+            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            // Output general error
+            echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
-    public function deleteUser($userId) {
+
+    public static function deleteUser($userId) {
         $userId = (int)$userId; // Ensure user ID is an integer
         $sql = "DELETE FROM users WHERE ID = :id";
         $stmt = $this->pdo->prepare($sql);

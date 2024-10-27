@@ -43,59 +43,55 @@ $(document).ready(function () {
     // Handle form submission for editing user
     $('#editForm').on('submit', function (e) {
         e.preventDefault();
-
+    
         // Clear previous error messages
         $('#fnameError, #lnameError, #emailError').hide();
-
+    
         // Get values from input fields
         const fname = $('#editFname').val().trim();
         const lname = $('#editLname').val().trim();
         const email = $('#editEmail').val().trim();
         let isValid = true;
-
+    
         // Validate first name
         if (fname === '') {
             $('#fnameError').show();
             isValid = false;
         }
-
+    
         // Validate last name
         if (lname === '') {
             $('#lnameError').show();
             isValid = false;
         }
-
+    
         // Validate email format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email === '' || !emailPattern.test(email)) {
             $('#emailError').text('Please enter a valid email address.').show();
             isValid = false;
         }
-
+    
         // If valid, proceed with AJAX call
         if (isValid) {
             $.ajax({
                 url: '../../public/database/editUser.php',
                 type: 'POST',
-                data: $(this).serialize(),
-                dataType: 'json',
+                data: { id: $('#editUserId').val(), FName: fname, LName: lname, Email: email }, // Pass user ID too
                 success: function (response) {
+                    console.log(response);
                     if (response.status === 'success') {
-                        $('#editModal').modal('hide');
+                        alert(response.message);
                         location.reload();
                     } else {
-                        // Display custom error message if email is already in use
-                        if (response.message === 'Email already in use.') {
-                            $('#emailError').text(response.message).show();
-                        } else {
-                            alert(response.message);
-                        }
+                        alert(response.message); // Display error message from server
                     }
                 },
                 error: function () {
-                    alert('Error updating user');
+                    alert('Error editing user');
                 }
             });
         }
     });
+    
 });
