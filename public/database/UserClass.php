@@ -102,6 +102,50 @@ class User {
                    </script>";
          }
 	}
+    public function editUser($FName, $LName, $Email) {
+        $FName = htmlspecialchars($FName);
+        $LName = htmlspecialchars($LName);
+        $Email = htmlspecialchars($Email);
+
+        // Check if the email is already in use by another user
+        $sql = "SELECT COUNT(*) FROM users WHERE Email = :email AND ID != :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['email' => $Email, 'id' => $this->ID]);
+        $count = $stmt->fetchColumn();
+
+        if ($count > 0) {
+            return json_encode(['status' => 'error', 'message' => 'Email already in use.']);
+        }
+
+        // Update user information if no duplicate email is found
+        $sql = "UPDATE users SET FName = :fname, LName = :lname, Email = :email WHERE ID = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':fname', $FName);
+        $stmt->bindParam(':lname', $LName);
+        $stmt->bindParam(':email', $Email);
+        $stmt->bindParam(':id', $this->ID, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $this->FName = $FName;
+            $this->LName = $LName;
+            $this->Email = $Email;
+            return json_encode(['status' => 'success', 'message' => 'User updated successfully']);
+        } else {
+            return json_encode(['status' => 'error', 'message' => 'Failed to update user']);
+        }
+    }
+    public function deleteUser($userId) {
+        $userId = (int)$userId; // Ensure user ID is an integer
+        $sql = "DELETE FROM users WHERE ID = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return json_encode(['status' => 'success', 'message' => 'User deleted successfully.']);
+        } else {
+            return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
+        }
+    }
      
 //     // Method to get a user by ID
 //     public function getUserById($id) {
