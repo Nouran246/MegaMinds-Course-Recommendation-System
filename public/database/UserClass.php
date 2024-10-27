@@ -84,7 +84,7 @@ class User {
                  if ($user['role'] == 1) {
                      header("Location: ../../views/Users/Courses.php");
                  } elseif ($user['role'] == 2) {
-                     header("Location: ../../views/Admins/dashboard.php");
+                     header("Location: ../../views/Admins/members.php");
                  }
                  exit();
              } else {
