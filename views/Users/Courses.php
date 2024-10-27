@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+include_once "../../public/includes/DB.php";
+
+
 session_start();
+// Assuming you have already verified the user's credentials
+
+
+
 
 ?>
+
+
   <head>
 
     <meta charset="utf-8">
@@ -59,7 +68,7 @@ https://templatemo.com/tm-569-edu-meeting
 
                           <li><a href="profile.php">My Profile</a></li> 
                           
-                          <li><a href="index.php">Sign out</a></li> 
+                          <li><a href="../../public/database/signout.php?action=signout">Sign out</a></li> 
 
                       </ul>        
                       <a class='menu-trigger'>
@@ -77,8 +86,8 @@ https://templatemo.com/tm-569-edu-meeting
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-        <h6>Hello, <?php echo isset($_SESSION['FName']) ? $_SESSION['FName'] : 'Guest'; ?> <?php echo isset($_SESSION['LName']) ? $_SESSION['LName'] : ''; ?>!</h6>      
-            <h2>Let's dive into learning</h2>
+    <h6>Hello, <?php echo isset($_SESSION['FName']) ? $_SESSION['FName'] : 'Guest'; ?> <?php echo isset($_SESSION['LName']) ? $_SESSION['LName'] : ''; ?>!</h6>        
+        <h2>Let's dive into learning</h2>
         </div>
       </div>
     </div>
@@ -295,14 +304,7 @@ https://templatemo.com/tm-569-edu-meeting
    
  
 
-<?php
-session_start();
-// Assuming you have already verified the user's credentials
 
-// Example: Storing user data in session after successful login or signup
-$_SESSION['FName'] = $user['FName']; // Replace with actual user data
-$_SESSION['LName'] = $user['LName']; // Replace with actual user data
-?>
 
 
 

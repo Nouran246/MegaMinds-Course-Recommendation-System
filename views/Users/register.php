@@ -1,7 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start(); // Start the session
+include_once "../../public/includes/DB.php";
 
+?>
 <head>
 
     <meta charset="utf-8">

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start(); // Start the session
+include_once "../../public/includes/DB.php";
 
+?>
 <head>
 
     <meta charset="utf-8">
@@ -49,7 +53,7 @@
  --><!--                         <li><a href="profile.php">My Profile</a></li> 
  -->
                             <li><a href="#contact">Contact Us</a></li>
-                            <li><a href="login.php">Sign In</a></li>
+                            <li><a href="../../public/database/signout.php?action=signout">Sign In</a></li>
 
 
                         </ul>

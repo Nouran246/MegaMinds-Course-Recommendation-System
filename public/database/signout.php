@@ -1,5 +1,8 @@
 <?php
 session_start();
-session_destroy();
-header("Location:index.php");
-?>
+if (isset($_GET['action']) && $_GET['action'] == 'signout') {
+    session_destroy();
+    header("Location: ../../views/Users/index.php");
+    exit();
+}
+?> 

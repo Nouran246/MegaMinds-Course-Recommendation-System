@@ -2,6 +2,8 @@
 <html lang="en">
 <?php
 session_start();
+include_once "../../public/includes/DB.php";
+
 ?>
   <head>
 
@@ -62,7 +64,7 @@ https://templatemo.com/tm-569-edu-meeting
                           </li>
                           <li><a href="cart-page.php">Cart</a></li> 
                           <li><a href="Courses.php">My Profile</a></li> 
-                          <li><a href="index.php">Sign Out</a></li> 
+                          <li><a href="../../public/database/signout.php?action=signout">Sign Out</a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>

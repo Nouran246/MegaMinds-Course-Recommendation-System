@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head><?php
+include_once "../../public/includes/DB.php";
+
 session_start();
 ?>
     <meta charset="utf-8">
@@ -53,7 +55,7 @@ session_start();
 
                         <li><a href="profile.php">My Profile</a></li> 
                         
-                        <li><a href="index.php">Sign out</a></li> 
+                        <li><a href="../../public/database/signout.php?action=signout">Sign out</a></li> 
 
                     </ul>        
                     <a class='menu-trigger'>
