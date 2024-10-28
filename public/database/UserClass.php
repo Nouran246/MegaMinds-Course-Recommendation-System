@@ -5,29 +5,36 @@ include_once "../../public/includes/DB.php";
 
 
 class User {
-  public $ID ;
-  public $FName;
-  public $LName;
-  public  $Email;
-  public $Password;
-  public $role;
+    
+    public $ID;
+    public $FName;
+    public $LName;
+    public  $Email;
+    public $Password;
+    public $role;
+    private $conn;
+    private $usersTable = 'users';
 
-    // Constructor to initialize the database connection
-    public function __construct() {
-        if ($ID !=""){
-			$sql="select * from users where 	ID=$ID";
-			$User = mysqli_query($GLOBALS['con'],$sql);
-			if ($row = mysqli_fetch_array($User)){
-                $this->ID=$row["ID"];
-				$this->FName=$row["FName"];
-                $this->LName=$row["LName"];
-                $this->Email=$row["Email"];
-                $this->Password=$row["Password"];
-                $this->role = $row["role"];
-				// $this->UserRole_obj=new UserType($row["role"]);
-			}
-		}
+    public function __construct($db) {
+        $this->conn = $db;
     }
+
+    // // Constructor to initialize the database connection
+    // public function __construct() {
+    //     if ($ID != NULL){
+	// 		$sql="select * from users where 	ID=$ID";
+	// 		$User = mysqli_query($GLOBALS['con'],$sql);
+	// 		if ($row = mysqli_fetch_array($User)){
+    //             $this->ID=$row["ID"];
+	// 			$this->FName=$row["FName"];
+    //             $this->LName=$row["LName"];
+    //             $this->Email=$row["Email"];
+    //             $this->Password=$row["Password"];
+    //             $this->role = $row["role"];
+	// 			// $this->UserRole_obj=new UserType($row["role"]);
+	// 		}
+	// 	}
+    // }
 
     static function Signup($FName,$LName,$Email,$Password)	{
         $FName = htmlspecialchars($_POST["FName"]);
@@ -69,7 +76,7 @@ class User {
          $Password = htmlspecialchars($_POST["Password"]); // Raw password input
      
          // SQL Query to select the user
-         $sql = "SELECT FName, LName, Password, role FROM users WHERE Email = '$Email'";
+         $sql = "SELECT ID, FName, LName, Password, role FROM users WHERE Email = '$Email'";
          $result=mysqli_query($GLOBALS['conn'],$sql);
      
          // Check if user exists
@@ -79,6 +86,7 @@ class User {
              // Verify the password
              if ($Password === $user['Password']) {
                  // Store user information in session
+                 $_SESSION['user_id'] = $user['ID'];
                  $_SESSION['FName'] = $user['FName']; // Store first name
                  $_SESSION['LName'] = $user['LName']; // Store last name
                  $_SESSION['role'] = $user['role']; // Store user role
@@ -154,6 +162,15 @@ class User {
         }
     }
 
+    
+    // Delete user profile
+    public function deleteProfile($user_id) {
+        $sql = "DELETE FROM " . $this->usersTable . " WHERE ID = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
     public static function deleteUser($userId) {
         $userId = (int)$userId; // Ensure user ID is an integer
         $sql = "DELETE FROM users WHERE ID = :id";
@@ -166,7 +183,18 @@ class User {
             return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
         }
     }
-     
+    // Update user profile
+    public function updateProfile($user_id, $fname, $lname, $email) {
+        $sql = "UPDATE " . $this->usersTable . " SET FName = :fname, LName = :lname, Email = :email" . 
+                " WHERE ID = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 //     // Method to get a user by ID
 //     public function getUserById($id) {
 //         $sql = "SELECT * FROM users WHERE ID = :id";

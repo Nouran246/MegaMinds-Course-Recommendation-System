@@ -14,3 +14,4 @@ $_SESSION['LName'] = $user['LName'];
 // Close the database connection
 mysqli_close($conn);
 ?>
+z

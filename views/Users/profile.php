@@ -2,9 +2,8 @@
 <html lang="en">
 
 <?php
-session_start();
 include_once "../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
-include('UserClass.php');
+include "../../public/database/UserClass.php";
 
 // Create a PDO connection
 $servername = "localhost";
@@ -44,18 +43,32 @@ if (!$user_data) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect form data and sanitize it
-    $fname = htmlspecialchars(trim($_POST['FName']));
-    $lname = htmlspecialchars(trim($_POST['LName']));
-    $email = htmlspecialchars(trim($_POST['Email']));
-
-    // Update the profile
-    if ($user->updateProfile($user_id, $fname, $lname, $email)) {
-        echo "Profile updated!";
+    // Check if the deleteAccount button was pressed
+    if (isset($_POST['deleteAccount'])) {
+        // Call the deleteProfile method
+        if ($user->deleteProfile($user_id)) {
+            // echo "Account deleted successfully!";
+            session_destroy();
+            header("Location: ../../views/Users/index.php");
+            exit();
+        } else {
+            echo "Error deleting account.";
+        }
     } else {
-        echo "Error updating profile.";
+        // Collect form data for profile update
+        $fname = htmlspecialchars(trim($_POST['FName']));
+        $lname = htmlspecialchars(trim($_POST['LName']));
+        $email = htmlspecialchars(trim($_POST['Email']));
+
+        // Update the profile
+        if ($user->updateProfile($user_id, $fname, $lname, $email)) {
+            echo "Profile updated!";
+        } else {
+            echo "Error updating profile.";
+        }
     }
 }
+
 ?>
 
 
@@ -281,6 +294,8 @@ https://templatemo.com/tm-569-edu-meeting
                                             <button type="submit" class="btn btn-primary" id="saveChanges"
                                                 style="background-color:#f5a425; color: white; border-color: #FFBF00;">Save
                                                 Changes</button>
+                                                <button type="submit" class="btn btn-primary" id="deleteAccount" name="deleteAccount"
+                                                style="background-color: red; color: white; border-color: #FFBF00;">Delete Account</button>
                                             <button type="button" class="btn btn-secondary" id="resetChanges">Reset</button>
                                         </div>
                                     </div>
