@@ -1,28 +1,4 @@
-<?php
-// Database connection settings
-$host = 'localhost'; // Replace with your database host
-$dbname = 'megaminds'; // Replace with your database name
-$username = 'root'; // Replace with your database username
-$password = ''; // Replace with your database password
 
-try {
-    // Create a new PDO instance for database connection
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    // Set PDO error mode to exception for better error handling
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Prepare and execute the query to fetch users
-    $stmt = $pdo->prepare("SELECT id, Fname, Lname, Email FROM users");
-    $stmt->execute();
-    
-    // Fetch all users as an associative array
-    $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-} catch (PDOException $e) {
-    // Handle database connection errors
-    die("Database connection failed: " . $e->getMessage());
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
