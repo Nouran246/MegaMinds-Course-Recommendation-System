@@ -204,32 +204,9 @@ class User {
 //         return $stmt->fetch(PDO::FETCH_ASSOC);
 //     }
 
-//     // Method to update a user by ID
-//     public function updateUser($id, $firstName, $lastName, $email, $password = null, $role = 1) {
-//         $sql = "UPDATE users SET FName = :firstName, LName = :lastName, Email = :email, role = :role";
-//         if ($password) {
-//             $sql .= ", Password = :password";
-//         }
-//         $sql .= " WHERE ID = :id";
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':firstName', $firstName);
-//         $stmt->bindParam(':lastName', $lastName);
-//         $stmt->bindParam(':email', $email);
-//         $stmt->bindParam(':role', $role);
-//         if ($password) {
-//             $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT)); // Encrypt password
-//         }
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//         return $stmt->execute();
-//     }
 
-//     // Method to delete a user by ID
-//     public function deleteUser($id) {
-//         $sql = "DELETE FROM users WHERE ID = :id";
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//         return $stmt->execute();
-//     }
+
+
 
 //     // Method to get all users
 //     public function getAllUsers() {
@@ -239,6 +216,9 @@ class User {
 //     }
 // }
 }
+
+
+
 // class UserType {
 //     public $ID;
 //     public $UserTypeName;

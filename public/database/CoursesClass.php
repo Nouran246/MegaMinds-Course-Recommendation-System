@@ -14,7 +14,7 @@ class Course {
     public $tags;
 
     // Constructor to initialize the course properties
-    public function __construct($course_ID, $course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags) {
+    public function __construct() {
         $this->course_ID = $course_ID;
         $this->course_name = $course_name;
         $this->description = $description;
