@@ -439,7 +439,14 @@ https://templatemo.com/tm-569-edu-meeting
 
     <!-- Public files (JS)! -->
     <script src="../../public/js/user js/profile.js"></script>
-
+    <script>
+    document.getElementById('deleteAccount').addEventListener('click', function () {
+        if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+            // Submit the form when confirmed
+            document.getElementById('deleteAccountForm').submit();
+        }
+    });
+</script>
 
 </body>
 
