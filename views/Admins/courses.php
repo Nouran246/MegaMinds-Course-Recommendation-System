@@ -1,3 +1,28 @@
+<?php
+// Database connection settings
+$host = 'localhost'; // Replace with your database host
+$dbname = 'megaminds'; // Replace with your database name
+$username = 'root'; // Replace with your database username
+$password = ''; // Replace with your database password
+
+try {
+    // Create a new PDO instance for database connection
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // Set PDO error mode to exception for better error handling
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Prepare and execute the query to fetch users
+    $stmt = $pdo->prepare("SELECT id, Fname, Lname, Email FROM users");
+    $stmt->execute();
+    
+    // Fetch all users as an associative array
+    $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+} catch (PDOException $e) {
+    // Handle database connection errors
+    die("Database connection failed: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,7 +100,7 @@
         <table class="table table-bordered table-striped table-hover">
           <thead class="sticky-top bg-light">
             <tr>
-              <th>Course ID</th>
+              <!-- <th>Course ID</th> -->
               <th>Course Name</th>
               <th>Description</th>
               <th>level</th>
@@ -90,7 +115,7 @@
           <tbody id="blog-table-body">
             <!-- Example of a blog entry -->
             <tr>
-              <td>1</td>
+              <!-- <td>1</td> -->
               <td>cloud</td>
               <td>Short description...</td>
               <td>beginner</td>
@@ -145,7 +170,7 @@
         <div class="modal-content">
           <form action="/admin/blogs/add" method="POST" enctype="multipart/form-data" id="add-blog-form">
             <div class="modal-header">
-              <h5 class="modal-title" id="addBlogModalLabel">Add New Blog</h5>
+              <h5 class="modal-title" id="addBlogModalLabel">Add New Course</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -155,58 +180,95 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
+                <!-- <label for="course_id" class="form-label">Course ID</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="blog-title"
-                  name="title"
-                />
-                <div id="title-error" class="invalid-feedback"></div>
+                  id="course_id"
+                  name="course_id"
+                /> -->
+                <div id="course_id-error" class="invalid-feedback"></div>
               </div>
               <div class="mb-3">
-                <label for="author" class="form-label">Author</label>
+                <label for="course_name" class="form-label">Course Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="blog-author"
-                  name="author"
+                  id="course_name"
+                  name="course_name"
                 />
-                <div id="author-error" class="invalid-feedback"></div>
+                <div id="course_name-error" class="invalid-feedback"></div>
               </div>
               <div class="mb-3">
-                <label for="brief" class="form-label">Brief</label>
+                <label for="description" class="form-label">Description</label>
                 <textarea
                   class="form-control"
-                  id="blog-brief"
-                  name="brief"
+                  id="description"
+                  name="description"
                   rows="2"
                 ></textarea>
-                <div id="brief-error" class="invalid-feedback"></div>
+                <div id="description-error" class="invalid-feedback"></div>
               </div>
               <div class="mb-3">
-                <label for="content" class="form-label">Content</label>
-                <textarea
-                  class="form-control"
-                  id="blog-content"
-                  name="content"
-                  rows="5"
-                ></textarea>
-                <div id="content-error" class="invalid-feedback"></div>
-              </div>
-              <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
+                <label for="level" class="form-label">level</label>
                 <input
-                  type="file"
+                  type="text"
                   class="form-control"
-                  id="blog-image"
-                  name="image"
+                  id="level"
+                  name="level"
                 />
+                <div id="level-error" class="invalid-feedback"></div>
               </div>
-            </div>
+              <div class="mb-3">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="start_date"
+                  name="start_date"
+                />
+                <div id="start_date-error" class="invalid-feedback"></div>
+              </div><div class="mb-3">
+                <label for="end_date" class="form-label">End Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="end_date"
+                  name="end_date"
+                />
+                <div id="end_date-error" class="invalid-feedback"></div>
+              </div><div class="mb-3">
+                <label for="rate" class="form-label">Rating</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rate"
+                  name="rate"
+                />
+                <div id="rate-error" class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="fees" class="form-label">Fees</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fees"
+                  name="fees"
+                />
+                <div id="fees-error" class="invalid-feedback"></div>
+              </div><div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tags"
+                  name="tags"
+                />
+                <div id="tags-error" class="invalid-feedback"></div>
+              </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add Blog</button>
+              <button type="submit" class="btn btn-primary">Add Course</button>
             </div>
           </form>
         </div>
