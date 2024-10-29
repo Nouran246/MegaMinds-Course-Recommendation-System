@@ -3,14 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2024 at 04:47 PM
+-- Generation Time: Oct 29, 2024 at 01:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
-
-/* public\database\megaminds.sql */
-
-CREATE DATABASE IF NOT EXISTS `megaminds`;
-USE `megaminds`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,34 +46,41 @@ CREATE TABLE `courses` (
 --
 
 CREATE TABLE `pages` (
-  `ID` int(10) NOT NULL,
+  `ID` int(11) NOT NULL,
   `FreindlyName` varchar(50) NOT NULL,
   `LinkAddress` varchar(50) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`ID`, `FreindlyName`, `LinkAddress`) VALUES
+(1, 'Admin Courses', 'views/Admins/courses.php'),
+(2, 'Admin Members', 'views/Admins/members.php'),
+(3, 'User Cart', 'views/Users/cart-page.php'),
+(4, 'User Courses', 'views/Users/Courses.php'),
+(5, 'User Home', 'views/Users/index.php'),
+(6, 'Inside Course', 'views/Users/InsideCourse.php'),
+(7, 'User Login', 'views/Users/login.php'),
+(8, 'Meeting Details', 'views/Users/meeting-details.php'),
+(9, 'User Profile', 'views/Users/profile.php'),
+(10, 'User Register', 'views/Users/register.php');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `usertype`
---
-
-CREATE TABLE `usertype` (
-  `ID` int(10) NOT NULL,
-  `UserTypeName` varchar(50) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `ID` int(10) NOT NULL,
+  `ID` int(11) NOT NULL,
   `FName` varchar(50) NOT NULL,
   `LName` varchar(50) NOT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `Password` int(11) NOT NULL,
   `role` int(10) NOT NULL DEFAULT 1
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -97,6 +99,22 @@ INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `role`) VALUES
 
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `usertype`
+--
+
+CREATE TABLE `usertype` (
+  `ID` int(10) NOT NULL,
+  `UserTypeName` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `usertype`
+--
+
+INSERT INTO `usertype` (`ID`, `UserTypeName`) VALUES
+(1, 'User'),
+(2, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -130,17 +148,14 @@ ALTER TABLE `pages`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`);
-    ADD KEY `role` (`role`);
-
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `users_role_fk` (`role`);
 
 --
 -- Indexes for table `usertype`
 --
 ALTER TABLE `usertype`
   ADD PRIMARY KEY (`ID`);
-    ADD KEY `ID` (`ID`);
-
 
 --
 -- Indexes for table `usertype_pages`
@@ -164,7 +179,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -189,16 +204,16 @@ ALTER TABLE `usertype_pages`
 --
 
 --
--- Constraints for table `usertype_pages`
-
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`role`) REFERENCES `usertype` (`ID`);
 
 --
+-- Constraints for table `usertype_pages`
+--
 ALTER TABLE `usertype_pages`
-  ADD CONSTRAINT `usertype_pages_page_fk` FOREIGN KEY (`PageID`) REFERENCES `pages` (`ID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `usertype_pages_role_fk` FOREIGN KEY (`role`) REFERENCES `usertype` (`ID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `usertype_pages_user_fk` FOREIGN KEY (`role`) REFERENCES `usertype` (`ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
