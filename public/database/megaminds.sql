@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2024 at 01:06 AM
+-- Generation Time: Oct 29, 2024 at 01:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -129,6 +129,30 @@ CREATE TABLE `usertype_pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `usertype_pages`
+--
+
+INSERT INTO `usertype_pages` (`ID`, `role`, `PageID`) VALUES
+(18, 2, 1),
+(19, 2, 2),
+(20, 2, 3),
+(21, 2, 4),
+(22, 2, 5),
+(23, 2, 6),
+(24, 2, 7),
+(25, 2, 8),
+(26, 2, 9),
+(27, 2, 10),
+(28, 1, 3),
+(29, 1, 4),
+(30, 1, 5),
+(31, 1, 6),
+(32, 1, 7),
+(33, 1, 8),
+(34, 1, 9),
+(35, 1, 10);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -197,7 +221,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `usertype_pages`
 --
 ALTER TABLE `usertype_pages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
