@@ -50,7 +50,8 @@ class User {
      
          if (mysqli_num_rows($result) > 0) {
              // Email already exists, display a message
-             echo "<script>alert('Email is already used. Please try a different email.');</script>";
+             echo "<script>alert('Email is already used. Please try a different email.');
+              window.location.href = '../../views/Users/index.php';</script>";
          } else {
         // SQL Query to insert data
         $sql = "INSERT INTO users (FName, LName, Email, Password,role) 
