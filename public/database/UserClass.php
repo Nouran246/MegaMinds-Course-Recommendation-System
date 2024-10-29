@@ -1,3 +1,4 @@
+    <!-- public\database\UserClass.php -->
 <?php
 session_start();
 include_once "../../public/includes/DB.php";
@@ -195,6 +196,113 @@ class User {
 
         return $stmt->execute();
     }
+}
+
+class UserType {
+	public $ID;
+	public $UserTypeName;
+	public $ArrayOfPages;
+	function __construct($id){
+		if ($id !=""){
+			$sql="select * from usertypes where ID=$id";
+			$result=mysqli_query($GLOBALS['con'],$sql);
+			if ($row = mysqli_fetch_array($result))	{
+				$this->UserTypeName=$row["Name"];
+				$this->ID=$row["ID"];
+				$sql="select PageID from UserType_Pages where UserTypeID=$this->ID";
+				$result=mysqli_query($GLOBALS['con'],$sql);
+				$i=0;
+				while($row1=mysqli_fetch_array($result)){
+					$this->ArrayOfPages[$i]=new pages($row1[0]);
+					$i++;
+				}
+			}
+		}
+	}
+	
+	static function SelectAllUserTypesInDB(){
+		$sql="select * from usertypes";
+		$TypeDataSet = mysqli_query($GLOBALS['con'],$sql);
+		$i=0;
+		$Result;
+		while ($row = mysqli_fetch_array($TypeDataSet))	{
+			$MyObj= new UserType($row["ID"]);
+			$Result[$i]=$MyObj;
+			$i++;
+		}
+		return $Result;
+	}
+}
+
+class pages {
+	public $ID;
+	public $FreindlyName;
+	public $Linkaddress;
+
+	function __construct($id){
+		if ($id !=""){	
+			$sql="select * from pages where ID=$id";
+			$result2=mysqli_query($GLOBALS['con'],$sql) ;
+			if ($row2 = mysqli_fetch_array($result2)){
+				$this->FreindlyName=$row2["FreindlyName"];
+				$this->Linkaddress=$row2["Linkaddress"];
+				$this->ID=$row2["ID"];
+			}
+		}
+	}
+	
+	static function SelectAllPagesInDB(){
+		$sql="select * from pages";
+		$PageDataSet = mysqli_query($GLOBALS['con'],$sql);		
+		$i=0;
+		$Result;
+		while ($row = mysqli_fetch_array($PageDataSet))	{
+			$MyObj= new pages($row["ID"]);
+			$Result[$i]=$MyObj;
+			$i++;
+		}
+		return $Result;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //     // Method to get a user by ID
 //     public function getUserById($id) {
 //         $sql = "SELECT * FROM users WHERE ID = :id";
@@ -238,80 +346,7 @@ class User {
 //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 //     }
 // }
-}
-// class UserType {
-//     public $ID;
-//     public $UserTypeName;
-//     public $ArrayOfPages = [];
+ 
 
-//     function __construct($id) {
-//         if ($id != "") {
-//             $sql = "SELECT * FROM usertypes WHERE ID = $id";
-//             $result = mysqli_query($GLOBALS['con'], $sql);
-//             if ($row = mysqli_fetch_array($result)) {
-//                 $this->UserTypeName = $row["Name"];
-//                 $this->ID = $row["ID"];
-//                 $this->ArrayOfPages = Pages::getPagesForUserType($this->ID);
-//             }
-//         }
-//     }
 
-//     // Static method to retrieve all user types from the database
-//     static function SelectAllUserTypesInDB() {
-//         $sql = "SELECT * FROM usertypes";
-//         $TypeDataSet = mysqli_query($GLOBALS['con'], $sql);
-//         $Result = [];
-//         while ($row = mysqli_fetch_array($TypeDataSet)) {
-//             $MyObj = new UserType($row["ID"]);
-//             $Result[] = $MyObj;
-//         }
-//         return $Result;
-//     }
-// }
-
-// // Class for managing pages and user permissions
-// class Pages {
-//     public $ID;
-//     public $FriendlyName;
-//     public $LinkAddress;
-
-//     function __construct($id) {
-//         if ($id != "") {
-//             $sql = "SELECT * FROM pages WHERE ID = $id";
-//             $result = mysqli_query($GLOBALS['con'], $sql);
-//             if ($row = mysqli_fetch_array($result)) {
-//                 $this->FriendlyName = $row["FriendlyName"];
-//                 $this->LinkAddress = $row["Linkaddress"];
-//                 $this->ID = $row["ID"];
-//             }
-//         }
-//     }
-
-//     // Static method to retrieve all pages from the database
-//     static function SelectAllPagesInDB() {
-//         $sql = "SELECT * FROM pages";
-//         $PageDataSet = mysqli_query($GLOBALS['con'], $sql);
-//         $Result = [];
-//         while ($row = mysqli_fetch_array($PageDataSet)) {
-//             $MyObj = new Pages($row["ID"]);
-//             $Result[] = $MyObj;
-//         }
-//         return $Result;
-//     }
-
-//     // Method to get accessible pages for a specific user type
-//     static function getPagesForUserType($userTypeId) {
-//         $pages = [];
-//         if ($userTypeId == 1) {
-//             // Role 1: Limited access (only user pages)
-//             $pages[] = 'Users/Courses.php';
-//         } elseif ($userTypeId == 2) {
-//             // Role 2: Full access (admin pages)
-//             $pages[] = 'Admins/dashboard.php';
-//             $pages[] = 'Users/Courses.php';
-//             // Add more admin pages as needed
-//         }
-//         return $pages;
-//     }
-// }
-// ?>
+?>
