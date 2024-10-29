@@ -15,7 +15,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <title>Education Template - Meeting Detail Page</title>
+    <title>Cart</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
@@ -50,13 +50,6 @@ https://templatemo.com/tm-569-edu-meeting
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
                           <li><a href="Courses.php" >My Courses</a></li>
-                          <li class="has-sub">
-                              <a href="javascript:void(0)">Meetings</a>
-                              <ul class="sub-menu">
-                                  <li><a href="Courses.php">Upcoming Meetings</a></li>
-                                  <li><a href="meeting-details.php">Meeting Details</a></li>
-                              </ul>
-                          </li>
                           <li><a href="cart-page.php" class="active">My Cart</a></li> 
                           <li><a href="profile.php">My Profile</a></li> 
                           <li><a href="index.php">Sign Out</a></li> 

@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Education - List of Meetings</title>
+    <title>My Profile</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
@@ -132,13 +132,7 @@ https://templatemo.com/tm-569-edu-meeting
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="Courses.php">My Courses</a></li>
-                            <li class="has-sub">
-                                <a href="javascript:void(0)">Meetings</a>
-                                <ul class="sub-menu">
-                                    <li><a href="meetings.php">Upcoming Meetings</a></li>
-                                    <li><a href="meeting-details.php">Meeting Details</a></li>
-                                </ul>
-                            </li>
+                            
                             <li><a href="cart-page.php">Cart</a></li>
 
                             <li><a href="profile.php" class="active">My Profile</a></li>

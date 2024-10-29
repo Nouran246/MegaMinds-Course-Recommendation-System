@@ -13,18 +13,18 @@ class Course {
     public $fees;
     public $tags;
 
-    // Constructor to initialize the course properties
-    public function __construct() {
-        $this->course_ID = $course_ID;
-        $this->course_name = $course_name;
-        $this->description = $description;
-        $this->level = $level;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->rating = $rating;
-        $this->fees = $fees;
-        $this->tags = $tags;
-    }
+    // // Constructor to initialize the course properties
+    // public function __construct() {
+    //     $this->course_ID = $course_ID;
+    //     $this->course_name = $course_name;
+    //     $this->description = $description;
+    //     $this->level = $level;
+    //     $this->start_date = $start_date;
+    //     $this->end_date = $end_date;
+    //     $this->rating = $rating;
+    //     $this->fees = $fees;
+    //     $this->tags = $tags;
+    // }
 
     // Function to add a course to the database
     public function addCourse() {
