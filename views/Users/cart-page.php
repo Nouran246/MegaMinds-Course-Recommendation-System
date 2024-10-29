@@ -83,7 +83,7 @@ https://templatemo.com/tm-569-edu-meeting
         <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-12">
-              <div class="meeting-single-item">
+              <!-- <div class="meeting-single-item">
                 <div class="thumb">
                   <div class="price">
                     <span>$14.00</span>
@@ -111,7 +111,7 @@ https://templatemo.com/tm-569-edu-meeting
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <br>
 
@@ -123,11 +123,11 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/single-meeting.jpg" alt=""></a>
+                  <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.php"><h4>Online Teaching and Learning Tools</h4></a>
-                  <div class="row">
+                  <a href="meeting-details.php"><h4>Introduction To AI</h4></a>
+                  <!-- <div class="row">
                     <div class="col-lg-4">
                       <div class="hours">
                         <h5>Hours</h5>
@@ -141,7 +141,7 @@ https://templatemo.com/tm-569-edu-meeting
                         <br>Rio de Janeiro - RJ, 22795-008, Brazil</p>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

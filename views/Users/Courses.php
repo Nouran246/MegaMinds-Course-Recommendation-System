@@ -98,7 +98,7 @@ https://templatemo.com/tm-569-edu-meeting
                   <li data-filter="*"  class="active">All Courses</li>
                   <li data-filter=".soon">Current Courses</li>
                   <li data-filter=".imp">Recommeded Courses</li>
-                  <li data-filter=".att">Meetings</li>
+                  <!-- <li data-filter=".att">Meetings</li> -->
                 </ul>
               </div>
             </div>
@@ -108,16 +108,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$14.00</span>
+                        <span>$160</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-01.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Month <span>1</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>New Lecturers Meeting</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Introduction To AI</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -125,16 +125,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$22.00</span>
+                        <span>$160</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/FSD.jpg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Mins <span>60</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Online Teaching Techniques</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Full Stack Developer</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -142,16 +142,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$24.00</span>
+                        <span>$140</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/DL.jpg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Months <span>2</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Network Teaching Concept</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Deep Learning</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -159,16 +159,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$32.00</span>
+                        <span>$120</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-04.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/NS.png" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Hours <span>12</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Online Teaching Tools</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Networks And Security</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -176,16 +176,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$34.00</span>
+                        <span>$270</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/CC.png" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Hours <span>22</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>New Teaching Techniques</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Cloud Computing And Big Dat</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -193,16 +193,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$45.00</span>
+                        <span>$270</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/DS.jpg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Minutes <span>24</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Technology Conference</h4></a>
-                      <p>TemplateMo is the best website<br>when it comes to Free CSS.</p>
+                      <a href="meeting-details.php"><h4>Data Structures And Algorithms</h4></a>
+                      <!-- <p>TemplateMo is the best website<br>when it comes to Free CSS.</p> -->
                     </div>
                   </div>
                 </div>
@@ -210,16 +210,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$52.00</span>
+                        <span>$340</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-01.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/OOP.png" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Hours <span>27</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Online Teaching Techniques</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Object Oriented Programming</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -227,16 +227,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$64.00</span>
+                        <span>$360</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/IP.jpg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Hours <span>28</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Instant Lecture Design</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Image Processing</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
@@ -244,16 +244,16 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="meeting-item">
                     <div class="thumb">
                       <div class="price">
-                        <span>$74.00</span>
+                        <span>$480</span>
                       </div>
-                      <a href="meeting-details.php"><img src="../../public/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.php"><img src="../../public/images/CPP.jpg" alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
                         <h6>Weeks <span>30</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Online Social Networking</h4></a>
-                      <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                      <a href="meeting-details.php"><h4>Introduction To Computer Science</h4></a>
+                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
                 </div>
