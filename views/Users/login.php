@@ -53,7 +53,7 @@ include_once "../../public/includes/DB.php";
  --><!--                         <li><a href="profile.php">My Profile</a></li> 
  -->
                             <li><a href="#contact">Contact Us</a></li>
-                            <li><a href="../../public/database/signout.php?action=signout">Sign In</a></li>
+                            <li><a href="../../public/Functions/signout.php?action=signout">Sign out</a></li> 
 
 
                         </ul>
