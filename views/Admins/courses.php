@@ -44,8 +44,8 @@
         </li>
       </ul>
       <hr />
-      <form action="/logout" method="POST">
-        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+      <form action="/MegaMinds-Course-Recommendation-System/public/database/signout.php" method="POST">
+      <button type="submit" class="btn btn-danger btn-block">Logout</button>
       </form>
     </div>
     
