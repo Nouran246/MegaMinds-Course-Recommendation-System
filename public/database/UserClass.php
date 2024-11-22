@@ -54,7 +54,7 @@ class User {
               window.location.href = '../../views/Users/index.php';</script>";
          } else {
         // SQL Query to insert data
-        $sql = "INSERT INTO users (FName, LName, Email, Password,role) 
+        $sql = "INSERT INTO users (FName, LName, Email, Password,usertype_id) 
                 VALUES ('$FName', '$LName', '$Email', '$Password','$role')";
     
         // Execute query and check result
@@ -78,7 +78,7 @@ class User {
          $Password = htmlspecialchars($_POST["Password"]); // Raw password input
      
          // SQL Query to select the user
-         $sql = "SELECT ID, FName, LName, Password, role FROM users WHERE Email = '$Email'";
+         $sql = "SELECT ID, FName, LName, Password, usertype_id FROM users WHERE Email = '$Email'";
          $result=mysqli_query($GLOBALS['conn'],$sql);
      
          // Check if user exists
@@ -91,13 +91,13 @@ class User {
                  $_SESSION['user_id'] = $user['ID'];
                  $_SESSION['FName'] = $user['FName']; // Store first name
                  $_SESSION['LName'] = $user['LName']; // Store last name
-                 $_SESSION['role'] = $user['role']; // Store user role
+                 $_SESSION['role'] = $user['usertype_id']; // Store user role
                  
      
                  // Redirect based on user role
-                 if ($user['role'] == 1) {
+                 if ($user['usertype_id'] == 1) {
                      header("Location: ../../views/Users/Courses.php");
-                 } elseif ($user['role'] == 2) {
+                 } elseif ($user['usertype_id'] == 2) {
                      header("Location: ../../views/Admins/members.php");
                  }
                  exit();
