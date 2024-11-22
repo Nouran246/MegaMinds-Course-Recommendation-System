@@ -71,7 +71,7 @@ try {
         </li>
       </ul>
       <hr />
-      <form action="/logout" method="POST">
+      <form action="../../public/Functions/signout.php?action=signout" method="POST">
         <button type="submit" class="btn btn-danger btn-block">Logout</button>
       </form>
     </div>
