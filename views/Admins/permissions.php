@@ -101,8 +101,8 @@ $userTypes = fetchUserTypes($con);
         </li>
       </ul>
       <hr />
-      <form action="/logout" method="POST">
-        <button type="submit" class="btn btn-danger btn-block">Logout</button>
+      <form action="/MegaMinds-Course-Recommendation-System/public/database/signout.php" method="POST">
+      <button type="submit" class="btn btn-danger btn-block">Logout</button>
       </form>
     </div>
     
@@ -270,7 +270,7 @@ $userTypes = fetchUserTypes($con);
           </form>
         </div>
       </div>
-    </div>  -->
+    </div>  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../public/js/admin js/blogManagement.js"></script>

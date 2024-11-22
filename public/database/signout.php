@@ -1,7 +1,6 @@
 <?php
 session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_unset();
+if (isset($_GET['action']) && $_GET['action'] == 'signout') {
     session_destroy();
     header("Location: ../../views/Users/index.php");
     exit();
