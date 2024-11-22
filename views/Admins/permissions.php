@@ -1,10 +1,57 @@
 
+ <?php
+$con = mysqli_connect("localhost", "root", "", "megaminds");
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST['submit'])) {
+    $userType = $_POST["UserType"];
+    $chosenPages = $_POST["choosen-pages"];
+
+    // Delete old associations
+    $sqlDelete = "DELETE FROM usertype_pages WHERE usertype_id = $userType";
+    mysqli_query($con, $sqlDelete);
+
+    // Insert new associations
+    foreach ($chosenPages as $page) {
+        $sqlInsert = "INSERT INTO usertype_pages (usertype_id, PageID) VALUES ($userType, $page)";
+        mysqli_query($con, $sqlInsert);
+    }
+}
+
+// Fetch all pages
+function fetchAllPages($con) {
+    $query = "SELECT * FROM pages";
+    $result = mysqli_query($con, $query);
+    $pages = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $pages[] = $row;
+    }
+    return $pages;
+}
+
+// Fetch all user types
+function fetchUserTypes($con) {
+    $query = "SELECT * FROM usertype";
+    $result = mysqli_query($con, $query);
+    $userTypes = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $userTypes[] = $row;
+    }
+    return $userTypes;
+}
+
+$allPages = fetchAllPages($con);
+$userTypes = fetchUserTypes($con);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Courses</title>
+    <title>Pages Assignment </title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -13,7 +60,17 @@
     <link rel="stylesheet" href="../../public/css/admin css/site.css" />
     <link rel="stylesheet" href="../../public/css/admin css/header.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnLeft").click(function () {
+                $("#leftValues option:selected").appendTo("#rightValues");
+            });
+            $("#btnRight").click(function () {
+                $("#rightValues option:selected").appendTo("#leftValues");
+            });
+        });
+    </script>
   </head>
   <body>
     <!-- Header -->
@@ -53,94 +110,53 @@
     <div id="content" class="content container mt-5">
       <div class="row mb-4">
         <div class="col">
-          <h1>Manage Courses</h1>
-        </div>
-        <div class="col text-right">
-          <button
-            class="btn btn-success"
-            data-bs-toggle="modal"
-            data-bs-target="#addBlogModal"
-          >
-            Add New Course
-          </button>
+          <h1>Page Assignment</h1>
         </div>
       </div>
-
-      <div class="row mb-4">
-        <div class="col">
-          <input
-            type="text"
-            id="search-bar"
-            class="form-control"
-            placeholder="Search by title or author..."
-          />
-        </div>
-      </div>
-
-      <div class="table-responsive" style="max-height: 75vh">
-        <table class="table table-bordered table-striped table-hover">
-          <thead class="sticky-top bg-light">
-            <tr>
-              <!-- <th>Course ID</th> -->
-              <th>Course Name</th>
-              <th>Description</th>
-              <th>level</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Rating</th>
-              <th>Fees</th>
-              <th>Tags</th>
-              <th>Operation</th>
-            </tr>
-          </thead>
-          <tbody id="blog-table-body">
-            <!-- Example of a blog entry -->
-            <tr>
-              <!-- <td>1</td> -->
-              <td>cloud</td>
-              <td>Short description...</td>
-              <td>beginner</td>
-              <td>Mon Oct 02 2024</td>
-              <td>Mon Nov 02 2024</td>
-              <td>1</td>
-              <td>$40</td>
-              <td>ai</td>
-
-              <td>
-                <div class="btn-group" role="group">
-                  <a
-                    href="#"
-                    class="btn btn-outline-primary btn-sm"
-                    data-bs-toggle="modal"
-                    data-bs-target="#editBlogModal"
-                    >Edit</a
-                  >
-                  <form
-                    action="/admin/blogs/delete/1"
-                    method="POST"
-                    class="d-inline"
-                  >
-                    <button
-                      type="submit"
-                      class="btn btn-outline-danger btn-sm"
-                    >
-                      Delete
-                    </button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <nav>
-        <ul class="pagination justify-content-center" id="pagination-controls"></ul>
-      </nav>
+      <form action="" method="post">
+            <table class="table">
+                <tr>
+                    <td>All Pages</td>
+                    <td></td>
+                    <td>Chosen Pages</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="leftValues" size="10" multiple style="width: 200px;">
+                            <?php foreach ($allPages as $page): ?>
+                                <option value="<?= $page['ID'] ?>"><?= $page['FriendlyName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="button" id="btnRight" class="btn btn-secondary"><<</button><br><br>
+                        <button type="button" id="btnLeft" class="btn btn-secondary">>></button>
+                    </td>
+                    <td>
+                        <select id="rightValues" name="choosen-pages[]" size="10" multiple style="width: 200px;"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select User Type:</td>
+                    <td>
+                        <select name="UserType" class="form-control">
+                            <?php foreach ($userTypes as $userType): ?>
+                                <option value="<?= $userType['ID'] ?>"><?= $userType['UserTypeName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button type="submit" name="submit" class="btn btn-primary">Assign Pages</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 
     <!-- Add Blog Modal -->
-    <div
+<!--     <div
       class="modal fade"
       id="addBlogModal"
       tabindex="-1"
@@ -168,7 +184,7 @@
                   id="course_id"
                   name="course_id"
                 /> -->
-                <div id="course_id-error" class="invalid-feedback"></div>
+             <!--    <div id="course_id-error" class="invalid-feedback"></div>
               </div>
               <div class="mb-3">
                 <label for="course_name" class="form-label">Course Name</label>
@@ -254,7 +270,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div>  -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../public/js/admin js/blogManagement.js"></script>

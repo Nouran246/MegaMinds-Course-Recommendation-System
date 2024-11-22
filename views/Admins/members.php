@@ -64,6 +64,11 @@ try {
             Courses
           </a>
         </li>
+        <li>
+          <a href="permissions.php" class="nav-link <%= title === 'Blogs' ? 'active' : '' %>">
+            Page Assignment
+          </a>
+        </li>
       </ul>
       <hr />
       <form action="/logout" method="POST">

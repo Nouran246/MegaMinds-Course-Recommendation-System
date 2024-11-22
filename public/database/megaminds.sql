@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2024 at 01:43 AM
+-- Generation Time: Nov 22, 2024 at 03:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -11,7 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS megaminds;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,7 +47,7 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `pages` (
   `ID` int(11) NOT NULL,
-  `FreindlyName` varchar(50) NOT NULL,
+  `FriendlyName` varchar(50) NOT NULL,
   `LinkAddress` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,7 +55,7 @@ CREATE TABLE `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`ID`, `FreindlyName`, `LinkAddress`) VALUES
+INSERT INTO `pages` (`ID`, `FriendlyName`, `LinkAddress`) VALUES
 (1, 'Admin Courses', 'views/Admins/courses.php'),
 (2, 'Admin Members', 'views/Admins/members.php'),
 (3, 'User Cart', 'views/Users/cart-page.php'),
@@ -80,14 +79,14 @@ CREATE TABLE `users` (
   `LName` varchar(50) NOT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `Password` int(11) NOT NULL,
-  `role` int(10) NOT NULL DEFAULT 1
+  `usertype_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `role`) VALUES
+INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `usertype_id`) VALUES
 (25, 'Nouran', 'Hassan', 'Nouran@gmail.com', 1234, 2),
 (27, 'Roaa', 'Khaled', 'Roaa@gmail.com', 246, 1),
 (36, 'Jana', 'Hassan', 'haha@gmail.com', 0, 1),
@@ -105,7 +104,7 @@ INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `role`) VALUES
 --
 
 CREATE TABLE `usertype` (
-  `ID` int(10) NOT NULL,
+  `ID` int(11) NOT NULL,
   `UserTypeName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,33 +124,9 @@ INSERT INTO `usertype` (`ID`, `UserTypeName`) VALUES
 
 CREATE TABLE `usertype_pages` (
   `ID` int(11) NOT NULL,
-  `role` int(11) NOT NULL,
+  `usertype_id` int(11) DEFAULT NULL,
   `PageID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `usertype_pages`
---
-
-INSERT INTO `usertype_pages` (`ID`, `role`, `PageID`) VALUES
-(18, 2, 1),
-(19, 2, 2),
-(20, 2, 3),
-(21, 2, 4),
-(22, 2, 5),
-(23, 2, 6),
-(24, 2, 7),
-(25, 2, 8),
-(26, 2, 9),
-(27, 2, 10),
-(28, 1, 3),
-(29, 1, 4),
-(30, 1, 5),
-(31, 1, 6),
-(32, 1, 7),
-(33, 1, 8),
-(34, 1, 9),
-(35, 1, 10);
 
 --
 -- Indexes for dumped tables
@@ -174,7 +149,7 @@ ALTER TABLE `pages`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `users_role_fk` (`role`);
+  ADD KEY `users_role_fk` (`usertype_id`);
 
 --
 -- Indexes for table `usertype`
@@ -187,7 +162,7 @@ ALTER TABLE `usertype`
 --
 ALTER TABLE `usertype_pages`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `role` (`role`),
+  ADD KEY `role` (`usertype_id`),
   ADD KEY `PageID` (`PageID`);
 
 --
@@ -216,13 +191,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `usertype`
 --
 ALTER TABLE `usertype`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `usertype_pages`
 --
 ALTER TABLE `usertype_pages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -232,13 +207,7 @@ ALTER TABLE `usertype_pages`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`role`) REFERENCES `usertype` (`ID`);
-
---
--- Constraints for table `usertype_pages`
---
-ALTER TABLE `usertype_pages`
-  ADD CONSTRAINT `usertype_pages_user_fk` FOREIGN KEY (`role`) REFERENCES `usertype` (`ID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
