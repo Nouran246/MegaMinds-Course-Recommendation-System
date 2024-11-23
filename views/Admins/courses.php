@@ -44,7 +44,7 @@
         </li>
       </ul>
       <hr />
-      <form action="../../public/Controllers/signout.php?action=signout" method="POST">
+      <form action="../../Controllers/signout.php?action=signout" method="POST">
         <button type="submit" class="btn btn-danger btn-block">Logout</button>
       </form>
     </div>

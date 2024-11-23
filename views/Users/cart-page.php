@@ -52,7 +52,7 @@ https://templatemo.com/tm-569-edu-meeting
                           <li><a href="Courses.php" >My Courses</a></li>
                           <li><a href="cart-page.php" class="active">My Cart</a></li> 
                           <li><a href="profile.php">My Profile</a></li> 
-                          <li><a href="../../public/Controllers/signout.php?action=signout">Sign out</a></li> 
+                          <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li> 
                           </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>

@@ -2,8 +2,9 @@
 <html lang="en">
 
 <?php
+session_start();
 include_once "../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
-include "../../public/database/UserClass.php";
+include "../../Controllers/UserClass.php";
 
 // Create a PDO connection
 $servername = "localhost";
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user->deleteProfile($user_id)) {
             // echo "Account deleted successfully!";
             session_destroy();
-            header("Location: ../../views/Users/index.php");
+            header("Location: /MegaMinds-Course-Recommendation-System/views/Users/index.php");
             exit();
         } else {
             echo "Error deleting account.";
@@ -137,7 +138,7 @@ https://templatemo.com/tm-569-edu-meeting
 
                             <li><a href="profile.php" class="active">My Profile</a></li>
 
-                            <li><a href="../../public/Controllers/signout.php?action=signout">Sign out</a></li> 
+                            <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li> 
 
                         </ul>
                         <a class='menu-trigger'>

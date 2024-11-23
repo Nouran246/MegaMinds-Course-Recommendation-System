@@ -11,7 +11,7 @@ $(document).ready(function () {
     $('#confirmDelete').on('click', function () {
         if (userIdToDelete) {
             $.ajax({
-                url: '../../public/database/deleteUser.php',
+                url: '../../Controllers/deleteUser.php',
                 type: 'POST',
                 data: { id: userIdToDelete },
                 success: function (response) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
         // If valid, proceed with AJAX call
         if (isValid) {
             $.ajax({
-                url: '../../public/database/editUser.php',
+                url: '../../Controllers/editUser.php',
                 type: 'POST',
                 data: $(this).serialize(),
                 dataType: 'json',

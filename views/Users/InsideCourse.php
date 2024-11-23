@@ -55,7 +55,7 @@ session_start();
 
                         <li><a href="profile.php">My Profile</a></li> 
                         
-                        <li><a href="../../public/Controllers/signout.php?action=signout">Sign out</a></li> 
+                        <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li> 
 
                     </ul>        
                     <a class='menu-trigger'>

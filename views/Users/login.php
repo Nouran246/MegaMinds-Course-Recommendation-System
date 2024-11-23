@@ -53,7 +53,7 @@ include_once "../../public/includes/DB.php";
  --><!--                         <li><a href="profile.php">My Profile</a></li> 
  -->
                             <li><a href="#contact">Contact Us</a></li>
-                            <li><a href="../../public/Controllers/signout.php?action=signout">Sign out</a></li> 
+                            <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li> 
 
 
                         </ul>
@@ -111,7 +111,7 @@ include_once "../../public/includes/DB.php";
     <div class="modal-content">
     <span class="close" onclick="window.location.href='index.php'">&times;</span>
     <h2>Welcome back</h2>
-        <form method="post" action=../../public/database/login.php>
+        <form method="post" action=../../Controllers/login.php>
             <label for="Email">Email</label>
             <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
             <label for="Password">Password</label>

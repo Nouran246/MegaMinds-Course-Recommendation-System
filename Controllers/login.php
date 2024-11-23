@@ -1,7 +1,8 @@
 <?php
 session_start();
-include_once "../../public/includes/DB.php";
-include_once "../../public/database/UserClass.php";
+define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
+include_once BASE_PATH . "public/includes/DB.php";
+include_once BASE_PATH . "Controllers/UserClass.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email = htmlspecialchars($_POST["Email"]);
