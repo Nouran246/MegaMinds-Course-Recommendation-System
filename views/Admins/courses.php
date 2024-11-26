@@ -1,3 +1,28 @@
+<?php
+// Database connection settings
+$host = 'localhost'; // Replace with your database host
+$dbname = 'megaminds'; // Replace with your database name
+$username = 'root'; // Replace with your database username
+$password = ''; // Replace with your database password
+
+try {
+    // Create a new PDO instance for database connection
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // Set PDO error mode to exception for better error handling
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Prepare and execute the query to fetch courses
+    $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags FROM courses");
+    $stmt->execute();
+    
+    // Fetch all courses as an associative array
+    $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+} catch (PDOException $e) {
+    // Handle database connection errors
+    die("Database connection failed: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,32 +107,41 @@
             <th>Operation</th>
           </tr>
         </thead>
-        <tbody id="blog-table-body">
-          <!-- Example of a blog entry -->
-          <tr>
-            <!-- <td>1</td> -->
-            <td>$course_name</td>
-            <td>Short description...</td>
-            <td>beginner</td>
-            <td>Mon Oct 02 2024</td>
-            <td>Mon Nov 02 2024</td>
-            <td>1</td>
-            <td>$40</td>
-            <td>ai</td>
-
+        <tbody>
+    <?php foreach ($courses as $course): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($course['course_name']); ?></td>
+            <td><?php echo htmlspecialchars($course['description']); ?></td>
+            <td><?php echo htmlspecialchars($course['level']); ?></td>
+            <td><?php echo htmlspecialchars($course['start_date']); ?></td>
+            <td><?php echo htmlspecialchars($course['end_date']); ?></td>
+            <td><?php echo htmlspecialchars($course['rating']); ?></td>
+            <td>$<?php echo htmlspecialchars($course['fees']); ?></td>
+            <td><?php echo htmlspecialchars($course['tags']); ?></td>
             <td>
-              <div class="btn-group" role="group">
-                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                  data-bs-target="#editBlogModal">Edit</a>
-                <form action="/admin/blogs/delete/1" method="POST" class="d-inline">
-                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                <button 
+                    class="btn btn-warning btn-sm edit-button" 
+                    data-id="<?php echo $course['course_ID']; ?>" 
+                    data-name="<?php echo htmlspecialchars($course['course_name']); ?>" 
+                    data-description="<?php echo htmlspecialchars($course['description']); ?>" 
+                    data-level="<?php echo htmlspecialchars($course['level']); ?>" 
+                    data-start-date="<?php echo htmlspecialchars($course['start_date']); ?>" 
+                    data-end-date="<?php echo htmlspecialchars($course['end_date']); ?>" 
+                    data-rating="<?php echo htmlspecialchars($course['rating']); ?>" 
+                    data-fees="<?php echo htmlspecialchars($course['fees']); ?>" 
+                    data-tags="<?php echo htmlspecialchars($course['tags']); ?>">
+                    Edit
+                </button>
+                <button 
+                    class="btn btn-danger btn-sm delete-button" 
+                    data-id="<?php echo $course['course_ID']; ?>">
                     Delete
-                  </button>
-                </form>
-              </div>
+                </button>
             </td>
-          </tr>
-        </tbody>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
       </table>
     </div>
 
