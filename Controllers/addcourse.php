@@ -1,33 +1,22 @@
 <?php
-// Database connection settings
-$host = 'localhost'; // Replace with your database host
-$dbname = 'megaminds'; // Replace with your database name
-$username = 'root'; // Replace with your database username
-$password = ''; // Replace with your database password
+session_start();
+// Include the database connection file
+define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
 
-// Usage example for adding a course
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if ($_POST['action'] === 'add') {
-        $course = new Course(
-            null, // Assuming course_ID is auto-incremented
-            $_POST['course_name'],
-            $_POST['description'],
-            $_POST['level'],
-            $_POST['start_date'],
-            $_POST['end_date'],
-            $_POST['rating'],
-            $_POST['fees'],
-            $_POST['tags']
-        );
-        if ($course->addCourse()) {
-            echo json_encode(['status' => 'success', 'message' => 'Course added successfully.']);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to add course.']);
-        }
-    } elseif ($_POST['action'] === 'edit') {
-        Course::editCourse();
-    } elseif ($_POST['action'] === 'delete' && isset($_POST['course_ID'])) {
-        echo Course::deleteCourse($_POST['course_ID']);
+include_once "../public/includes/DB.php";
+// Handle POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include_once "CoursesClass.php";
+        // course_ID is auto-incremented in the database
+            $course_name = htmlspecialchars($_POST['course_name']);
+            $description = htmlspecialchars($_POST['description']);
+            $level = htmlspecialchars($_POST['level']);
+            $start_date = htmlspecialchars($_POST['start_date']);
+            $end_date = htmlspecialchars($_POST['end_date']);
+            $rating = htmlspecialchars($_POST['rating']);
+            $fees = htmlspecialchars($_POST['fees']);
+            $tags = htmlspecialchars($_POST['tags']);
+    Course::AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags);
     }
-}
+    mysqli_close($conn);
 ?>

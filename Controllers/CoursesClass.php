@@ -13,131 +13,120 @@ class Course {
     public $fees;
     public $tags;
 
-    // Constructor to initialize the course properties
-    public function __construct() {
-        $this->course_ID = $course_ID;
-        $this->course_name = $course_name;
-        $this->description = $description;
-        $this->level = $level;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->rating = $rating;
-        $this->fees = $fees;
-        $this->tags = $tags;
+    // Constructor
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
     // Function to add a course to the database
-    public function addCourse() {
-        
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize user input
-    $course_name = htmlspecialchars($_POST["course_name"]);
-    $description = htmlspecialchars($_POST["description"]);
-    $level = htmlspecialchars($_POST["level"]);
-    $start_date = htmlspecialchars($_POST["start_date"]);
-    $end_date = htmlspecialchars($_POST["end_date"]);
-    $rating = htmlspecialchars($_POST["rating"]);
-    $fees = htmlspecialchars($_POST["fees"]);
-    $tags = htmlspecialchars($_POST["tags"]);
+    static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags) {
+        // Sanitize input data
+        $course_name = htmlspecialchars($_POST["course_name"]);
+        $description = htmlspecialchars($_POST["description"]);
+        $level = htmlspecialchars($_POST["level"]);
+        $start_date = htmlspecialchars($_POST["start_date"]);
+        $end_date = htmlspecialchars($_POST["end_date"]);
+        $rating = htmlspecialchars($_POST["rating"]);
+        $fees = htmlspecialchars($_POST["fees"]);
+        $tags = htmlspecialchars($_POST["tags"]);
 
-    // Check if course name already exists
-    $checkCourseQuery = "SELECT * FROM courses WHERE course_name = '$course_name'";
-    $result = mysqli_query($GLOBALS['conn'], $checkCourseQuery);
+        // Check if course name already exists
+        $checkCourseQuery = "SELECT * FROM courses WHERE course_name = '$course_name'";
+        $result = mysqli_query($GLOBALS['conn'], $checkCourseQuery);
 
-    if (mysqli_num_rows($result) > 0) {
-        // Course name already exists, display a message
-        echo "<script>alert('Course name already exists. Please try a different name.');
-              window.location.href = '../../views/Courses/index.php';</script>";
-    } else {
-        // SQL Query to insert data
-        $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags) 
-                VALUES ('$course_name', '$description', '$level', '$start_date', '$end_date', '$rating', '$fees', '$tags')";
-
-        // Execute query and check result
-        if (mysqli_query($GLOBALS['conn'], $sql)) {
-            // Redirect the user after successful insertion
-            header("Location: ../../views/Courses/CourseList.php");
-            exit();
+        if (mysqli_num_rows($result) > 0) {
+            // Course already exists, display a message
+            echo "<script>alert('Course already exists. Please try a different name.');
+            window.location.href = '/MegaMinds-Course-Recommendation-System/views/Courses/index.php';</script>";
         } else {
-            // Display the error for debugging
-            echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['conn']);
+            // SQL Query to insert data
+            $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags) 
+                    VALUES ('$course_name', '$description', '$level', '$start_date', '$end_date', '$rating', '$fees', '$tags')";
+
+            // Execute query and check result
+            if (mysqli_query($GLOBALS['conn'], $sql)) {
+                // Redirect the user after successful insertion
+                header("Location: /MegaMinds-Course-Recommendation-System/views/Admins/courses.php");
+                exit();
+            } else {
+                // Display the error for debugging
+                echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['conn']);
+            }
         }
     }
-}
 }
 
     // Function to edit a course in the database
-    public static function editCourse() {
-        try {
-            // Database connection
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//      static function editCourse() {
+//         try {
+//             // Database connection
+//             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+//             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
-                $courseId = $_POST['course_ID'];
-                $courseName = $_POST['course_name'];
-                $description = $_POST['description'];
-                $level = $_POST['level'];
-                $startDate = $_POST['start_date'];
-                $endDate = $_POST['end_date'];
-                $rating = $_POST['rating'];
-                $fees = $_POST['fees'];
-                $tags = $_POST['tags'];
+//             if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
+//                 $courseId = $_POST['course_ID'];
+//                 $courseName = $_POST['course_name'];
+//                 $description = $_POST['description'];
+//                 $level = $_POST['level'];
+//                 $startDate = $_POST['start_date'];
+//                 $endDate = $_POST['end_date'];
+//                 $rating = $_POST['rating'];
+//                 $fees = $_POST['fees'];
+//                 $tags = $_POST['tags'];
         
-                // Check if the course name already exists for another course
-                $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
-                $stmt->execute(['course_name' => $courseName, 'course_ID' => $courseId]);
-                $count = $stmt->fetchColumn();
+//                 // Check if the course name already exists for another course
+//                 $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
+//                 $stmt->execute(['course_name' => $courseName, 'course_ID' => $courseId]);
+//                 $count = $stmt->fetchColumn();
         
-                if ($count > 0) {
-                    // Course name is already in use by another course
-                    echo json_encode(['status' => 'error', 'message' => 'Course name already in use.']);
-                    exit;
-                }
+//                 if ($count > 0) {
+//                     // Course name is already in use by another course
+//                     echo json_encode(['status' => 'error', 'message' => 'Course name already in use.']);
+//                     exit;
+//                 }
         
-                // Proceed to update the course if no duplicate course name is found
-                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
-                $stmt->bindParam(':course_name', $courseName);
-                $stmt->bindParam(':description', $description);
-                $stmt->bindParam(':level', $level);
-                $stmt->bindParam(':start_date', $startDate);
-                $stmt->bindParam(':end_date', $endDate);
-                $stmt->bindParam(':rating', $rating);
-                $stmt->bindParam(':fees', $fees);
-                $stmt->bindParam(':tags', $tags);
-                $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
+//                 // Proceed to update the course if no duplicate course name is found
+//                 $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
+//                 $stmt->bindParam(':course_name', $courseName);
+//                 $stmt->bindParam(':description', $description);
+//                 $stmt->bindParam(':level', $level);
+//                 $stmt->bindParam(':start_date', $startDate);
+//                 $stmt->bindParam(':end_date', $endDate);
+//                 $stmt->bindParam(':rating', $rating);
+//                 $stmt->bindParam(':fees', $fees);
+//                 $stmt->bindParam(':tags', $tags);
+//                 $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
         
-                if ($stmt->execute()) {
-                    echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => 'Failed to update course']);
-                }
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
-            }
+//                 if ($stmt->execute()) {
+//                     echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
+//                 } else {
+//                     echo json_encode(['status' => 'error', 'message' => 'Failed to update course']);
+//                 }
+//             } else {
+//                 echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
+//             }
         
-        } catch (PDOException $e) {
-            // Output database connection error
-            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
-        } catch (Exception $e) {
-            // Output general error
-            echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
-        }
-    }
+//         } catch (PDOException $e) {
+//             // Output database connection error
+//             echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+//         } catch (Exception $e) {
+//             // Output general error
+//             echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
+//         }
+//     }
     
-    // Function to delete a course from the database
-    public static function deleteCourse($courseId) {
-        $courseId = (int)$courseId; // Ensure course ID is an integer
-        $sql = "DELETE FROM courses WHERE course_ID = :id"; // Update to your actual table name
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $courseId, PDO::PARAM_INT);
+//     // Function to delete a course from the database
+//     public static function deleteCourse($courseId) {
+//         $courseId = (int)$courseId; // Ensure course ID is an integer
+//         $sql = "DELETE FROM courses WHERE course_ID = :id"; // Update to your actual table name
+//         $stmt = $this->pdo->prepare($sql);
+//         $stmt->bindParam(':id', $courseId, PDO::PARAM_INT);
     
-        if ($stmt->execute()) {
-            return json_encode(['status' => 'success', 'message' => 'Course deleted successfully.']);
-        } else {
-            return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
-        }
-    }
-}
+//         if ($stmt->execute()) {
+//             return json_encode(['status' => 'success', 'message' => 'Course deleted successfully.']);
+//         } else {
+//             return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
+//         }
+//     }
+// }
 ?>
