@@ -13,6 +13,7 @@ class Course {
     public $fees;
     public $tags;
 
+    private $coursesTable = 'courses';
     // Constructor
     public function __construct($db) {
         $this->conn = $db;
@@ -54,79 +55,79 @@ class Course {
             }
         }
     }
-}
 
-    // Function to edit a course in the database
-//      static function editCourse() {
-//         try {
-//             // Database connection
-//             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-//             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-//             if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
-//                 $courseId = $_POST['course_ID'];
-//                 $courseName = $_POST['course_name'];
-//                 $description = $_POST['description'];
-//                 $level = $_POST['level'];
-//                 $startDate = $_POST['start_date'];
-//                 $endDate = $_POST['end_date'];
-//                 $rating = $_POST['rating'];
-//                 $fees = $_POST['fees'];
-//                 $tags = $_POST['tags'];
-        
-//                 // Check if the course name already exists for another course
-//                 $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
-//                 $stmt->execute(['course_name' => $courseName, 'course_ID' => $courseId]);
-//                 $count = $stmt->fetchColumn();
-        
-//                 if ($count > 0) {
-//                     // Course name is already in use by another course
-//                     echo json_encode(['status' => 'error', 'message' => 'Course name already in use.']);
-//                     exit;
-//                 }
-        
-//                 // Proceed to update the course if no duplicate course name is found
-//                 $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
-//                 $stmt->bindParam(':course_name', $courseName);
-//                 $stmt->bindParam(':description', $description);
-//                 $stmt->bindParam(':level', $level);
-//                 $stmt->bindParam(':start_date', $startDate);
-//                 $stmt->bindParam(':end_date', $endDate);
-//                 $stmt->bindParam(':rating', $rating);
-//                 $stmt->bindParam(':fees', $fees);
-//                 $stmt->bindParam(':tags', $tags);
-//                 $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
-        
-//                 if ($stmt->execute()) {
-//                     echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
-//                 } else {
-//                     echo json_encode(['status' => 'error', 'message' => 'Failed to update course']);
-//                 }
-//             } else {
-//                 echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
-//             }
-        
-//         } catch (PDOException $e) {
-//             // Output database connection error
-//             echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
-//         } catch (Exception $e) {
-//             // Output general error
-//             echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
-//         }
-//     }
+    public static function deleteCourse($courseId) {
+        $courseId = (int)$courseId; // Ensure course ID is an integer
+        $sql = "DELETE FROM courses WHERE course_ID = :course_ID";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
     
-//     // Function to delete a course from the database
-//     public static function deleteCourse($courseId) {
-//         $courseId = (int)$courseId; // Ensure course ID is an integer
-//         $sql = "DELETE FROM courses WHERE course_ID = :id"; // Update to your actual table name
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':id', $courseId, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return json_encode(['status' => 'success', 'message' => 'Course deleted successfully.']);
+        } else {
+            return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
+        }
+    }
     
-//         if ($stmt->execute()) {
-//             return json_encode(['status' => 'success', 'message' => 'Course deleted successfully.']);
-//         } else {
-//             return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
-//         }
-//     }
-// }
+
+
+//    Function to edit a course in the database
+     static function editCourse() {
+        try {
+            // Database connection
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
+                $courseId = $_POST['course_ID'];
+                $courseName = $_POST['course_name'];
+                $description = $_POST['description'];
+                $level = $_POST['level'];
+                $startDate = $_POST['start_date'];
+                $endDate = $_POST['end_date'];
+                $rating = $_POST['rating'];
+                $fees = $_POST['fees'];
+                $tags = $_POST['tags'];
+        
+                // Check if the course name already exists for another course
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
+                $stmt->execute(['course_name' => $courseName, 'course_ID' => $courseId]);
+                $count = $stmt->fetchColumn();
+        
+                if ($count > 0) {
+                    // Course name is already in use by another course
+                    echo json_encode(['status' => 'error', 'message' => 'Course name already in use.']);
+                    exit;
+                }
+        
+                // Proceed to update the course if no duplicate course name is found
+                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
+                $stmt->bindParam(':course_name', $courseName);
+                $stmt->bindParam(':description', $description);
+                $stmt->bindParam(':level', $level);
+                $stmt->bindParam(':start_date', $startDate);
+                $stmt->bindParam(':end_date', $endDate);
+                $stmt->bindParam(':rating', $rating);
+                $stmt->bindParam(':fees', $fees);
+                $stmt->bindParam(':tags', $tags);
+                $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
+        
+                if ($stmt->execute()) {
+                    echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to update course']);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
+            }
+        
+        } catch (PDOException $e) {
+            // Output database connection error
+            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            // Output general error
+            echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+    }
 ?>
