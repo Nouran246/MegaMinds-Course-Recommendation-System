@@ -19,7 +19,7 @@ $(document).ready(function () {
                 data: { course_ID: courseIdToDelete },
                 success: function (response) {
                     console.log(response); // Debugging line
-                    $('#deleteConfirmationModal').modal('show');
+                
                     location.reload(); // Reload to reflect changes
                 },
                 error: function () {

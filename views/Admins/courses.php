@@ -23,6 +23,7 @@ try {
   die("Database connection failed: " . $e->getMessage());
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,18 +115,18 @@ try {
               <td>$<?php echo htmlspecialchars($course['fees']); ?></td>
               <td><?php echo htmlspecialchars($course['tags']); ?></td>
               <td>
-              <button class="btn btn-warning btn-sm edit-button" 
-        data-course-id="<?php echo $course['course_ID']; ?>"
-        data-course-name="<?php echo htmlspecialchars($course['course_name']); ?>"
-        data-description="<?php echo htmlspecialchars($course['description']); ?>"
-        data-level="<?php echo htmlspecialchars($course['level']); ?>"
-        data-start-date="<?php echo htmlspecialchars($course['start_date']); ?>"
-        data-end-date="<?php echo htmlspecialchars($course['end_date']); ?>"
-        data-rating="<?php echo htmlspecialchars($course['rating']); ?>"
-        data-fees="<?php echo htmlspecialchars($course['fees']); ?>"
-        data-tags="<?php echo htmlspecialchars($course['tags']); ?>">Edit</button>
+                <button class="btn btn-warning btn-sm edit-button" data-course-id="<?php echo $course['course_ID']; ?>"
+                  data-course-name="<?php echo htmlspecialchars($course['course_name']); ?>"
+                  data-description="<?php echo htmlspecialchars($course['description']); ?>"
+                  data-level="<?php echo htmlspecialchars($course['level']); ?>"
+                  data-start-date="<?php echo htmlspecialchars($course['start_date']); ?>"
+                  data-end-date="<?php echo htmlspecialchars($course['end_date']); ?>"
+                  data-rating="<?php echo htmlspecialchars($course['rating']); ?>"
+                  data-fees="<?php echo htmlspecialchars($course['fees']); ?>"
+                  data-tags="<?php echo htmlspecialchars($course['tags']); ?>">Edit</button>
 
-                  <button class="btn btn-danger btn-sm delete-button" data-id="<?php echo $course['course_ID']; ?>">Delete</button>
+                <button class="btn btn-danger btn-sm delete-button"
+                  data-id="<?php echo $course['course_ID']; ?>">Delete</button>
 
               </td>
             </tr>
@@ -141,86 +142,84 @@ try {
   </div>
 
   <!-- Add course Modal -->
-   <!-- <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true"> 
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form action="../../Controllers/addcourse.php" method="POST" enctype="multipart/form-data" id="add-blog-form">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addBlogModalLabel">Add New Course</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form action="../../Controllers/addcourse.php" method="POST" enctype="multipart/form-data" id="add-blog-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBlogModalLabel">Add New Course</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="course_name" class="form-label">Course Name</label>
+            <input type="text" class="form-control" id="course_name" name="course_name" required />
+            <div id="course_name-error" class="invalid-feedback">Course name is required.</div>
           </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <div id="course_id-error" class="invalid-feedback"></div>
-            </div>
-            <div class="mb-3">
-              <label for="course_name" class="form-label">Course Name</label>
-              <input type="text" class="form-control" id="course_name" name="course_name" required />
-              <div id="course_name-error" class="invalid-feedback"></div>
-            </div>
 
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" name="description" rows="2" required></textarea>
-              <div id="description-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="2" required></textarea>
+            <div id="description-error" class="invalid-feedback">Description is required.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="level" class="form-label">Level</label>
-              <select class="form-control" id="level" name="level" required>
-                <option value="" selected disabled>Select a level</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-              </select>
-              <div id="level-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="level" class="form-label">Level</label>
+            <select class="form-control" id="level" name="level" required>
+              <option value="" selected disabled>Select a level</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+            <div id="level-error" class="invalid-feedback">Please select a level.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="start_date" class="form-label">Start Date</label>
-              <input type="date" class="form-control" id="start_date" name="start_date" required />
-              <div id="start_date-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="start_date" name="start_date" required />
+            <div id="start_date-error" class="invalid-feedback">Start date is required.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="end_date" class="form-label">End Date</label>
-              <input type="date" class="form-control" id="end_date" name="end_date" required />
-              <div id="end_date-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="end_date" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="end_date" name="end_date" required />
+            <div id="end_date-error" class="invalid-feedback">End date is required.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="rate" class="form-label">Rating</label>
-              <select class="form-control" id="rate" name="rate" required>
-                <option value="0" selected disabled>Select a rating</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              <div id="rate-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="rate" class="form-label">Rating</label>
+            <select class="form-control" id="rate" name="rate" required>
+              <option value="0" selected disabled>Select a rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div id="rate-error" class="invalid-feedback">Please select a rating.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="fees" class="form-label">Fees</label>
-              <input type="text" class="form-control" id="fees" name="fees" required />
-              <div id="fees-error" class="invalid-feedback"></div>
-            </div>
+          <div class="mb-3">
+            <label for="fees" class="form-label">Fees</label>
+            <input type="text" class="form-control" id="fees" name="fees" required />
+            <div id="fees-error" class="invalid-feedback">Fees must be provided.</div>
+          </div>
 
-            <div class="mb-3">
-              <label for="tags" class="form-label">Tags</label>
-              <input type="text" class="form-control" id="tags" name="tags" required />
-              <div id="tags-error" class="invalid-feedback"></div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add Course</button>
-            </div>
-        </form>
-      </div>
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input type="text" class="form-control" id="tags" name="tags" required />
+            <div id="tags-error" class="invalid-feedback">Tags are required.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Course</button>
+        </div>
+      </form>
     </div>
-  </div>   -->
+  </div>
+</div>
+
   <!-- Edit course -->
   <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -266,7 +265,7 @@ try {
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save Changes</button>
           </div>
         </form>
@@ -274,28 +273,30 @@ try {
     </div>
   </div>
 
+
   <!-- Delete Confirmation Modal -->
-  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this course?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-          </div>
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this course?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../public/js/admin js/courses.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../public/js/admin js/courses.js"></script>
 
   <!--  Footer -->
 
@@ -311,6 +312,90 @@ try {
     });
 
   </script> -->
+  <script>
+document.getElementById("add-blog-form").addEventListener("submit", function (event) {
+  let isValid = true;
+
+  const courseName = document.getElementById("course_name");
+  const description = document.getElementById("description");
+  const level = document.getElementById("level");
+  const startDate = document.getElementById("start_date");
+  const endDate = document.getElementById("end_date");
+  const rate = document.getElementById("rate");
+  const fees = document.getElementById("fees");
+  const tags = document.getElementById("tags");
+
+  // Validate Course Name
+  if (courseName.value.trim() === "") {
+    isValid = false;
+    courseName.classList.add("is-invalid");
+  } else {
+    courseName.classList.remove("is-invalid");
+  }
+
+  // Validate Description
+  if (description.value.trim() === "") {
+    isValid = false;
+    description.classList.add("is-invalid");
+  } else {
+    description.classList.remove("is-invalid");
+  }
+
+  // Validate Level
+  if (level.value === "") {
+    isValid = false;
+    level.classList.add("is-invalid");
+  } else {
+    level.classList.remove("is-invalid");
+  }
+
+  // Validate Start Date
+  if (startDate.value === "") {
+    isValid = false;
+    startDate.classList.add("is-invalid");
+  } else {
+    startDate.classList.remove("is-invalid");
+  }
+
+  // Validate End Date
+  if (endDate.value === "" || new Date(endDate.value) < new Date(startDate.value)) {
+    isValid = false;
+    endDate.classList.add("is-invalid");
+  } else {
+    endDate.classList.remove("is-invalid");
+  }
+
+  // Validate Rate
+  if (rate.value === "0") {
+    isValid = false;
+    rate.classList.add("is-invalid");
+  } else {
+    rate.classList.remove("is-invalid");
+  }
+
+  // Validate Fees
+  if (fees.value.trim() === "" || isNaN(fees.value) || Number(fees.value) < 0) {
+    isValid = false;
+    fees.classList.add("is-invalid");
+  } else {
+    fees.classList.remove("is-invalid");
+  }
+
+  // Validate Tags
+  if (tags.value.trim() === "") {
+    isValid = false;
+    tags.classList.add("is-invalid");
+  } else {
+    tags.classList.remove("is-invalid");
+  }
+
+  // Prevent form submission if invalid
+  if (!isValid) {
+    event.preventDefault();
+  }
+});
+
+  </script>
 </body>
 
 </html>
