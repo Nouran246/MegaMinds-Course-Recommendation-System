@@ -142,5 +142,87 @@ $('#editCourseForm').on('submit', function (e) {
     }
 });
 
+// add course 
+ document.getElementById("add-blog-form").addEventListener("submit", function (event) {
+    let isValid = true;
+  
+    const courseName = document.getElementById("course_name");
+    const description = document.getElementById("description");
+    const level = document.getElementById("level");
+    const startDate = document.getElementById("start_date");
+    const endDate = document.getElementById("end_date");
+    const rate = document.getElementById("rate");
+    const fees = document.getElementById("fees");
+    const tags = document.getElementById("tags");
+  
+    // Validate Course Name
+    if (courseName.value.trim() === "") {
+      isValid = false;
+      courseName.classList.add("is-invalid");
+    } else {
+      courseName.classList.remove("is-invalid");
+    }
+  
+    // Validate Description
+    if (description.value.trim() === "") {
+      isValid = false;
+      description.classList.add("is-invalid");
+    } else {
+      description.classList.remove("is-invalid");
+    }
+  
+    // Validate Level
+    if (level.value === "") {
+      isValid = false;
+      level.classList.add("is-invalid");
+    } else {
+      level.classList.remove("is-invalid");
+    }
+  
+    // Validate Start Date
+    if (startDate.value === "") {
+      isValid = false;
+      startDate.classList.add("is-invalid");
+    } else {
+      startDate.classList.remove("is-invalid");
+    }
+  
+    // Validate End Date
+    if (endDate.value === "" || new Date(endDate.value) < new Date(startDate.value)) {
+      isValid = false;
+      endDate.classList.add("is-invalid");
+    } else {
+      endDate.classList.remove("is-invalid");
+    }
+  
+    // Validate Rate
+    if (rate.value === "0") {
+      isValid = false;
+      rate.classList.add("is-invalid");
+    } else {
+      rate.classList.remove("is-invalid");
+    }
+  
+    // Validate Fees
+    if (fees.value.trim() === "" || isNaN(fees.value) || Number(fees.value) < 0) {
+      isValid = false;
+      fees.classList.add("is-invalid");
+    } else {
+      fees.classList.remove("is-invalid");
+    }
+  
+    // Validate Tags
+    if (tags.value.trim() === "") {
+      isValid = false;
+      tags.classList.add("is-invalid");
+    } else {
+      tags.classList.remove("is-invalid");
+    }
+  
+    // Prevent form submission if invalid
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
   
 });
