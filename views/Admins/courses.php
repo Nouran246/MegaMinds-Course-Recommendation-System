@@ -141,7 +141,7 @@ try {
   </div>
 
   <!-- Add course Modal -->
-   <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true"> 
+   <!-- <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true"> 
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <form action="../../Controllers/addcourse.php" method="POST" enctype="multipart/form-data" id="add-blog-form">
@@ -220,7 +220,7 @@ try {
         </form>
       </div>
     </div>
-  </div>  
+  </div>   -->
   <!-- Edit course -->
   <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
