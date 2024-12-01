@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php";
+
 
 session_start();
 ?>
