@@ -2,7 +2,9 @@
 FROM php:8.1-apache
 
 # Install necessary PHP extensions (e.g., GD for image processing and mysqli)
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libmysqlclient-dev \
+RUN apt-get update \
+    && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libmysqlclient-dev \
+    && apt-get install -y default-mysql-client \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd mysqli
 
