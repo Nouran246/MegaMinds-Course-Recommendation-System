@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php";
+include_once "/public/includes/DB.php";
 
 session_start();
 ?>
@@ -16,14 +16,14 @@ session_start();
   <title>Megaminds</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../public/css/user css/signup_and_in.css" rel="stylesheet">
+  <link href="public/css/user css/bootstrap.min.css" rel="stylesheet">
+  <link href="public/css/user css/signup_and_in.css" rel="stylesheet">
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-  <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-  <link rel="stylesheet" href="../../public/css/user css/owl.css">
-  <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+  <link rel="stylesheet" href="public/css/user css/fontawesome.css">
+  <link rel="stylesheet" href="public/css/user css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="public/css/user css/owl.css">
+  <link rel="stylesheet" href="public/css/user css/lightbox.css">
 
 </head>
 
