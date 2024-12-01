@@ -7,7 +7,7 @@ RUN apt-get clean \
     && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev \
     && apt-get install -y libmysqlclient-dev default-mysql-client \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd mysqli
+    && docker-php-ext-install gd mysqli pdo_mysql
 
 # Copy the application code to the container's web root
 COPY . /var/www/html/
