@@ -9,12 +9,11 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['course_id']) && !empty($_POST['course_id'])) {
-        $courseId = (int)$_POST['course_id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['course_ID']) && !empty($_POST['course_ID'])) {
+        $courseId = (int)$_POST['course_ID'];
         
-        $stmt = $pdo->prepare("DELETE FROM courses WHERE course_ID = :course_id");
-        $stmt->bindParam(':course_id', $courseId, PDO::PARAM_INT);
-        
+        $stmt = $pdo->prepare("DELETE FROM courses WHERE course_ID = :course_ID");
+        $stmt->bindParam( ':course_ID', $courseId, PDO::PARAM_INT);
         if ($stmt->execute()) {
             echo json_encode(['message' => 'Course deleted successfully.']);
         } else {

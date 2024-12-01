@@ -29,8 +29,7 @@ try {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Users</title>
-    
+    <title>Manage Users</title>
     <link rel="stylesheet" href="../../public/css/admin css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../public/css/admin css/site.css" />
     <link
@@ -79,7 +78,7 @@ try {
     <div id="content" class="content container mt-5">
       <div class="row mb-4">
         <div class="col">
-          <h1>Users</h1>
+          <h1>Manage Users</h1>
         </div>
       </div>
       <div class="table-responsive" style="max-height: 75vh;">

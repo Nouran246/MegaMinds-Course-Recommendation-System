@@ -10,7 +10,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Check if the request is for updating a course
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['course_ID']) && !empty($_POST['course_ID'])) {
+    if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags']) ) {
         $courseId = (int)$_POST['course_ID'];
         $courseName = $_POST['course_name'];
         $description = $_POST['description'];
@@ -48,20 +48,6 @@ try {
             echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Failed to update course']);
-        }
-    }
-
-    // Check if the request is for deleting a course
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['course_ID']) && !empty($_POST['course_ID'])) {
-        $courseId = (int)$_POST['course_ID'];
-
-        $stmt = $pdo->prepare("DELETE FROM courses WHERE course_ID = :course_ID");
-        $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            echo json_encode(['status' => 'success', 'message' => 'Course deleted successfully']);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to delete course']);
         }
     }
 
