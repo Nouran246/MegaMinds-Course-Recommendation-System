@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2024 at 03:22 PM
+-- Generation Time: Dec 02, 2024 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,8 +36,23 @@ CREATE TABLE `courses` (
   `end_date` date NOT NULL,
   `rating` int(11) NOT NULL,
   `fees` int(11) NOT NULL,
-  `tags` text NOT NULL
+  `tags` text NOT NULL,
+  `Image` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_ID`, `course_name`, `description`, `level`, `start_date`, `end_date`, `rating`, `fees`, `tags`, `Image`) VALUES
+(2, 'Introduction to Artificial Intelligence', 'This course provides an overview of Artificial Intelligence (AI), including its history, principles, and applications. Topics include problem-solving, search algorithms, knowledge representation, reasoning, and basic machine learning techniques. Students will explore real-world applications like robotics, natural language processing, and AI ethics.', 'beginner', '2024-11-17', '2024-12-24', 0, 90, 'ai', ''),
+(3, 'Full Stack Developer', 'This course covers the complete web development process, including both front-end and back-end technologies. Students will learn HTML, CSS, JavaScript, React (or Angular), Node.js, Express, and databases like MongoDB or SQL. The course emphasizes creating fully functional, scalable web applications and understanding the deployment process.', 'advanced', '2024-12-01', '2024-12-27', 0, 90, 'swe', ''),
+(4, 'Deep Learning', 'Deep Learning delves into advanced machine learning techniques inspired by the structure and function of the human brain. Topics include neural networks, convolutional neural networks (CNNs), recurrent neural networks (RNNs), and frameworks like TensorFlow or PyTorch. Students will apply these methods to tasks like image recognition, natural language processing, and autonomous systems.', 'advanced', '2024-09-01', '2024-12-31', 0, 300, 'ai', ''),
+(5, 'Cloud Computing and Big Data', 'This course focuses on cloud computing concepts and big data management. Students learn about cloud service models (IaaS, PaaS, SaaS), distributed computing, Hadoop, Spark, and data storage solutions. The course emphasizes analyzing massive datasets and leveraging cloud platforms like AWS or Azure.\r\n\r\n', 'beginner', '2024-10-01', '2024-12-30', 0, 300, 'cs', ''),
+(6, 'Data structures and Algorithms', 'This course provides a strong foundation in organizing and processing data efficiently. Topics include arrays, linked lists, stacks, queues, trees, graphs, sorting, and searching algorithms. Students will develop problem-solving skills and optimize computational performance.', 'intermediate', '2024-11-06', '2025-01-04', 0, 300, 'cs', ''),
+(7, 'Networks and Security', 'This course introduces the fundamentals of computer networks and cybersecurity. Topics include network protocols, architecture, and hardware, along with encryption, firewalls, intrusion detection, and ethical hacking. Students will gain skills in designing secure systems and mitigating cyber threats.', 'intermediate', '2024-09-11', '2024-10-10', 0, 70, 'INS', ''),
+(8, 'Object-Oriented Programming (OOP)', 'Object-Oriented Programming introduces the principles of OOP, including classes, objects, inheritance, polymorphism, and encapsulation. The course emphasizes designing reusable and maintainable code using languages like Java, Python, or C++.', 'intermediate', '2024-12-03', '2025-01-15', 0, 200, 'swe', ''),
+(9, 'Image Processing', 'Image Processing covers techniques for manipulating and analyzing digital images. Topics include image transformations, filters, edge detection, segmentation, and feature extraction. Students will work on applications in computer vision, medical imaging, and multimedia.', 'beginner', '2024-12-03', '2025-02-04', 0, 300, 'ai', '');
 
 -- --------------------------------------------------------
 
@@ -173,7 +188,7 @@ ALTER TABLE `usertype_pages`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pages`

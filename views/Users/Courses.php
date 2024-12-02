@@ -184,7 +184,7 @@ https://templatemo.com/tm-569-edu-meeting
                       <div class="date">
                         <h6>Hours <span>22</span></h6>
                       </div>
-                      <a href="meeting-details.php"><h4>Cloud Computing And Big Dat</h4></a>
+                      <a href="meeting-details.php"><h4>Cloud Computing And Big Data</h4></a>
                       <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
                     </div>
                   </div>
