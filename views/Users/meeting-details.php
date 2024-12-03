@@ -3,8 +3,57 @@
 <?php
 session_start();
 include_once "../../public/includes/DB.php";
+$host = 'localhost'; // or your host
+$dbname = 'megaminds'; // your database name
+$username = 'root'; // your username
+$password = ''; // your password
 
+try {
+    // Establish PDO connection
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+if (isset($_GET['course_ID'])) {
+    $course_id = $_GET['course_ID'];
+
+    // Define the query to fetch course details
+    $query = "SELECT * FROM courses WHERE course_ID = :course_id";
+
+    // Prepare the query
+    $stmt = $pdo->prepare($query);
+
+    // Bind the course ID to the query
+    $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+
+    // Execute the query
+    if ($stmt->execute()) {
+        $course = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($course) {
+            // Display course details
+            // echo "<h2>" . htmlspecialchars($course['course_name']) . "</h2>";
+            // echo "<p><strong>Description:</strong> " . htmlspecialchars($course['description']) . "</p>";
+            // echo "<p><strong>Level:</strong> " . htmlspecialchars($course['level']) . "</p>";
+            // echo "<p><strong>Start Date:</strong> " . htmlspecialchars($course['start_date']) . "</p>";
+            // echo "<p><strong>End Date:</strong> " . htmlspecialchars($course['end_date']) . "</p>";
+            // echo "<p><strong>Rating:</strong> " . htmlspecialchars($course['rating']) . "/10</p>";
+            // echo "<p><strong>Fees:</strong> $" . htmlspecialchars($course['fees']) . "</p>";
+            // echo "<p><strong>Tags:</strong> " . htmlspecialchars($course['tags']) . "</p>";
+        } else {
+            echo "Course not found.";
+        }
+    } else {
+        echo "Error fetching course details.";
+    }
+} else {
+    echo "No course selected.";
+}
 ?>
+
+
+
   <head>
 
     <meta charset="utf-8">
@@ -104,50 +153,23 @@ https://templatemo.com/tm-569-edu-meeting
                   <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.php"><h4>Introduction To AI</h4></a>
-                  <!-- <p>Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22795-008, Brazil</p>
-                  <p class="description">
-                    This is an edu meeting HTML CSS template provided by <a href="https://templatemo.com/" target="_blank" rel="nofollow">TemplateMo website</a>. This is a Bootstrap v5.1.3 layout. If you need more free website templates like this one, please visit our website TemplateMo. Please tell your friends about our website. Thank you. If you want to get the latest collection of HTML CSS templates for your websites, you may visit <a rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a working contact form script, please visit <a href="https://templatemo.com/contact" target="_parent">our contact page</a> for more info.
-                    
-                    <br><br>You are allowed to use this edu meeting CSS template for your school or university or business. You can feel free to modify or edit this layout. You are not allowed to redistribute the template ZIP file on any other template website. Please contact us for more information.
-                  </p> -->
-                  <!-- <div class="row">
-                    <div class="col-lg-4">
-                      <div class="hours">
-                        <h5>Hours</h5>
-                        <p>Monday - Friday: 07:00 AM - 13:00 PM<br>Saturday- Sunday: 09:00 AM - 15:00 PM</p>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="location">
-                        <h5>Location</h5>
-                        <p>Recreio dos Bandeirantes, 
-                        <br>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="book now">
-                        <h5>Book Now</h5>
-                        <p>010-020-0340<br>090-080-0760</p>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="share">
-                        <h5>Share:</h5>
-                        <ul>
-                          <li><a href="#">Facebook</a>,</li>
-                          <li><a href="#">Twitter</a>,</li>
-                          <li><a href="#">Linkedin</a>,</li>
-                          <li><a href="#">Behance</a></li>
-                        </ul> -->
-                        <div class="main-button-red">
-                          <button onclick="window.location.href='cart-page.php'">Add To Cart</button>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    <a href="meeting-details.php?course_ID=<?= htmlspecialchars($course['course_ID']) ?>"><h4><?= htmlspecialchars($course['course_name']) ?></h4></a>
+    
+    <!-- Dynamic course details -->
+    <p><strong>Description:</strong> <?= htmlspecialchars($course['description']) ?></p>
+    <p><strong>Level:</strong> <?= htmlspecialchars($course['level']) ?></p>
+    <p><strong>Start Date:</strong> <?= htmlspecialchars($course['start_date']) ?></p>
+    <p><strong>End Date:</strong> <?= htmlspecialchars($course['end_date']) ?></p>
+    <p><strong>Rating:</strong> <?= htmlspecialchars($course['rating']) ?>/10</p>
+    <p><strong>Fees:</strong> $<?= htmlspecialchars($course['fees']) ?></p>
+    <p><strong>Tags:</strong> <?= htmlspecialchars($course['tags']) ?></p>
+
+    <div class="main-button-red">
+        <!-- Button to Add To Cart (replace this if needed with relevant action) -->
+        <button onclick="window.location.href='cart-page.php?course_ID=<?= htmlspecialchars($course['course_ID']) ?>'">Add To Cart</button>
+    </div>
+</div>
+
               </div>
               <br>
             
