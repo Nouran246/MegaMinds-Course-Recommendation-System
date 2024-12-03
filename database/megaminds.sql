@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2024 at 04:50 PM
+-- Generation Time: Dec 03, 2024 at 07:33 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -110,7 +110,8 @@ INSERT INTO `users` (`ID`, `FName`, `LName`, `Email`, `Password`, `usertype_id`)
 (39, 'Mayar', 'Khaled', 'mayar@gmail.com', 333, 1),
 (40, 'Hussein', 'Magdy', 'huissen@gmail.com', 123, 1),
 (41, 'laila', 'amgad', 'laila2201298@miueypt.edu.eg', 1234, 1),
-(42, 'laila', 'amgad', 'laila@gmail.com', 12345, 1);
+(42, 'laila', 'amgad', 'laila@gmail.com', 12345, 1),
+(43, 'Malakkk', 'Mohamed', 'malak@gmail.com', 123, 1);
 
 -- --------------------------------------------------------
 
@@ -142,6 +143,25 @@ CREATE TABLE `usertype_pages` (
   `usertype_id` int(11) DEFAULT NULL,
   `PageID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_courses`
+--
+
+CREATE TABLE `user_courses` (
+  `user_id` int(11) NOT NULL,
+  `course_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_courses`
+--
+
+INSERT INTO `user_courses` (`user_id`, `course_ID`) VALUES
+(43, 2),
+(43, 6);
 
 --
 -- Indexes for dumped tables
@@ -181,6 +201,13 @@ ALTER TABLE `usertype_pages`
   ADD KEY `PageID` (`PageID`);
 
 --
+-- Indexes for table `user_courses`
+--
+ALTER TABLE `user_courses`
+  ADD PRIMARY KEY (`user_id`,`course_ID`),
+  ADD KEY `course_ID` (`course_ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -200,7 +227,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `usertype`
@@ -223,6 +250,13 @@ ALTER TABLE `usertype_pages`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`ID`);
+
+--
+-- Constraints for table `user_courses`
+--
+ALTER TABLE `user_courses`
+  ADD CONSTRAINT `user_courses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`),
+  ADD CONSTRAINT `user_courses_ibfk_2` FOREIGN KEY (`course_ID`) REFERENCES `courses` (`course_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

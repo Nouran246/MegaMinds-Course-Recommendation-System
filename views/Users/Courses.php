@@ -124,22 +124,22 @@ https://templatemo.com/tm-569-edu-meeting
                 $coursePrice = htmlspecialchars($course['fees']);
               ?>
               <div class="col-lg-4 templatemo-item-col all soon">
-              <div class="meeting-item">
-    <a href="meeting-details.php?course_ID=<?php echo $course['course_ID']; ?>">
-        <div class="thumb">
-            <div class="price">
-                <span>$<?php echo $coursePrice; ?></span>
-            </div>
-            <img src="../../public/images/placeholder.jpg" alt="Course Image">
-        </div>
-        <div class="down-content">
-            <div class="date">
-                <h6>Month <span>1</span></h6>
-            </div>
-            <h4><?php echo $courseName; ?></h4>
-        </div>
-    </a>
-</div>
+                <div class="meeting-item">
+                    <a href="meeting-details.php?course_ID=<?php echo $course['course_ID']; ?>">
+                        <div class="thumb">
+                            <div class="price">
+                                <span>$<?php echo $coursePrice; ?></span>
+                            </div>
+                            <img src="../../public/images/placeholder.jpg" alt="Course Image">
+                        </div>
+                        <div class="down-content">
+                            <div class="date">
+                                <h6>Month <span>1</span></h6>
+                            </div>
+                            <h4><?php echo $courseName; ?></h4>
+                        </div>
+                    </a>
+                </div>
 
               </div>
               <?php } ?>

@@ -1,7 +1,7 @@
     <!-- public\Controllers\UserClass.php -->
 <?php
 
-include_once "../public/includes/DB.php";
+// include_once "../public/includes/DB.php";
 
 
 

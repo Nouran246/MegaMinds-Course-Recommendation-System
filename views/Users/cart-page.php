@@ -1,10 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php";
+include_once "../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
+include "../../Controllers/UserClass.php";
+include "../../Controllers/CoursesClass.php";
 
-session_start();
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "megaminds";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+
+// Create instances of User and Course classes
+$user = new User($conn);
+$c = new Course($conn);
+
+// Retrieve user ID from session
+$user_id = $_SESSION['user_id'];
+
+// Ensure course_ID is set from session or URL
+if (isset($_GET['course_ID'])) {
+    $course_id = $_GET['course_ID'];
+    $_SESSION['course_ID'] = $course_id; // Optionally store course_ID in session
+} elseif (isset($_SESSION['course_ID'])) {
+    $course_id = $_SESSION['course_ID'];
+} else {
+    echo "No course selected.";
+    exit;
+}
+// echo $user_id . '<br>';
+// echo $course_id . '<br>';
+// Fetch course details
+try {
+    $stmt = $conn->prepare("SELECT * FROM courses WHERE course_ID = :course_id");
+    $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $course = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($course) {
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        // Add the course to the cart
+        $_SESSION['cart'][$course['course_ID']] = [
+            'course_name' => $course['course_name'],
+            'description' => $course['description'],
+            'level' => $course['level'],
+            'start_date' => $course['start_date'],
+            'end_date' => $course['end_date'],
+            'rating' => $course['rating'],
+            'fees' => $course['fees'],
+            'tags' => $course['tags']
+        ];
+
+        echo "Course added to cart!" . "<br>";
+    } else {
+        echo "Course not found.";
+    }
+} catch (PDOException $e) {
+    echo "Error fetching course data: " . $e->getMessage();
+}
+// echo $user_id . '<br>';
+// echo $course_id . '<br>';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $paymentMethod = $_POST['paymentMethod'] ?? null;
+  $user_id = $_SESSION['user_id'] ?? null;
+  $course_id = $_SESSION['course_ID'] ?? null;
+
+  // Debugging: Sanitize and output for testing (remove in production)
+  // echo "User ID: " . htmlspecialchars($user_id) . "<br>";
+  // echo "Course ID: " . htmlspecialchars($course_id) . "<br>";
+
+  // Validate input
+  if ($user_id && $course_id) {
+      try {
+          // Corrected SQL query
+          $stmt = $conn->prepare("INSERT INTO user_courses (user_id, course_ID) VALUES (:user_id, :course_id)");
+          $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+          $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+          $stmt->execute();
+
+          echo "Course successfully added!";
+      } catch (PDOException $e) {
+          // Log the error for debugging
+          error_log("Error: " . $e->getMessage());
+          // echo "Something went wrong. Please try again.";
+      }
+  } else {
+      echo "All fields are required.";
+  }
+}
+
+
+
 ?>
+
+
+
   <head>
 
     <meta charset="utf-8">
@@ -83,36 +184,6 @@ https://templatemo.com/tm-569-edu-meeting
         <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-12">
-              <!-- <div class="meeting-single-item">
-                <div class="thumb">
-                  <div class="price">
-                    <span>$14.00</span>
-                  </div>
-                  <div class="date">
-                    <h6>Jan <span>3</span></h6>
-                  </div>
-                  <a href="meeting-details.php"><img src="../../public/images/single-meeting.jpg" alt=""></a>
-                </div>
-                <div class="down-content">
-                  <a href="meeting-details.php"><h4>Online Teaching and Learning Tools</h4></a>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="hours">
-                        <h5>Hours</h5>
-                        <p>Monday - Friday: 07:00 AM - 13:00 PM</p>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="location">
-                        <h5>Location</h5>
-                        <p>Recreio dos Bandeirantes, 
-                        <br>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
               <br>
 
               <div class="meeting-single-item">
@@ -126,30 +197,27 @@ https://templatemo.com/tm-569-edu-meeting
                   <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
                 </div>
                 <div class="down-content">
-                  <a href="meeting-details.php"><h4>Introduction To AI</h4></a>
-                  <!-- <div class="row">
-                    <div class="col-lg-4">
-                      <div class="hours">
-                        <h5>Hours</h5>
-                        <p>Monday - Friday: 07:00 AM - 13:00 PM</p>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="location">
-                        <h5>Location</h5>
-                        <p>Recreio dos Bandeirantes, 
-                        <br>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-                      </div>
-                    </div>
-                  </div> -->
-                </div>
+                <div class="down-content">
+          <a href="meeting-details.php?course_ID=<?= htmlspecialchars($course['course_ID']) ?>">
+            <h4><?= htmlspecialchars($course['course_name']) ?></h4>
+          </a>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="hours">
+                <h5>Duration</h5>
+                <p><strong> Start Date: </strong> <?= htmlspecialchars($course['start_date']) ?></p>
+                <p><strong>End Date: </strong> <?= htmlspecialchars($course['end_date']) ?></p>
               </div>
             </div>
-                        <!-- Checkout Button -->
-            <div class="container mt-5 text-center">
-              <h3>Total Price: $34.60</h3>
-              <button type="button" class="btn btn-primary mt-3" id="checkoutButton">Check out now!</button>
-            </div>
+          </div>
+        </div>
+
+        <!-- Checkout Section -->
+        <div class="container mt-5 text-center">
+          <h3>Total Price: $<?= htmlspecialchars($course['fees']) ?></h3>
+          <button type="button" class="btn btn-primary mt-3" id="checkoutButton" onclick="paymentMethodSelect()">Check out now!</button>
+        </div>
+
 
             <!-- Payment Checkout Modal -->
             <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
@@ -160,9 +228,8 @@ https://templatemo.com/tm-569-edu-meeting
                     <h4 class="modal-title" id="checkoutModalLabel">Payment Checkout</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-
                   <div class="modal-body">
-                    <form id="paymentForm">
+                  <form id="paymentForm" method="POST">
                       <!-- Payment Method Dropdown -->
                       <div class="mb-3">
                         <label for="paymentMethod" class="form-label">Payment Method</label>
@@ -217,8 +284,6 @@ https://templatemo.com/tm-569-edu-meeting
                           <input type="text" class="form-control" id="cardNumber" placeholder="Enter account number">
                         </div>
                       </div>
-
-
                       <button type="submit" class="btn btn-success">Pay Now</button>
                     </form>
                   </div>
@@ -335,23 +400,55 @@ https://templatemo.com/tm-569-edu-meeting
         // Hide all fields on page load
         hideAllFields();
 
+        // Function to add course and user IDs into the users_courses table
+        function addUserCourse() {
+          consol.log("HELLO THERE");
+            var userID = <?php echo $_SESSION['user_id']; ?>;
+            var courseID = <?php echo isset($_SESSION['course_ID']) ? $_SESSION['course_ID'] : 0; ?>;
+            consol.log("AHHHHHHH THERE");
+            // Create a hidden form element
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = ''; // Submit to the current page
+
+            // Create hidden input fields for user_id and course_id
+            var userIDInput = document.createElement('input');
+            userIDInput.type = 'hidden';
+            userIDInput.name = 'user_id';
+            userIDInput.value = userID;
+
+            var courseIDInput = document.createElement('input');
+            courseIDInput.type = 'hidden';
+            courseIDInput.name = 'course_id';
+            courseIDInput.value = courseID;
+
+            // Append the inputs to the form
+            form.appendChild(userIDInput);
+            form.appendChild(courseIDInput);
+
+            // Append the form to the body and submit it
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        
         // Show the correct fields based on the selected payment method
         paymentMethodSelect.addEventListener('change', function() {
           hideAllFields(); // Hide all fields first
 
           switch (this.value) {
-              case 'creditCard':
-                  creditCardFields.style.display = 'block';
-                  break;
-              case 'paypal':
-                  PayPalFields.style.display = 'block';
-                  break;
-              case 'bankTransfer':
-                  BanckTransFields.style.display = 'block';
-                  break;
-              default:
-                  // Optionally, handle cases where no valid payment method is selected
-                  break;
+            case 'creditCard':
+              creditCardFields.style.display = 'block';
+              break;
+            case 'paypal':
+              PayPalFields.style.display = 'block';
+              break;
+            case 'bankTransfer':
+              BanckTransFields.style.display = 'block';
+              break;
+            default:
+              // Optionally, handle cases where no valid payment method is selected
+              break;
           }
         });
 
