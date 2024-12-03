@@ -42,20 +42,8 @@ session_start();
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li><a href="#courses">Courses</a></li>
-              <!--  <li class="has-sub">
-                            <a href="javascript:void(0)">Meetings</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.php">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.php">Meeting Details</a></li>
-                            </ul>
-                        </li> -->
-              <!--                         <li><a href="cart-page.php">Cart</a></li> 
- --><!--                         <li><a href="profile.php">My Profile</a></li> 
- -->
               <li><a href="#contact">Contact Us</a></li>
               <li><a href="login.php">Sign In</a></li>
-
-
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -286,224 +274,46 @@ session_start();
             </div>
             <div class="col-lg-12">
                 <div class="owl-courses-item owl-carousel">
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/AI.jpeg" alt="Course One">
-                            <div class="down-content">
-                                <h4>Introduction To AI</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$160</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/FSD.jpg" alt="Course Two">
-                            <div class="down-content">
-                                <h4>Full Stack Developer</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/DL.jpg" alt="Course Three">
-                            <div class="down-content">
-                                <h4>Deep Learning</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$140</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/NS.png" alt="Course Four">
-                            <div class="down-content">
-                                <h4>Networks And Security</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/CC.png" alt="Course Five">
-                            <div class="down-content">
-                                <h4>Cloud Computing And Big Data</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$270</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/DS.jpg" alt="Course Six">
-                            <div class="down-content">
-                                <h4>Data Structures And Algorithms</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$340</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/OOP.png" alt="Course Seven">
-                            <div class="down-content">
-                                <h4>Object Oriented Programming</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$360</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/CPP.jpg" alt="Course Eight">
-                            <div class="down-content">
-                                <h4>Introduction To Computer Science</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$480</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="insideCourse.php">
-                        <div class="item">
-                            <img src="../../public/images/IP.jpg" alt="Course Nine">
-                            <div class="down-content">
-                                <h4>Image Processing</h4>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-4">
-                                            <span>$560</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                    <?php
+                    // Assuming you have a database connection $conn
+                    $query = "SELECT * FROM courses"; // Replace with your table name
+                    $result = mysqli_query($conn, $query);
+
+                    while ($course = mysqli_fetch_assoc($result)) {
+                        echo '<a href="insideCourse.php?id=' . $course['course_ID'] . '">';
+                        echo '<div class="item">';
+                        // echo '<img src="../../public/images/' . $course['image'] . '" alt="' . $course['name'] . '">';
+                        echo '<div class="down-content">';
+                        echo '<h4>' . $course['course_name'] . '</h4>';
+                        echo '<div class="info">';
+                        echo '<div class="row">';
+                        echo '<div class="col-8">';
+                        // echo '<ul>';
+                        // for ($i = 0; $i < 5; $i++) {
+                        //     if ($i < $course['rating']) {
+                        //         echo '<li><i class="fa fa-star"></i></li>';
+                        //     } else {
+                        //         echo '<li><i class="fa fa-star-o"></i></li>';
+                        //     }
+                        // }
+                        // echo '</ul>';
+                        echo '</div>';
+                        echo '<div class="col-4">';
+                        echo '<span>$' . $course['fees'] . '</span>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
   <section class="our-facts">

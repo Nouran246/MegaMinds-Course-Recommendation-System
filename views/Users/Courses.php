@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php";
+// Database connection settings
+$host = 'localhost'; // Replace with your database host
+$dbname = 'megaminds'; // Replace with your database name
+$username = 'root'; // Replace with your database username
+$password = ''; // Replace with your database password
 
+try {
+  // Create a new PDO instance for database connection
+  $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+  // Set PDO error mode to exception for better error handling
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-session_start();
-// Assuming you have already verified the user's credentials
+  // Prepare and execute the query to fetch courses
+  $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags FROM courses");
+  $stmt->execute();
 
+  // Fetch all courses as an associative array
+  $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-
+} catch (PDOException $e) {
+  // Handle database connection errors
+  die("Database connection failed: " . $e->getMessage());
+}
 ?>
 
 
@@ -88,196 +102,69 @@ https://templatemo.com/tm-569-edu-meeting
   </section>
 
   <section class="meetings-page" id="meetings">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="filters">
-                <ul>
-                  <li data-filter="*"  class="active">All Courses</li>
-                  <li data-filter=".soon">Current Courses</li>
-                  <li data-filter=".imp">Recommeded Courses</li>
-                  <!-- <li data-filter=".att">Meetings</li> -->
-                </ul>
-              </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="filters">
+              <ul>
+                <li data-filter="*" class="active">All Courses</li>
+                <li data-filter=".soon">Current Courses</li>
+                <li data-filter=".imp">Recommended Courses</li>
+              </ul>
             </div>
-            <div class="col-lg-12">
-              <div class="row grid">
-                <div class="col-lg-4 templatemo-item-col all soon">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$160</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
+          </div>
+          <div class="col-lg-12">
+            <div class="row grid">
+              <?php
+              // Assuming $courses is fetched from your database
+              foreach ($courses as $course) {
+                $courseName = htmlspecialchars($course['course_name']);
+                $coursePrice = htmlspecialchars($course['fees']);
+              ?>
+              <div class="col-lg-4 templatemo-item-col all soon">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                      <span>$<?php echo $coursePrice; ?></span>
                     </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Month <span>1</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Introduction To AI</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
+                    <a href="meeting-details.php">
+                      <img src="../../public/images/placeholder.jpg" alt="Course Image">
+                    </a>
                   </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all imp">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$160</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/FSD.jpg" alt=""></a>
+                  <div class="down-content">
+                    <div class="date">
+                      <h6>Month <span>1</span></h6>
                     </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Mins <span>60</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Full Stack Developer</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all soon">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$140</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/DL.jpg" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Months <span>2</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Deep Learning</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all att">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$120</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/NS.png" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Hours <span>12</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Networks And Security</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all att">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$270</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/CC.png" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Hours <span>22</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Cloud Computing And Big Data</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all imp">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$270</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/DS.jpg" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Minutes <span>24</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Data Structures And Algorithms</h4></a>
-                      <!-- <p>TemplateMo is the best website<br>when it comes to Free CSS.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all imp att">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$340</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/OOP.png" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Hours <span>27</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Object Oriented Programming</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all soon imp">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$360</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/IP.jpg" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Hours <span>28</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Image Processing</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 templatemo-item-col all att soon">
-                  <div class="meeting-item">
-                    <div class="thumb">
-                      <div class="price">
-                        <span>$480</span>
-                      </div>
-                      <a href="meeting-details.php"><img src="../../public/images/CPP.jpg" alt=""></a>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6>Weeks <span>30</span></h6>
-                      </div>
-                      <a href="meeting-details.php"><h4>Introduction To Computer Science</h4></a>
-                      <!-- <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p> -->
-                    </div>
+                    <a href="meeting-details.php">
+                      <h4><?php echo $courseName; ?></h4>
+                    </a>
                   </div>
                 </div>
               </div>
+              <?php } ?>
             </div>
-            <div class="col-lg-12">
-              <div class="pagination">
-                <ul>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-              </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="pagination">
+              <ul>
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="footer">
-      <p>Copyright © 2024 MEGAMINDS. All Rights Reserved. 
-        </p>
-    </div>
-  </section>
+  </div>
+  <div class="footer">
+    <p>Copyright © 2024 MEGAMINDS. All Rights Reserved.</p>
+  </div>
+</section>
+
   </section>
 
 
