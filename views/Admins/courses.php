@@ -155,6 +155,7 @@ try {
             <label for="course_name" class="form-label">Course Name</label>
             <input type="text" class="form-control" id="course_name" name="course_name" required />
             <div id="course_name-error" class="invalid-feedback">Course name is required.</div>
+            <label id="erroraddname" class="form-label"></label>
           </div>
 
           <div class="mb-3">
@@ -234,6 +235,7 @@ try {
             <div class="mb-3">
               <label for="editCourseName" class="form-label">Course Name</label>
               <input type="text" class="form-control" id="editCourseName" name="course_name" required />
+              <label id="errorname" class="form-label"></label>
             </div>
             <div class="mb-3">
               <label for="editDescription" class="form-label">Description</label>

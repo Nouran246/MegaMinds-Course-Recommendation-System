@@ -122,18 +122,25 @@ $('#editCourseForm').on('submit', function (e) {
     // If valid, proceed with AJAX call
     if (isValid) {
         $.ajax({
-            url: '../../Controllers/editCourse.php',
+            url: '../../Controllers/editcourse.php',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
             success: function (response) {
-                if (response.status === 'success') {
-                    $('#editCourseModal').modal('hide');
-                    location.reload();
-                } else {
-                    // Handle errors from server response
-                    alert(response.message);
-                }
+              if (response.status === 'success') {
+                $('#editCourseModal').modal('hide');
+                location.reload();
+            } else if (response.status === 'error' && response.message === 'Course name already in use.') {
+              // Display the error message in the label
+              console.log("why");
+              $('#errorname').text(response.message)
+                  .show()            // Ensure the label is visible
+                  .css('color', 'red'); // Change the text color to red
+          }
+           else {
+                // Handle other errors from server response
+                alert(response.message);
+            }
             },
             error: function () {
                 alert('Error updating course');
