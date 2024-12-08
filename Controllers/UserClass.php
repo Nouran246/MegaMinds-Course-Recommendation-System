@@ -104,14 +104,12 @@ class User {
              } else {
                  // Incorrect password, display alert and redirect
                  echo "<script>
-                         alert('Incorrect password. Please try again.');
                          window.location.href = '/MegaMinds-Course-Recommendation-System/views/Users/index.php';
                        </script>";
              }
          } else {
              // Email does not exist in the database, display alert and redirect
              echo "<script>
-                     alert('Email does not exist. Please try again to register.');
                      window.location.href = '/MegaMinds-Course-Recommendation-System/views/Users/index.php';
                    </script>";
          }

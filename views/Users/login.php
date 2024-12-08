@@ -5,6 +5,7 @@ session_start(); // Start the session
 include_once "../../public/includes/DB.php";
 
 ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -42,18 +43,8 @@ include_once "../../public/includes/DB.php";
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="#courses">Courses</a></li>
-                            <!--  <li class="has-sub">
-                            <a href="javascript:void(0)">Meetings</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.php">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.php">Meeting Details</a></li>
-                            </ul>
-                        </li> -->
-                            <!--                         <li><a href="cart-page.php">Cart</a></li> 
- --><!--                         <li><a href="profile.php">My Profile</a></li> 
- -->
                             <li><a href="#contact">Contact Us</a></li>
-                            <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li> 
+                            <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li>
 
 
                         </ul>
@@ -100,53 +91,43 @@ include_once "../../public/includes/DB.php";
     </div>
 
 
-<div id="loginModal" class="modal">
+    <div id="loginModal" class="modal">
 
 
-<div class="scroll-to-section">
-    <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
-</div>
+        <div class="scroll-to-section">
+            <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
+        </div>
 
-<div id="loginModal" class="modal" >
-    <div class="modal-content">
-    <span class="close" onclick="window.location.href='index.php'">&times;</span>
-    <h2>Welcome back</h2>
-        <form method="post" action=../../Controllers/login.php>
-            <label for="Email">Email</label>
-            <input type="email" id="Email" name="Email" placeholder="Enter your Email" required>
-            <label for="Password">Password</label>
-            <div class="password-container">
-                <input type="password" id="Password" name="Password" placeholder="Enter your Password" required>
-                <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="window.location.href='index.php'">&times;</span>
+                <h2>Welcome back</h2>
+                <form method="post" action=../../Controllers/login.php>
+
+                    <label for="Email">Email</label>
+                    <input type="email" id="Email" name="Email" placeholder="Enter your Email">
+                    <span id="emailError" class="error-message" style="display:none; color:red; "></span>
+
+                    <label for="Password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="Password" name="Password" placeholder="Enter your Password">
+                        <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
+                    </div>
+                    <span id="passwordError" class="error-message" style="display:none; color:red;"></span>
+
+                    <button type="submit" class="login-btn">Login</button>
+
+                    <p>New to site? <a href="../../views/Users/register.php">Sign up</a></p>
+                </form>
             </div>
+        </div>
 
-            <a href="#" class="forgot-password">Forgot password?</a>
-
-            <button type="submit" class="login-btn">Login</button>
-
-            <!-- <div class="divider">or</div>
-            <button type="button" class="google-btn">
-                <img src="../../public/images/google.png" id="google" alt="Google Logo" class="google-icon">
-                Continue with Google
-            </button>
-            <button type="button" class="microsoft-btn">
-                <img src="../../public/images/microsoft.png" id="microsoft" alt="Microsoft Logo" class="google-icon">
-                Continue with Microsoft
-            </button>
-            <button type="button" class="apple-btn">
-                <img src="../../public/images/apple.png" id="apple" alt="Apple Logo" class="google-icon">
-                Continue with Apple
-            </button> -->
-
-            <p>New to site? <a href="../../views/Users/register.php">Sign up</a></p>
-        </form>
-    </div>
-</div>
-
-<?php
-// Make sure the path to DB.php is correct
-include_once "../../public/includes/DB.php";
-?>
-<script src="../../public/js/user js/Signin_and_up.js"></script>
+        <?php
+        // Make sure the path to DB.php is correct
+        include_once "../../public/includes/DB.php";
+        ?>
+        <script src="../../public/js/user js/Signin_and_up.js"></script>
+        <script src="../../public/js/user js/Signin_validation.js"></script>
 </body>
+
 </html>

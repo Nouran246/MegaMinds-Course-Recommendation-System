@@ -43,20 +43,8 @@ include_once "../../public/includes/DB.php";
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="#courses">Courses</a></li>
-                            <!--  <li class="has-sub">
-                            <a href="javascript:void(0)">Meetings</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.php">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.php">Meeting Details</a></li>
-                            </ul>
-                        </li> -->
-                            <!--                         <li><a href="cart-page.php">Cart</a></li> 
- --><!--                         <li><a href="profile.php">My Profile</a></li> 
- -->
                             <li><a href="#contact">Contact Us</a></li>
                             <li><a href="login.php">Sign In</a></li>
-
-
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -132,22 +120,6 @@ include_once "../../public/includes/DB.php";
                 <p id="confirmPasswordError" class="error-message"></p>
 
                 <button type="submit" class="login-btn">Create Account</button>
-
-
-                <!-- <div class="divider">or</div>
-                <button type="button" class="google-btn">
-                    <img src="../../public/images/google.png" id="google" alt="Google Logo" class="google-icon">
-                    Continue with Google
-                </button>
-                <button type="button" class="microsoft-btn">
-                    <img src="../../public/images/microsoft.png" id="microsoft" alt="Google Logo" class="google-icon">
-                    Continue with Microsoft
-                </button>
-                <button type="button" class="apple-btn">
-                    <img src="../../public/images/apple.png" id="apple" alt="Google Logo" class="google-icon">
-                    Continue with Apple
-                </button> -->
-
                 <p>Already has an account? <a href="login.php">Sign in</a></p>
             </form>
         </div>

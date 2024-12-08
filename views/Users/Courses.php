@@ -171,7 +171,6 @@ https://templatemo.com/tm-569-edu-meeting
   <!-- Bootstrap core JavaScript -->
     <script src="../../public/js/user js/jquery.min.js"></script>
     <script src="../../public/js/user js/bootstrap.min.js"></script>
-
     <script src="../../public/js/user js/isotope.min.js"></script>
     <script src="../../public/js/user js/owl-carousel.js"></script>
     <script src="../../public/js/user js/lightbox.js"></script>
@@ -181,13 +180,6 @@ https://templatemo.com/tm-569-edu-meeting
     <script src="../../public/js/user js/slick-slider.js"></script>
     <script src="../../public/js/user js/custom.js"></script>
     <script src="../../public/js/user js/courses.js"></script>
-   
- 
-
-
-
-
-
   </body>
 
 </html>
