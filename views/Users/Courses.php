@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start(); // Start the session
+include_once "../../public/includes/DB.php";
 // Database connection settings
 $host = 'localhost'; // Replace with your database host
 $dbname = 'megaminds'; // Replace with your database name
@@ -26,9 +28,7 @@ try {
 }
 ?>
 
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -165,7 +165,6 @@ https://templatemo.com/tm-569-edu-meeting
 </section>
 
   </section>
-
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
