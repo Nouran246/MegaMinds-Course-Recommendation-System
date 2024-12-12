@@ -1,85 +1,124 @@
-<!-- public\Controllers\UserClass.php -->
 <?php
 
 // include_once "../../../public/includes/DB.php";
 
 
-
+// Base User class
 class User
 {
-
     public $ID;
     public $FName;
     public $LName;
     public $Email;
     public $Password;
     public $role;
-    private $conn;
-    private $usersTable = 'users';
+
+    public function __construct($ID = null, $FName = null, $LName = null, $Email = null, $Password = null, $role = null)
+    {
+        $this->ID = $ID;
+        $this->FName = $FName;
+        $this->LName = $LName;
+        $this->Email = $Email;
+        $this->Password = $Password;
+        $this->role = $role;
+    }
+}
+
+// UserFactory class
+class UserFactory
+{
+    private $db;
 
     public function __construct($db)
     {
-        $this->conn = $db;
+        $this->db = $db;
     }
 
-    // // Constructor to initialize the database connection
-    // public function __construct() {
-    //     if ($ID != NULL){
-    // 		$sql="select * from users where 	ID=$ID";
-    // 		$User = mysqli_query($GLOBALS['con'],$sql);
-    // 		if ($row = mysqli_fetch_array($User)){
-    //             $this->ID=$row["ID"];
-    // 			$this->FName=$row["FName"];
-    //             $this->LName=$row["LName"];
-    //             $this->Email=$row["Email"];
-    //             $this->Password=$row["Password"];
-    //             $this->role = $row["role"];
-    // 			// $this->UserRole_obj=new UserType($row["role"]);
-    // 		}
-    // 	}
-    // }
-
-    static function Signup($FName, $LName, $Email, $Password)
+    public function createUserHandler($operation)
     {
-        $FName = htmlspecialchars($_POST["FName"]);
-        $LName = htmlspecialchars($_POST["LName"]);
-        $Email = htmlspecialchars($_POST["Email"]);
-        $Password = htmlspecialchars($_POST["Password"]);
+        switch ($operation) {
+            case 'Signup':
+                return new SignupHandler($this->db);
+            case 'Login':
+                return new LoginHandler($this->db);
+            case 'Edit':
+                return new EditUserHandler($this->db);
+            case 'Delete':
+                return new DeleteUserHandler($this->db);
+            default:
+                throw new Exception("Invalid operation");
+        }
+    }
+}
+
+// Abstract UserHandler class
+abstract class UserHandler
+{
+    protected $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+    abstract public function handle($data);
+}
+
+// SignupHandler class
+class SignupHandler extends UserHandler
+{
+    public function handle($data)
+    {
+        $FName = htmlspecialchars($data['FName']);
+        $LName = htmlspecialchars($data['LName']);
+        $Email = htmlspecialchars($data['Email']);
+        $Password = htmlspecialchars($data['Password']);
         $role = 1;
 
-        // Check if email already exists
-        $checkEmailQuery = "SELECT * FROM users WHERE Email = '$Email'";
-        $result = mysqli_query($GLOBALS['conn'], $checkEmailQuery);
+        $checkEmailQuery = "SELECT * FROM users WHERE Email = :email";
+        $stmt = $this->db->prepare($checkEmailQuery);
+        $stmt->execute(['email' => $Email]);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Email already exists, display a message
+        if ($stmt->rowCount() > 0) {
             echo "<script>alert('Email is already used. Please try a different email.');
               window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Users/index.php';</script>";
         } else {
-            // SQL Query to insert data
-            $sql = "INSERT INTO users (FName, LName, Email, Password) 
-                VALUES ('$FName', '$LName', '$Email', '$Password')";
+            // Secure password hashing
+            // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
 
-            // Execute query and check result
-            if (mysqli_query($GLOBALS['conn'], $sql)) {
-                $_SESSION['FName'] = $FName; // Store first name
-                $_SESSION['LName'] = $LName; // Store last name
-                // Redirect the user after successful insertion
+            $sql = "INSERT INTO users (FName, LName, Email, Password) VALUES (:fname, :lname, :email, :password)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['fname' => $FName, 'lname' => $LName, 'email' => $Email, 'password' => $Password]);
+
+            // Fetch the newly registered user's details
+            $getUserQuery = "SELECT * FROM users WHERE Email = :email";
+            $stmt = $this->db->prepare($getUserQuery);
+            $stmt->execute(['email' => $Email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['ID'];
+                $_SESSION['FName'] = $user['FName'];
+                $_SESSION['LName'] = $user['LName'];
+                $_SESSION['role'] = $role; // Assign the user's role
+
+                // Redirect to the user's dashboard
                 header("Location: /MegaMinds-Course-Recommendation-System/App/views/Users/Courses.php");
                 exit();
-            } else {
-                // Display the error for debugging
-                echo "Error: " . $sql . "<br>" . mysqli_error($GLOBALS['conn']);
             }
         }
     }
+}
 
-
-    public static function login($Email, $Password)
+// LoginHandler class
+class LoginHandler extends UserHandler
+{
+        public  function handle($data)
     {
         // Get form data and sanitize it
-        $Email = htmlspecialchars($_POST["Email"]);
-        $Password = htmlspecialchars($_POST["Password"]); // Raw password input
+        $Email = htmlspecialchars($data["Email"]);
+        $Password = htmlspecialchars($data["Password"]); // Raw password input
 
         // SQL Query to select the user
         $sql = "SELECT ID, FName, LName, Password, usertype_id FROM users WHERE Email = '$Email'";
@@ -120,90 +159,52 @@ class User
         }
     }
 
-    public static function editUser()
+
+}
+
+// EditUserHandler class
+class EditUserHandler extends UserHandler
+{
+    public function handle($data)
     {
-        try {
-            // Database connection
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $id = $data['id'];
+        $fname = $data['FName'];
+        $lname = $data['LName'];
+        $email = $data['Email'];
 
-            if (isset($_POST['id']) && isset($_POST['Fname']) && isset($_POST['Lname']) && isset($_POST['Email'])) {
-                $id = $_POST['id'];
-                $fname = $_POST['Fname'];
-                $lname = $_POST['Lname'];
-                $email = $_POST['Email'];
+        $checkEmailQuery = "SELECT COUNT(*) FROM users WHERE Email = :email AND ID != :id";
+        $stmt = $this->db->prepare($checkEmailQuery);
+        $stmt->execute(['email' => $email, 'id' => $id]);
 
-                // Check if the email already exists for another user
-                $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE Email = :email AND id != :id");
-                $stmt->execute(['email' => $email, 'id' => $id]);
-                $count = $stmt->fetchColumn();
-
-                if ($count > 0) {
-                    // Email is already in use by another user
-                    echo json_encode(['status' => 'error', 'message' => 'Email already in use.']);
-                    exit;
-                }
-
-                // Proceed to update the user if no duplicate email is found
-                $stmt = $pdo->prepare("UPDATE users SET Fname = :fname, Lname = :lname, Email = :email WHERE id = :id");
-                $stmt->bindParam(':fname', $fname);
-                $stmt->bindParam(':lname', $lname);
-                $stmt->bindParam(':email', $email);
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
-                if ($stmt->execute()) {
-                    echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => 'Failed to update user']);
-                }
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
-            }
-
-        } catch (PDOException $e) {
-            // Output database connection error
-            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
-        } catch (Exception $e) {
-            // Output general error
-            echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
+        if ($stmt->fetchColumn() > 0) {
+            echo json_encode(['status' => 'error', 'message' => 'Email already in use.']);
+            exit;
         }
-    }
 
-
-    // Delete user profile
-    public function deleteProfile($user_id)
-    {
-        $sql = "DELETE FROM " . $this->usersTable . " WHERE ID = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
-        return $stmt->execute();
-    }
-
-    public static function deleteUser($userId)
-    {
-        $userId = (int) $userId; // Ensure user ID is an integer
-        $sql = "DELETE FROM users WHERE ID = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            return json_encode(['status' => 'success', 'message' => 'User deleted successfully.']);
+        $updateQuery = "UPDATE users SET FName = :fname, LName = :lname, Email = :email WHERE ID = :id";
+        $stmt = $this->db->prepare($updateQuery);
+        if ($stmt->execute(['fname' => $fname, 'lname' => $lname, 'email' => $email, 'id' => $id])) {
+            echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
         } else {
-            return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update user']);
         }
     }
-    // Update user profile
-    public function updateProfile($user_id, $fname, $lname, $email)
-    {
-        $sql = "UPDATE " . $this->usersTable . " SET FName = :fname, LName = :lname, Email = :email" .
-            " WHERE ID = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':fname', $fname);
-        $stmt->bindParam(':lname', $lname);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+}
 
-        return $stmt->execute();
+// DeleteUserHandler class
+class DeleteUserHandler extends UserHandler
+{
+    public function handle($data)
+    {
+        $userId = $data['id'];
+
+        $deleteQuery = "DELETE FROM users WHERE ID = :id";
+        $stmt = $this->db->prepare($deleteQuery);
+        if ($stmt->execute(['id' => $userId])) {
+            echo json_encode(['status' => 'success', 'message' => 'User deleted successfully']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to delete user']);
+        }
     }
 }
 
@@ -279,89 +280,5 @@ class pages
         return $Result;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     // Method to get a user by ID
-//     public function getUserById($id) {
-//         $sql = "SELECT * FROM users WHERE ID = :id";
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//         $stmt->execute();
-//         return $stmt->fetch(PDO::FETCH_ASSOC);
-//     }
-
-//     // Method to update a user by ID
-//     public function updateUser($id, $firstName, $lastName, $email, $password = null, $role = 1) {
-//         $sql = "UPDATE users SET FName = :firstName, LName = :lastName, Email = :email, role = :role";
-//         if ($password) {
-//             $sql .= ", Password = :password";
-//         }
-//         $sql .= " WHERE ID = :id";
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':firstName', $firstName);
-//         $stmt->bindParam(':lastName', $lastName);
-//         $stmt->bindParam(':email', $email);
-//         $stmt->bindParam(':role', $role);
-//         if ($password) {
-//             $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT)); // Encrypt password
-//         }
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//         return $stmt->execute();
-//     }
-
-//     // Method to delete a user by ID
-//     public function deleteUser($id) {
-//         $sql = "DELETE FROM users WHERE ID = :id";
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//         return $stmt->execute();
-//     }
-
-//     // Method to get all users
-//     public function getAllUsers() {
-//         $sql = "SELECT * FROM users";
-//         $stmt = $this->pdo->query($sql);
-//         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-//     }
-// }
-
-
 
 ?>

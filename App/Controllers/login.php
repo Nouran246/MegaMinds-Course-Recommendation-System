@@ -5,17 +5,23 @@ include_once BASE_PATH . "public/includes/DB.php";
 include_once BASE_PATH . "App/Controllers/UserClass.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Email = htmlspecialchars($_POST["Email"]);
-    $Password = htmlspecialchars($_POST["Password"]);
-    
-    User::login($Email, $Password);
-    
-   /*  $_SESSION['FName'] = $user['FName'];
-    $_SESSION['LName'] = $user['LName']; */
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=megaminds;charset=utf8", "root", "");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $Email = htmlspecialchars($_POST["Email"]);
+        $Password = htmlspecialchars($_POST["Password"]);
+
+        // Use the factory to handle login
+        $factory = new UserFactory($db);
+        $handler = $factory->createUserHandler('Login');
+
+        $handler->handle([
+            'Email' => $Email,
+            'Password' => $Password
+        ]);
+    } catch (PDOException $e) {
+        echo "Database connection failed: " . $e->getMessage();
+    }
 }
-
-
-
-// Close the database connection
-mysqli_close($conn);
 ?>

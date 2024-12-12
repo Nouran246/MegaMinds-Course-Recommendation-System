@@ -1,20 +1,32 @@
 <?php
 session_start();
-// Include the database connection file
 define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
-
 include_once BASE_PATH . "public/includes/DB.php";
-// Existing PHP code
+include_once BASE_PATH . "App/Controllers/UserClass.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once BASE_PATH . "App/Controllers/UserClass.php";
-    $FName = htmlspecialchars($_POST["FName"]);
-    $LName = htmlspecialchars($_POST["LName"]);
-    $Email = htmlspecialchars($_POST["Email"]);
-    $Password = htmlspecialchars($_POST["Password"]);
-    // Get form data and sanitize it
-    User::Signup($FName,$LName,$Email,$Password);
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=megaminds;charset=utf8", "root", "");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $FName = htmlspecialchars($_POST["FName"]);
+        $LName = htmlspecialchars($_POST["LName"]);
+        $Email = htmlspecialchars($_POST["Email"]);
+        $Password = htmlspecialchars($_POST["Password"]);
+
+        // Use the factory to handle signup
+        $factory = new UserFactory($db);
+        $handler = $factory->createUserHandler('Signup');
+
+        $handler->handle([
+            'FName' => $FName,
+            'LName' => $LName,
+            'Email' => $Email,
+            'Password' => $Password
+        ]);
+    } catch (PDOException $e) {
+        echo "Database connection failed: " . $e->getMessage();
+    }
 }
-// Close the database connection
-mysqli_close($conn);
 
 ?>
