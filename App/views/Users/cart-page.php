@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
+include_once "../../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
 include "../../Controllers/UserClass.php";
 include "../../Controllers/CoursesClass.php";
 
@@ -117,10 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Cart</title>
 
   <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-  <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-  <link rel="stylesheet" href="../../public/css/user css/owl.css">
-  <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+  <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+  <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+  <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
 </head>
 
 <body>
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
+                  <a href="meeting-details.php"><img src="../../../public/images/AI.jpeg" alt=""></a>
                 </div>
                 <div class="down-content">
                   <div class="down-content">
@@ -295,8 +295,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="../../public/js/user js/jquery.min.js"></script>
-  <script src="../../public/js/user js/bootstrap.min.js"></script>
+  <script src="../../../public/js/user js/jquery.min.js"></script>
+  <script src="../../../public/js/user js/bootstrap.min.js"></script>
 
   <script src="assets/js/isotope.min.js"></script>
   <script src="assets/js/owl-carousel.js"></script>

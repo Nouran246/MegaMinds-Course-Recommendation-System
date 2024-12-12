@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 session_start(); // Start the session
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 // Database connection settings
 $host = 'localhost'; // Replace with your database host
 $dbname = 'megaminds'; // Replace with your database name
@@ -38,14 +38,14 @@ try {
     <title>Courses</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-    <link rel="stylesheet" href="../../public/css/user css/owl.css">
-    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+    <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
 <!--
 
 TemplateMo 569 Edu Meeting
@@ -130,7 +130,7 @@ https://templatemo.com/tm-569-edu-meeting
                             <div class="price">
                                 <span>$<?php echo $coursePrice; ?></span>
                             </div>
-                            <img src="../../public/images/placeholder.jpg" alt="Course Image">
+                            <img src="../../../public/images/placeholder.jpg" alt="Course Image">
                         </div>
                         <div class="down-content">
                             <div class="date">
@@ -168,17 +168,17 @@ https://templatemo.com/tm-569-edu-meeting
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-    <script src="../../public/js/user js/jquery.min.js"></script>
-    <script src="../../public/js/user js/bootstrap.min.js"></script>
-    <script src="../../public/js/user js/isotope.min.js"></script>
-    <script src="../../public/js/user js/owl-carousel.js"></script>
-    <script src="../../public/js/user js/lightbox.js"></script>
-    <script src="../../public/js/user js/tabs.js"></script>
-    <script src="../../public/js/user js/isotope.js"></script>
-    <script src="../../public/js/user js/video.js"></script>
-    <script src="../../public/js/user js/slick-slider.js"></script>
-    <script src="../../public/js/user js/custom.js"></script>
-    <script src="../../public/js/user js/courses.js"></script>
+    <script src="../../../public/js/user js/jquery.min.js"></script>
+    <script src="../../../public/js/user js/bootstrap.min.js"></script>
+    <script src="../../../public/js/user js/isotope.min.js"></script>
+    <script src="../../../public/js/user js/owl-carousel.js"></script>
+    <script src="../../../public/js/user js/lightbox.js"></script>
+    <script src="../../../public/js/user js/tabs.js"></script>
+    <script src="../../../public/js/user js/isotope.js"></script>
+    <script src="../../../public/js/user js/video.js"></script>
+    <script src="../../../public/js/user js/slick-slider.js"></script>
+    <script src="../../../public/js/user js/custom.js"></script>
+    <script src="../../../public/js/user js/courses.js"></script>
   </body>
 
 </html>

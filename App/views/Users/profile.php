@@ -3,7 +3,7 @@
 
 <?php
 session_start();
-include_once "../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
+include_once "../../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
 include "../../Controllers/UserClass.php";
 
 // Create a PDO connection
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user->deleteProfile($user_id)) {
             // echo "Account deleted successfully!";
             session_destroy();
-            header("Location: /MegaMinds-Course-Recommendation-System/views/Users/index.php");
+            header("Location: /MegaMinds-Course-Recommendation-System/App/views/Users/index.php");
             exit();
         } else {
             echo "Error deleting account.";
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>My Profile</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap CSS (Make sure this is included) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -97,15 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Public files (CSS)! -->
-    <link href="../../public/css/user css/profile.css" rel="stylesheet">
+    <link href="../../../public/css/user css/profile.css" rel="stylesheet">
 
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-    <link rel="stylesheet" href="../../public/css/user css/owl.css">
-    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+    <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
     <!--
 
 TemplateMo 569 Edu Meeting
@@ -420,20 +420,20 @@ https://templatemo.com/tm-569-edu-meeting
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="../../public/js/user js/jquery.min.js"></script>
-    <script src="../../public/js/user js/bootstrap.bundle.min.js"></script>
+    <script src="../../../public/js/user js/jquery.min.js"></script>
+    <script src="../../../public/js/user js/bootstrap.bundle.min.js"></script>
 
-    <script src="../../public/js/user js/isotope.min.js"></script>
-    <script src="../../public/js/user js/owl-carousel.js"></script>
-    <script src="../../public/js/user js/lightbox.js"></script>
-    <script src="../../public/js/user js/tabs.js"></script>
-    <script src="../../public/js/user js/isotope.js"></script>
-    <script src="../../public/js/user js/video.js"></script>
-    <script src="../../public/js/user js/slick-slider.js"></script>
-    <script src="../../public/js/user js/custom.js"></script>
+    <script src="../../../public/js/user js/isotope.min.js"></script>
+    <script src="../../../public/js/user js/owl-carousel.js"></script>
+    <script src="../../../public/js/user js/lightbox.js"></script>
+    <script src="../../../public/js/user js/tabs.js"></script>
+    <script src="../../../public/js/user js/isotope.js"></script>
+    <script src="../../../public/js/user js/video.js"></script>
+    <script src="../../../public/js/user js/slick-slider.js"></script>
+    <script src="../../../public/js/user js/custom.js"></script>
 
     <!-- Public files (JS)! -->
-    <script src="../../public/js/user js/profile.js"></script>
+    <script src="../../../public/js/user js/profile.js"></script>
     <script>
     document.getElementById('deleteAccount').addEventListener('click', function () {
         if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {

@@ -1,7 +1,7 @@
 <!-- public\Controllers\UserClass.php -->
 <?php
 
-// include_once "../public/includes/DB.php";
+// include_once "../../../public/includes/DB.php";
 
 
 
@@ -54,7 +54,7 @@ class User
         if (mysqli_num_rows($result) > 0) {
             // Email already exists, display a message
             echo "<script>alert('Email is already used. Please try a different email.');
-              window.location.href = '/MegaMinds-Course-Recommendation-System/views/Users/index.php';</script>";
+              window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Users/index.php';</script>";
         } else {
             // SQL Query to insert data
             $sql = "INSERT INTO users (FName, LName, Email, Password) 
@@ -65,7 +65,7 @@ class User
                 $_SESSION['FName'] = $FName; // Store first name
                 $_SESSION['LName'] = $LName; // Store last name
                 // Redirect the user after successful insertion
-                header("Location: /MegaMinds-Course-Recommendation-System/views/Users/Courses.php");
+                header("Location: /MegaMinds-Course-Recommendation-System/App/views/Users/Courses.php");
                 exit();
             } else {
                 // Display the error for debugging
@@ -99,23 +99,23 @@ class User
 
                 // Redirect based on user role
                 if ($user['usertype_id'] == 1) {
-                    header("Location: /MegaMinds-Course-Recommendation-System/views/Users/Courses.php");
+                    header("Location: /MegaMinds-Course-Recommendation-System/App/views/Users/Courses.php");
                 } elseif ($user['usertype_id'] == 2) {
-                    header("Location: /MegaMinds-Course-Recommendation-System/views/Admins/members.php");
+                    header("Location: /MegaMinds-Course-Recommendation-System/App/views/Admins/members.php");
                 }
                 exit();
             } else {
                 // Incorrect password, display error message
                 echo "<script>
                      alert('Incorrect email or password.');
-                     window.location.href = '/MegaMinds-Course-Recommendation-System/views/Users/index.php';
+                     window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Users/index.php';
                    </script>";
             }
         } else {
             // Email does not exist in the database, display error message
             echo "<script>
                  alert('Incorrect email or password.');
-                 window.location.href = '/MegaMinds-Course-Recommendation-System/views/Users/index.php';
+                 window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Users/index.php';
                </script>";
         }
     }

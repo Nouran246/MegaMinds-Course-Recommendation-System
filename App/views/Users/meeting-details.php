@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 session_start();
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 $host = 'localhost'; // or your host
 $dbname = 'megaminds'; // your database name
 $username = 'root'; // your username
@@ -65,14 +65,14 @@ if (isset($_GET['course_ID'])) {
     <title>Education Template - Meeting Detail Page</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-    <link rel="stylesheet" href="../../public/css/user css/owl.css">
-    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
-    <link rel="stylesheet" href="../../public/css/user css/meeting-details.css">
+    <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
+    <link rel="stylesheet" href="../../../public/css/user css/meeting-details.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <!--
@@ -248,17 +248,17 @@ https://templatemo.com/tm-569-edu-meeting
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-    <script src="../../public/js/user js/jquery/jquery.min.js"></script>
-    <script src="../../public/js/user js/bootstrap.bundle.min.js"></script>
+    <script src="../../../public/js/user js/jquery/jquery.min.js"></script>
+    <script src="../../../public/js/user js/bootstrap.bundle.min.js"></script>
 
-    <script src="../../public/js/user js/isotope.min.js"></script>
-    <script src="../../public/js/user js/owl-carousel.js"></script>
-    <script src="../../public/js/user js/lightbox.js"></script>
-    <script src="../../public/js/user js/tabs.js"></script>
-    <script src="../../public/js/user js/video.js"></script>
-    <script src="../../public/js/user js/slick-slider.js"></script>
-    <script src="../../public/js/user js/custom.js"></script>
-    <script src="../../public/js/user js/meeting-details.js"></script>
+    <script src="../../../public/js/user js/isotope.min.js"></script>
+    <script src="../../../public/js/user js/owl-carousel.js"></script>
+    <script src="../../../public/js/user js/lightbox.js"></script>
+    <script src="../../../public/js/user js/tabs.js"></script>
+    <script src="../../../public/js/user js/video.js"></script>
+    <script src="../../../public/js/user js/slick-slider.js"></script>
+    <script src="../../../public/js/user js/custom.js"></script>
+    <script src="../../../public/js/user js/meeting-details.js"></script>
 
 </body>
 

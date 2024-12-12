@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 
 session_start();
 ?>
@@ -16,14 +16,14 @@ session_start();
   <title>Megaminds</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../public/css/user css/signup_and_in.css" rel="stylesheet">
+  <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../public/css/user css/signup_and_in.css" rel="stylesheet">
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-  <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-  <link rel="stylesheet" href="../../public/css/user css/owl.css">
-  <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+  <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+  <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+  <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
 
 </head>
 
@@ -59,7 +59,7 @@ session_start();
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
     <video autoplay muted loop id="bg-video">
-      <source src="../../public/images/course-video.mp4" type="video/mp4" />
+      <source src="../../../public/images/course-video.mp4" type="video/mp4" />
     </video>
 
     <div class="video-overlay header-text">
@@ -91,7 +91,7 @@ session_start();
 
             <div class="item">
               <div class="icon">
-                <img src="../../public/images/service-icon-01.png" alt="">
+                <img src="../../../public/images/service-icon-01.png" alt="">
               </div>
               <div class="down-content">
                 <h4>Best Education</h4>
@@ -101,7 +101,7 @@ session_start();
 
             <div class="item">
               <div class="icon">
-                <img src="../../public/images/service-icon-02.png" alt="">
+                <img src="../../../public/images/service-icon-02.png" alt="">
               </div>
               <div class="down-content">
                 <h4>Best Teachers</h4>
@@ -112,7 +112,7 @@ session_start();
 
             <div class="item">
               <div class="icon">
-                <img src="../../public/images/service-icon-03.png" alt="">
+                <img src="../../../public/images/service-icon-03.png" alt="">
               </div>
               <div class="down-content">
                 <h4>Best Students</h4>
@@ -123,7 +123,7 @@ session_start();
 
             <div class="item">
               <div class="icon">
-                <img src="../../public/images/service-icon-02.png" alt="">
+                <img src="../../../public/images/service-icon-02.png" alt="">
               </div>
               <div class="down-content">
                 <h4>Best Education</h4>
@@ -134,7 +134,7 @@ session_start();
 
             <div class="item">
               <div class="icon">
-                <img src="../../public/images/service-icon-03.png" alt="">
+                <img src="../../../public/images/service-icon-03.png" alt="">
               </div>
               <div class="down-content">
                 <h4>Best Courses</h4>
@@ -181,7 +181,7 @@ session_start();
                   <div class="price">
                     <span>$22.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/meeting-01.jpg"
+                  <a href="meeting-details.php"><img src="../../../public/images/meeting-01.jpg"
                       alt="New Lecturer Meeting"></a>
                 </div>
                 <div class="down-content">
@@ -202,7 +202,7 @@ session_start();
                   <div class="price">
                     <span>$36.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/meeting-02.jpg" alt="Online Teaching"></a>
+                  <a href="meeting-details.php"><img src="../../../public/images/meeting-02.jpg" alt="Online Teaching"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
@@ -222,7 +222,7 @@ session_start();
                   <div class="price">
                     <span>$14.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/meeting-03.jpg"
+                  <a href="meeting-details.php"><img src="../../../public/images/meeting-03.jpg"
                       alt="Higher Education"></a>
                 </div>
                 <div class="down-content">
@@ -243,7 +243,7 @@ session_start();
                   <div class="price">
                     <span>$48.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/meeting-04.jpg"
+                  <a href="meeting-details.php"><img src="../../../public/images/meeting-04.jpg"
                       alt="Student Training"></a>
                 </div>
                 <div class="down-content">
@@ -361,7 +361,7 @@ session_start();
         <div class="col-lg-6 align-self-center">
           <div class="video">
             <a href="https://www.youtube.com/watch?v=HndV87XpkWg" target="_blank"><img
-                src="../../public/images/play-icon.png" alt=""></a>
+                src="../../../public/images/play-icon.png" alt=""></a>
           </div>
         </div>
       </div>
@@ -454,16 +454,16 @@ session_start();
   </div>
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="../../public/js/user js/jquery.min.js"></script>
-  <script src="../../public/js/user js/bootstrap.bundle.min.js"></script>
+  <script src="../../../public/js/user js/jquery.min.js"></script>
+  <script src="../../../public/js/user js/bootstrap.bundle.min.js"></script>
 
-  <script src="../../public/js/user js/isotope.min.js"></script>
-  <script src="../../public/js/user js/owl-carousel.js"></script>
-  <script src="../../public/js/user js/lightbox.js"></script>
-  <script src="../../public/js/user js/tabs.js"></script>
-  <script src="../../public/js/user js/video.js"></script>
-  <script src="../../public/js/user js/slick-slider.js"></script>
-  <script src="../../public/js/user js/custom.js"></script>
+  <script src="../../../public/js/user js/isotope.min.js"></script>
+  <script src="../../../public/js/user js/owl-carousel.js"></script>
+  <script src="../../../public/js/user js/lightbox.js"></script>
+  <script src="../../../public/js/user js/tabs.js"></script>
+  <script src="../../../public/js/user js/video.js"></script>
+  <script src="../../../public/js/user js/slick-slider.js"></script>
+  <script src="../../../public/js/user js/custom.js"></script>
   <script>
     //according to loftblog tut
     $('.nav li:first').addClass('active');
@@ -611,7 +611,7 @@ session_start();
   <!--  </div>
 </div> -->
 </body>
- <script src="../../public/js/user js/Signin_and_up.js"></script>
+ <script src="../../../public/js/user js/Signin_and_up.js"></script>
 
 
 </html>

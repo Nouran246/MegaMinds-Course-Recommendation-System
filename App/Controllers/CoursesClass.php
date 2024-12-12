@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 
 class Course {
     public $course_ID;
@@ -44,7 +44,7 @@ class Course {
         if (mysqli_num_rows($result) > 0) {
             // Course already exists, display a message
             echo "<script>alert('Course already exists. Please try a different name.');
-            window.location.href = '/MegaMinds-Course-Recommendation-System/views/Courses/index.php';</script>";
+            window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Courses/index.php';</script>";
         } else {
             // SQL Query to insert data
             $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags) 
@@ -53,7 +53,7 @@ class Course {
             // Execute query and check result
             if (mysqli_query($GLOBALS['conn'], $sql)) {
                 // Redirect the user after successful insertion
-                header("Location: /MegaMinds-Course-Recommendation-System/views/Admins/courses.php");
+                header("Location: /MegaMinds-Course-Recommendation-System/App/views/Admins/courses.php");
                 exit();
             } else {
                 // Display the error for debugging
