@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 // Define the base path and include necessary files
