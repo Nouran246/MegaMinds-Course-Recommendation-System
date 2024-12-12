@@ -4,7 +4,7 @@
 session_start();
 // Define the base path and include necessary files
 define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
-include_once "../public/includes/DB.php";
+include_once "../../public/includes/DB.php";
 include_once "CoursesClass.php";
 
 // Handle POST request
