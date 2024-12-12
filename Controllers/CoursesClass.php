@@ -13,13 +13,19 @@ class Course {
     public $fees;
     public $tags;
 
-    private $coursesTable = 'courses';
-    // Constructor
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($builder) {
+        $this->course_ID = $builder->course_ID;
+        $this->course_name = $builder->course_name;
+        $this->description = $builder->description;
+        $this->level = $builder->level;
+        $this->start_date = $builder->start_date;
+        $this->end_date = $builder->end_date;
+        $this->rating = $builder->rating;
+        $this->fees = $builder->fees;
+        $this->tags = $builder->tags;
     }
 
-    // Function to add a course to the database
+    // Static Methods for Database Operations
     static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags) {
         // Sanitize input data
         $course_name = htmlspecialchars($_POST["course_name"]);
@@ -56,6 +62,8 @@ class Course {
         }
     }
 
+
+    
     public static function deleteCourse($courseId) {
         $courseId = (int)$courseId; // Ensure course ID is an integer
         $sql = "DELETE FROM courses WHERE course_ID = :course_ID";
@@ -68,11 +76,10 @@ class Course {
             return json_encode(['status' => 'error', 'message' => 'Error executing the delete statement.']);
         }
     }
-    
 
 
-//    Function to edit a course in the database
-     static function editCourse() {
+    //    Function to edit a course in the database
+    static function editCourse() {
         try {
             // Database connection
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -130,4 +137,71 @@ class Course {
         }
     }
     }
+
+
+class Builder {
+    public $course_ID;
+    public $course_name;
+    public $description;
+    public $level;
+    public $start_date;
+    public $end_date;
+    public $rating;
+    public $fees;
+    public $tags;
+
+    public function setCourseID($course_ID) {
+        $this->course_ID = $course_ID;
+        return $this;
+    }
+
+    public function setCourseName($course_name) {
+        $this->course_name = $course_name;
+        return $this;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function setLevel($level) {
+        $this->level = $level;
+        return $this;
+    }
+
+    public function setStartDate($start_date) {
+        $this->start_date = $start_date;
+        return $this;
+    }
+
+    public function setEndDate($end_date) {
+        $this->end_date = $end_date;
+        return $this;
+    }
+
+    public function setRating($rating) {
+        $this->rating = $rating;
+        return $this;
+    }
+
+    public function setFees($fees) {
+        $this->fees = $fees;
+        return $this;
+    }
+
+    public function setTags($tags) {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    public function build() {
+        return new Course($this);
+    }
+}
+
+// Usage Example:
+// $builder = new Builder();
+// $course = $builder->setCourseName('Example Course')->setDescription('Description')->setLevel('Beginner')->setStartDate('2024-01-01')->setEndDate('2024-12-31')->setRating(5)->setFees(100)->setTags('tag1,tag2')->build();
+// echo Course::addCourse($db, $course);
 ?>

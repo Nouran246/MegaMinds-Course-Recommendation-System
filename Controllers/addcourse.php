@@ -1,22 +1,40 @@
+
+
 <?php
 session_start();
-// Include the database connection file
+// Define the base path and include necessary files
 define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
-
 include_once "../public/includes/DB.php";
+include_once "CoursesClass.php";
+
 // Handle POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once "CoursesClass.php";
-        // course_ID is auto-incremented in the database
-            $course_name = htmlspecialchars($_POST['course_name']);
-            $description = htmlspecialchars($_POST['description']);
-            $level = htmlspecialchars($_POST['level']);
-            $start_date = htmlspecialchars($_POST['start_date']);
-            $end_date = htmlspecialchars($_POST['end_date']);
-            $rating = htmlspecialchars($_POST['rating']);
-            $fees = htmlspecialchars($_POST['fees']);
-            $tags = htmlspecialchars($_POST['tags']);
-    Course::AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags);
-    }
-    mysqli_close($conn);
+    // Use the Builder class to construct a course object
+    $builder = new Builder();
+    $course = $builder
+        ->setCourseName(htmlspecialchars($_POST['course_name']))
+        ->setDescription(htmlspecialchars($_POST['description']))
+        ->setLevel(htmlspecialchars($_POST['level']))
+        ->setStartDate(htmlspecialchars($_POST['start_date']))
+        ->setEndDate(htmlspecialchars($_POST['end_date']))
+        ->setRating(htmlspecialchars($_POST['rating']))
+        ->setFees(htmlspecialchars($_POST['fees']))
+        ->setTags(htmlspecialchars($_POST['tags']))
+        ->build();
+
+    // Call the AddCourse method with the constructed course
+    Course::AddCourse(
+        $course->course_name,
+        $course->description,
+        $course->level,
+        $course->start_date,
+        $course->end_date,
+        $course->rating,
+        $course->fees,
+        $course->tags
+    );
+}
+
+// Close the database connection
+mysqli_close($conn);
 ?>
