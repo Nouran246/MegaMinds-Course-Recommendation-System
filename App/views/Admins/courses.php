@@ -32,9 +32,9 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manage Courses</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../public/css/admin css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../public/css/admin css/site.css" />
-  <link rel="stylesheet" href="../../public/css/admin css/header.css">
+  <link rel="stylesheet" href="../../../public/css/admin css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../../public/css/admin css/site.css" />
+  <link rel="stylesheet" href="../../../public/css/admin css/header.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
 </head>
@@ -298,7 +298,7 @@ try {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../public/js/admin js/courses.js"></script>
+  <script src="../../../public/js/admin js/courses.js"></script>
 
   <!--  Footer -->
 

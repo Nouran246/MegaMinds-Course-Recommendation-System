@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head><?php
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 
 session_start();
 ?>
@@ -14,14 +14,14 @@ session_start();
     <title>Course Content</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-    <link rel="stylesheet" href="../../public/css/user css/owl.css">
-    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
-    <link rel="stylesheet" href="../../public/css/user css/InsideCourse.css">
+    <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
+    <link rel="stylesheet" href="../../../public/css/user css/InsideCourse.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -147,18 +147,18 @@ session_start();
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="../../public/js/user js/jquery.min.js"></script>
-    <script src="../../public/js/user js/bootstrap.min.js"></script>
+    <script src="../../../public/js/user js/jquery.min.js"></script>
+    <script src="../../../public/js/user js/bootstrap.min.js"></script>
 
-    <script src="../../public/js/user js/isotope.min.js"></script>
-    <script src="../../public/js/user js/owl-carousel.js"></script>
-    <script src="../../public/js/user js/lightbox.js"></script>
-    <script src="../../public/js/user js/tabs.js"></script>
-    <script src="../../public/js/user js/isotope.js"></script>
-    <script src="../../public/js/user js/video.js"></script>
-    <script src="../../public/js/user js/slick-slider.js"></script>
-    <script src="../../public/js/user js/custom.js"></script>
-    <script src="../../public/js/user js/InsideCourse.js"></script>
+    <script src="../../../public/js/user js/isotope.min.js"></script>
+    <script src="../../../public/js/user js/owl-carousel.js"></script>
+    <script src="../../../public/js/user js/lightbox.js"></script>
+    <script src="../../../public/js/user js/tabs.js"></script>
+    <script src="../../../public/js/user js/isotope.js"></script>
+    <script src="../../../public/js/user js/video.js"></script>
+    <script src="../../../public/js/user js/slick-slider.js"></script>
+    <script src="../../../public/js/user js/custom.js"></script>
+    <script src="../../../public/js/user js/InsideCourse.js"></script>
    
 </body>
 

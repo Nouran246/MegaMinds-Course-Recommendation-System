@@ -6,7 +6,7 @@ define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendatio
 include_once BASE_PATH . "public/includes/DB.php";
 // Existing PHP code
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once BASE_PATH . "Controllers/UserClass.php";
+    include_once BASE_PATH . "App/Controllers/UserClass.php";
     $FName = htmlspecialchars($_POST["FName"]);
     $LName = htmlspecialchars($_POST["LName"]);
     $Email = htmlspecialchars($_POST["Email"]);

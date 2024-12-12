@@ -3,7 +3,7 @@ session_start();
 // Include the database connection file
 define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
 
-include_once "../public/includes/DB.php";
+include_once "../../public/includes/DB.php";
 // Handle POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once "CoursesClass.php";

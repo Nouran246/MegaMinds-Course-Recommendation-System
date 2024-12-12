@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
 session_start(); // Start the session
-include_once "../../public/includes/DB.php";
+include_once "../../../public/includes/DB.php";
 
 ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -17,14 +17,14 @@ include_once "../../public/includes/DB.php";
     <title>Megaminds</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../public/css/user css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../public/css/user css/signup_and_in.css" rel="stylesheet">
+    <link href="../../../public/css/user css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/css/user css/signup_and_in.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../public/css/user css/fontawesome.css">
-    <link rel="stylesheet" href="../../public/css/user css/templatemo-edu-meeting.css">
-    <link rel="stylesheet" href="../../public/css/user css/owl.css">
-    <link rel="stylesheet" href="../../public/css/user css/lightbox.css">
+    <link rel="stylesheet" href="../../../public/css/user css/fontawesome.css">
+    <link rel="stylesheet" href="../../../public/css/user css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="../../../public/css/user css/owl.css">
+    <link rel="stylesheet" href="../../../public/css/user css/lightbox.css">
 
 </head>
 
@@ -44,7 +44,9 @@ include_once "../../public/includes/DB.php";
                         <ul class="nav">
                             <li><a href="#courses">Courses</a></li>
                             <li><a href="#contact">Contact Us</a></li>
-                            <li><a href="login.php">Sign In</a></li>
+                            <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li>
+
+
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -60,7 +62,7 @@ include_once "../../public/includes/DB.php";
     <!-- ***** Main Banner Area Start ***** -->
     <section class="section main-banner" id="top" data-section="section1">
         <video autoplay muted loop id="bg-video">
-            <source src="../../public/images/course-video.mp4" type="video/mp4" />
+            <source src="../../../public/images/course-video.mp4" type="video/mp4" />
         </video>
 
         <div class="video-overlay header-text">
@@ -88,42 +90,44 @@ include_once "../../public/includes/DB.php";
         <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
     </div>
 
-    <div id="signUpModal" class="modal">
-        <div class="modal-content">
-        <span class="close" onclick="window.location.href='index.php'">&times;</span>
-            <h2>Sign up</h2>
-            <form action="../../Controllers/Signup.php" method="POST" id = "signupModal">
-                <label for="FName">First Name</label>
-                <input type="text" id="FName" name="FName" placeholder="Enter your First Name">
-                <p id="firstnameError" class="error-message"></p>
 
-                <label for="LName">Last Name</label>
-                <input type="text" id="LName" name="LName" placeholder="Enter your Last Name" >
-                <p id="lastnameError" class="error-message"></p>
+    <div id="loginModal" class="modal">
 
-                <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" placeholder="Enter your Email" >
-                <p id="emailError" class="error-message"></p>
 
-                <label for="Password">Password</label>
-                <div class="password-container">
-                    <input type="password" id="Password" name="Password" placeholder="Enter a Password" >
-                    <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
-                </div>
-                <p id="passwordError" class="error-message"></p>
-
-                <label for="password">Confirm Password</label>
-                <div class="password-container">
-                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your Password" >
-                    <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
-                </div>
-                <p id="confirmPasswordError" class="error-message"></p>
-
-                <button type="submit" class="login-btn">Create Account</button>
-                <p>Already has an account? <a href="login.php">Sign in</a></p>
-            </form>
+        <div class="scroll-to-section">
+            <a href="javascript:void(0)" id="openModal">Join Us Now!</a>
         </div>
-    </div>
-    <script src="../../public/js/user js/Signin_and_up.js"></script>
+
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="window.location.href='index.php'">&times;</span>
+                <h2>Welcome back</h2>
+                <form method="post" action=../../Controllers/login.php>
+
+                    <label for="Email">Email</label>
+                    <input type="email" id="Email" name="Email" placeholder="Enter your Email">
+                    <span id="emailError" class="error-message" style="display:none; color:red; "></span>
+
+                    <label for="Password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="Password" name="Password" placeholder="Enter your Password">
+                        <button type="button" class="toggle-password" onclick="togglePassword()">&#128065;</button>
+                    </div>
+                    <span id="passwordError" class="error-message" style="display:none; color:red;"></span>
+
+                    <button type="submit" class="login-btn">Login</button>
+
+                    <p>New to site? <a href="../../views/Users/register.php">Sign up</a></p>
+                </form>
+            </div>
+        </div>
+
+        <?php
+        // Make sure the path to DB.php is correct
+        include_once "../../../public/includes/DB.php";
+        ?>
+        <script src="../../../public/js/user js/Signin_and_up.js"></script>
+        <script src="../../../public/js/user js/Signin_validation.js"></script>
 </body>
+
 </html>
