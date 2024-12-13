@@ -2,7 +2,7 @@
 session_start();
 define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'] . "/MegaMinds-Course-Recommendation-System/");
 include_once BASE_PATH . "public/includes/DB.php";
-include_once BASE_PATH . "App/Controllers/UserClass.php";
+include_once BASE_PATH . "App/Model/UserClass.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {

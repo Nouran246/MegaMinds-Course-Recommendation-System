@@ -2,8 +2,8 @@
 <html lang="en">
 <?php
 include_once "../../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
-include "../../Controllers/UserClass.php";
-include "../../Controllers/CoursesClass.php";
+include "../../Model/UserClass.php";
+include "../../Model/CoursesClass.php";
 
 // Database connection
 $servername = "localhost";

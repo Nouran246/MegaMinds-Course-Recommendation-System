@@ -4,7 +4,7 @@
 <?php
 session_start();
 include_once "../../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
-include "../../Controllers/UserClass.php";
+include "../../Model/UserClass.php";
 
 // Create a PDO connection
 $servername = "localhost";
