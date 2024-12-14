@@ -13,17 +13,17 @@ class Course {
     public $fees;
     public $tags;
 
-    public function __construct($builder) {
-        $this->course_ID = $builder->course_ID;
-        $this->course_name = $builder->course_name;
-        $this->description = $builder->description;
-        $this->level = $builder->level;
-        $this->start_date = $builder->start_date;
-        $this->end_date = $builder->end_date;
-        $this->rating = $builder->rating;
-        $this->fees = $builder->fees;
-        $this->tags = $builder->tags;
-    }
+    // public function __construct($builder) {
+    //     $this->course_ID = $builder->course_ID;
+    //     $this->course_name = $builder->course_name;
+    //     $this->description = $builder->description;
+    //     $this->level = $builder->level;
+    //     $this->start_date = $builder->start_date;
+    //     $this->end_date = $builder->end_date;
+    //     $this->rating = $builder->rating;
+    //     $this->fees = $builder->fees;
+    //     $this->tags = $builder->tags;
+    // }
 
     // Static Methods for Database Operations
     static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags) {

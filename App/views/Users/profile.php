@@ -3,7 +3,7 @@
 
 <?php
 session_start();
-include_once "../../../public/includes/DB.php"; // Make sure this file establishes a PDO connection
+include_once "../../../public/includes/DB.php"; // Ensure this file establishes a PDO connection
 include "../../Model/UserClass.php";
 
 // Create a PDO connection
@@ -19,36 +19,32 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-$user = new User($conn);
-
-// Fetch user ID from the session
+// Verify session
 if (!isset($_SESSION['user_id'])) {
     die('User not logged in.');
 }
 
+// Fetch user ID from session
 $user_id = $_SESSION['user_id'];
 
-// Fetch user data from the database
+// Fetch user data
 $stmt = $conn->prepare("SELECT * FROM users WHERE ID = :id");
 $stmt->execute(['id' => $user_id]);
 $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Check if user data is found
 if (!$user_data) {
     die('User not found.');
 }
 
-// Debugging: Print user data
-// Uncomment the following line to see what data is fetched
-// var_dump($user_data);
+// Instantiate User class
+$user = new User($conn);
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the deleteAccount button was pressed
     if (isset($_POST['deleteAccount'])) {
-        // Call the deleteProfile method
-        if ($user->deleteProfile($user_id)) {
-            // echo "Account deleted successfully!";
+        // Delete account
+        $deleteHandler = new DeleteUserHandler($conn); // Use the appropriate handler
+        if ($deleteHandler->handle(['id' => $user_id])) {
             session_destroy();
             header("Location: /MegaMinds-Course-Recommendation-System/App/views/Users/index.php");
             exit();
@@ -56,20 +52,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error deleting account.";
         }
     } else {
-        // Collect form data for profile update
+        // Update profile
         $fname = htmlspecialchars(trim($_POST['FName']));
         $lname = htmlspecialchars(trim($_POST['LName']));
         $email = htmlspecialchars(trim($_POST['Email']));
 
-        // Update the profile
-        if ($user->updateProfile($user_id, $fname, $lname, $email)) {
+        $updateHandler = new UpdateProfileHandler($conn); // Use the appropriate handler
+        if ($updateHandler->handle(['id' => $user_id, 'FName' => $fname, 'LName' => $lname, 'Email' => $email])) {
             echo "Profile updated!";
         } else {
             echo "Error updating profile.";
         }
     }
 }
-
 ?>
 
 

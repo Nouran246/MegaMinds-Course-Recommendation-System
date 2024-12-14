@@ -45,6 +45,8 @@ class UserFactory
                 return new EditUserHandler($this->db);
             case 'Delete':
                 return new DeleteUserHandler($this->db);
+            case 'UpdateProfile':
+                return new UpdateProfileHandler($this->db); // New handler
             default:
                 throw new Exception("Invalid operation");
         }
@@ -204,6 +206,31 @@ class DeleteUserHandler extends UserHandler
             echo json_encode(['status' => 'success', 'message' => 'User deleted successfully']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Failed to delete user']);
+        }
+    }
+}
+
+// UpdateProfileHandler class
+class UpdateProfileHandler extends UserHandler
+{
+    public function handle($data)
+    {
+        $user_id = $data['id'];
+        $fname = $data['FName'];
+        $lname = $data['LName'];
+        $email = $data['Email'];
+
+        $sql = "UPDATE users SET FName = :fname, LName = :lname, Email = :email WHERE ID = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Profile updated successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update profile.']);
         }
     }
 }
