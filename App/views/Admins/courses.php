@@ -1,4 +1,5 @@
 <?php
+// App\views\Admins\courses.php
 // Database connection settings
 $host = 'localhost'; // Replace with your database host
 $dbname = 'megaminds'; // Replace with your database name
@@ -12,7 +13,7 @@ try {
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // Prepare and execute the query to fetch courses
-  $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags FROM courses");
+  $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags, image FROM courses");
   $stmt->execute();
 
   // Fetch all courses as an associative array
@@ -99,6 +100,7 @@ try {
             <th>Rating</th>
             <th>Fees</th>
             <th>Tags</th>
+            <th>Image</th>
             <th>Operation</th>
           </tr>
         </thead>
@@ -114,6 +116,7 @@ try {
               <td><?php echo htmlspecialchars($course['rating']); ?></td>
               <td>$<?php echo htmlspecialchars($course['fees']); ?></td>
               <td><?php echo htmlspecialchars($course['tags']); ?></td>
+              <td><?php echo htmlspecialchars($course['image']); ?></td>
               <td>
                 <button class="btn btn-warning btn-sm edit-button" data-course-id="<?php echo $course['course_ID']; ?>"
                   data-course-name="<?php echo htmlspecialchars($course['course_name']); ?>"
@@ -123,8 +126,8 @@ try {
                   data-end-date="<?php echo htmlspecialchars($course['end_date']); ?>"
                   data-rating="<?php echo htmlspecialchars($course['rating']); ?>"
                   data-fees="<?php echo htmlspecialchars($course['fees']); ?>"
-                  data-tags="<?php echo htmlspecialchars($course['tags']); ?>">Edit</button>
-
+                  data-tags="<?php echo htmlspecialchars($course['tags']); ?>"
+                  data-image="<?php echo htmlspecialchars($course['image']); ?>">Edit</button>
                 <button class="btn btn-danger btn-sm delete-button"
                   data-id="<?php echo $course['course_ID']; ?>">Delete</button>
 
@@ -211,6 +214,12 @@ try {
             <input type="text" class="form-control" id="tags" name="tags" required />
             <div id="tags-error" class="invalid-feedback">Tags are required.</div>
           </div>
+          
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" required />
+            <div id="image-error" class="invalid-feedback">Image is required.</div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -264,6 +273,10 @@ try {
             <div class="mb-3">
               <label for="editTags" class="form-label">Tags</label>
               <input type="text" class="form-control" id="editTags" name="tags" />
+            </div>
+            <div class="mb-3">
+              <label for="editImage" class="form-label">Image</label>
+              <input type="file" class="form-control" id="editImage" name="image" accept="image/*" required />
             </div>
           </div>
           <div class="modal-footer">

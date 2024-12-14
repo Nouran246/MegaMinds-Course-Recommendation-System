@@ -1,4 +1,5 @@
 <?php
+// App\Model\CoursesClass.php
 session_start();
 include_once "../../../public/includes/DB.php";
 
@@ -12,6 +13,7 @@ class Course {
     public $rating;
     public $fees;
     public $tags;
+    public $image;
 
     // public function __construct($builder) {
     //     $this->course_ID = $builder->course_ID;
@@ -26,7 +28,7 @@ class Course {
     // }
 
     // Static Methods for Database Operations
-    static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags) {
+    static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags, $image) {
         // Sanitize input data
         $course_name = htmlspecialchars($_POST["course_name"]);
         $description = htmlspecialchars($_POST["description"]);
@@ -36,7 +38,8 @@ class Course {
         $rating = htmlspecialchars($_POST["rating"]);
         $fees = htmlspecialchars($_POST["fees"]);
         $tags = htmlspecialchars($_POST["tags"]);
-
+        $image = htmlspecialchars($_POST["image"]);
+        
         // Check if course name already exists
         $checkCourseQuery = "SELECT * FROM courses WHERE course_name = '$course_name'";
         $result = mysqli_query($GLOBALS['conn'], $checkCourseQuery);
@@ -47,8 +50,8 @@ class Course {
             window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Courses/index.php';</script>";
         } else {
             // SQL Query to insert data
-            $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags) 
-                    VALUES ('$course_name', '$description', '$level', '$start_date', '$end_date', '$rating', '$fees', '$tags')";
+            $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags, Image) 
+                    VALUES ('$course_name', '$description', '$level', '$start_date', '$end_date', '$rating', '$fees', '$tags', '$image')";
 
             // Execute query and check result
             if (mysqli_query($GLOBALS['conn'], $sql)) {
@@ -85,7 +88,7 @@ class Course {
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
+            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags']) && isset($_POST['image'])) {
                 $courseId = $_POST['course_ID'];
                 $courseName = $_POST['course_name'];
                 $description = $_POST['description'];
@@ -95,6 +98,7 @@ class Course {
                 $rating = $_POST['rating'];
                 $fees = $_POST['fees'];
                 $tags = $_POST['tags'];
+                $image = $_POST['image'];
         
                 // Check if the course name already exists for another course
                 $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
@@ -108,7 +112,7 @@ class Course {
                 }
         
                 // Proceed to update the course if no duplicate course name is found
-                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
+                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags, image = :image WHERE course_ID = :course_ID");
                 $stmt->bindParam(':course_name', $courseName);
                 $stmt->bindParam(':description', $description);
                 $stmt->bindParam(':level', $level);
@@ -117,7 +121,9 @@ class Course {
                 $stmt->bindParam(':rating', $rating);
                 $stmt->bindParam(':fees', $fees);
                 $stmt->bindParam(':tags', $tags);
+                $stmt->bindParam(':image', $image);
                 $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
+
         
                 if ($stmt->execute()) {
                     echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
@@ -149,6 +155,7 @@ class Builder {
     public $rating;
     public $fees;
     public $tags;
+    public $image;
 
     public function setCourseID($course_ID) {
         $this->course_ID = $course_ID;
@@ -192,6 +199,11 @@ class Builder {
 
     public function setTags($tags) {
         $this->tags = $tags;
+        return $this;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
         return $this;
     }
 
