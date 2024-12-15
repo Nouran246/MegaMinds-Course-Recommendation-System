@@ -16,7 +16,7 @@ try {
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // Prepare and execute the query to fetch courses
-  $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags FROM courses");
+  $stmt = $pdo->prepare("SELECT course_ID, course_name, description, level, start_date, end_date, rating, fees, tags, image FROM courses");
   $stmt->execute();
 
   // Fetch all courses as an associative array
@@ -130,8 +130,8 @@ https://templatemo.com/tm-569-edu-meeting
                             <div class="price">
                                 <span>$<?php echo $coursePrice; ?></span>
                             </div>
-                            <img src="../../../public/images/placeholder.jpg" alt="Course Image">
-                        </div>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($course['image']); ?>" alt="Course Image">
+                            </div>
                         <div class="down-content">
                             <div class="date">
                                 <h6>Month <span>1</span></h6>

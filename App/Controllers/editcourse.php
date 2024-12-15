@@ -1,4 +1,5 @@
 <?php
+// App\Controllers\editcourse.php
 // Database connection settings
 $host = 'localhost'; // Replace with your database host
 $dbname = 'megaminds'; // Replace with your database name
