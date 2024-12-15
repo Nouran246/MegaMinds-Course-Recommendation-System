@@ -11,7 +11,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Check if the request is for updating a course
-    if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags']) && isset($_POST['image']) ) {
+    if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags']) ) {
         $courseId = (int)$_POST['course_ID'];
         $courseName = $_POST['course_name'];
         $description = $_POST['description'];
@@ -21,7 +21,7 @@ try {
         $rating = $_POST['rating'];
         $fees = $_POST['fees'];
         $tags = $_POST['tags'];
-        $image = $_POST['image'];
+        // $image = $_POST['image'];
 
 
         // Check if the course name already exists for another course
@@ -36,7 +36,7 @@ try {
         }
 
         // Proceed to update the course if no duplicate course name is found
-        $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags, image = :image WHERE course_ID = :course_ID");
+        $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
         $stmt->bindParam(':course_name', $courseName);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':level', $level);
@@ -45,7 +45,7 @@ try {
         $stmt->bindParam(':rating', $rating);
         $stmt->bindParam(':fees', $fees);
         $stmt->bindParam(':tags', $tags);
-        $stmt->bindParam(':image', $image);
+        // $stmt->bindParam(':image', $image);
         $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
