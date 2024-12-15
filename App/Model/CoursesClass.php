@@ -3,7 +3,8 @@
 session_start();
 include_once "../../../public/includes/DB.php";
 
-class Course {
+class Course
+{
     public $course_ID;
     public $course_name;
     public $description;
@@ -28,7 +29,8 @@ class Course {
     // }
 
     // Static Methods for Database Operations
-    static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags, $image) {
+    static function AddCourse($course_name, $description, $level, $start_date, $end_date, $rating, $fees, $tags, $image)
+    {
         // Sanitize input data
         $course_name = htmlspecialchars($_POST["course_name"]);
         $description = htmlspecialchars($_POST["description"]);
@@ -38,8 +40,20 @@ class Course {
         $rating = htmlspecialchars($_POST["rating"]);
         $fees = htmlspecialchars($_POST["fees"]);
         $tags = htmlspecialchars($_POST["tags"]);
-        $image = htmlspecialchars($_POST["image"]);
-        
+
+        // Validate and process the image
+        $image = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $imageFile = $_FILES['image'];
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (in_array($imageFile['type'], $allowedTypes) && $imageFile['size'] <= 2 * 1024 * 1024) { // Max size: 2MB
+                $image = addslashes(file_get_contents($imageFile['tmp_name'])); // Escape for SQL
+            } else {
+                echo "<script>alert('Invalid image format or size exceeds 2MB.');</script>";
+                return;
+            }
+        }
+
         // Check if course name already exists
         $checkCourseQuery = "SELECT * FROM courses WHERE course_name = '$course_name'";
         $result = mysqli_query($GLOBALS['conn'], $checkCourseQuery);
@@ -50,7 +64,7 @@ class Course {
             window.location.href = '/MegaMinds-Course-Recommendation-System/App/views/Courses/index.php';</script>";
         } else {
             // SQL Query to insert data
-            $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags, Image) 
+            $sql = "INSERT INTO courses (course_name, description, level, start_date, end_date, rating, fees, tags, image) 
                     VALUES ('$course_name', '$description', '$level', '$start_date', '$end_date', '$rating', '$fees', '$tags', '$image')";
 
             // Execute query and check result
@@ -66,13 +80,14 @@ class Course {
     }
 
 
-    
-    public static function deleteCourse($courseId) {
-        $courseId = (int)$courseId; // Ensure course ID is an integer
+
+    public static function deleteCourse($courseId)
+    {
+        $courseId = (int) $courseId; // Ensure course ID is an integer
         $sql = "DELETE FROM courses WHERE course_ID = :course_ID";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
-    
+
         if ($stmt->execute()) {
             return json_encode(['status' => 'success', 'message' => 'Course deleted successfully.']);
         } else {
@@ -82,13 +97,14 @@ class Course {
 
 
     //    Function to edit a course in the database
-    static function editCourse() {
+    static function editCourse()
+    {
         try {
             // Database connection
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags']) && isset($_POST['image'])) {
+
+            if (isset($_POST['course_ID']) && isset($_POST['course_name']) && isset($_POST['description']) && isset($_POST['level']) && isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['rating']) && isset($_POST['fees']) && isset($_POST['tags'])) {
                 $courseId = $_POST['course_ID'];
                 $courseName = $_POST['course_name'];
                 $description = $_POST['description'];
@@ -98,21 +114,20 @@ class Course {
                 $rating = $_POST['rating'];
                 $fees = $_POST['fees'];
                 $tags = $_POST['tags'];
-                $image = $_POST['image'];
-        
+
                 // Check if the course name already exists for another course
                 $stmt = $pdo->prepare("SELECT COUNT(*) FROM courses WHERE course_name = :course_name AND course_ID != :course_ID");
                 $stmt->execute(['course_name' => $courseName, 'course_ID' => $courseId]);
                 $count = $stmt->fetchColumn();
-        
+
                 if ($count > 0) {
                     // Course name is already in use by another course
                     echo json_encode(['status' => 'error', 'message' => 'Course name already in use.']);
                     exit;
                 }
-        
+
                 // Proceed to update the course if no duplicate course name is found
-                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags, image = :image WHERE course_ID = :course_ID");
+                $stmt = $pdo->prepare("UPDATE courses SET course_name = :course_name, description = :description, level = :level, start_date = :start_date, end_date = :end_date, rating = :rating, fees = :fees, tags = :tags WHERE course_ID = :course_ID");
                 $stmt->bindParam(':course_name', $courseName);
                 $stmt->bindParam(':description', $description);
                 $stmt->bindParam(':level', $level);
@@ -121,10 +136,9 @@ class Course {
                 $stmt->bindParam(':rating', $rating);
                 $stmt->bindParam(':fees', $fees);
                 $stmt->bindParam(':tags', $tags);
-                $stmt->bindParam(':image', $image);
                 $stmt->bindParam(':course_ID', $courseId, PDO::PARAM_INT);
 
-        
+
                 if ($stmt->execute()) {
                     echo json_encode(['status' => 'success', 'message' => 'Course updated successfully']);
                 } else {
@@ -133,7 +147,7 @@ class Course {
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Missing required data']);
             }
-        
+
         } catch (PDOException $e) {
             // Output database connection error
             echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
@@ -142,10 +156,11 @@ class Course {
             echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
-    }
+}
 
 
-class Builder {
+class Builder
+{
     public $course_ID;
     public $course_name;
     public $description;
@@ -157,57 +172,68 @@ class Builder {
     public $tags;
     public $image;
 
-    public function setCourseID($course_ID) {
+    public function setCourseID($course_ID)
+    {
         $this->course_ID = $course_ID;
         return $this;
     }
 
-    public function setCourseName($course_name) {
+    public function setCourseName($course_name)
+    {
         $this->course_name = $course_name;
         return $this;
     }
 
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
         return $this;
     }
 
-    public function setLevel($level) {
+    public function setLevel($level)
+    {
         $this->level = $level;
         return $this;
     }
 
-    public function setStartDate($start_date) {
+    public function setStartDate($start_date)
+    {
         $this->start_date = $start_date;
         return $this;
     }
 
-    public function setEndDate($end_date) {
+    public function setEndDate($end_date)
+    {
         $this->end_date = $end_date;
         return $this;
     }
 
-    public function setRating($rating) {
+    public function setRating($rating)
+    {
         $this->rating = $rating;
         return $this;
     }
 
-    public function setFees($fees) {
+    public function setFees($fees)
+    {
         $this->fees = $fees;
         return $this;
     }
 
-    public function setTags($tags) {
+    public function setTags($tags)
+    {
         $this->tags = $tags;
         return $this;
     }
 
-    public function setImage($image) {
+    public function setImage($image)
+    {
         $this->image = $image;
         return $this;
     }
 
-    public function build() {
+    public function build()
+    {
         return new Course($this);
     }
 }

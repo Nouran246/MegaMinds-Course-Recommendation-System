@@ -9,10 +9,28 @@ include_once "../Model/CoursesClass.php";
 // Handle POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
+    $image = null;
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $image = file_get_contents($_FILES['image']['tmp_name']); // Get the binary data
+        
+        $imageTmpPath = $_FILES['image']['tmp_name'];
+        $imageType = mime_content_type($imageTmpPath);
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+        if (in_array($imageType, $allowedTypes)) {
+            if ($_FILES['image']['size'] <= 2 * 1024 * 1024) { // Limit: 2MB
+                $image = file_get_contents($imageTmpPath);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Image size exceeds 2MB."]);
+                exit;
+            }
+        } else {
+            echo json_encode(["status" => "error", "message" => "Unsupported image type."]);
+            exit;
+        }
     } else {
-        $image = null; // Handle error or set a default value
+        echo json_encode(["status" => "error", "message" => "Image upload failed."]);
+        exit;
     }
     // Use the Builder class to construct a course object
     $builder = new Builder();

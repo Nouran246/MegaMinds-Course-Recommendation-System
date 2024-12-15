@@ -116,7 +116,14 @@ try {
               <td><?php echo htmlspecialchars($course['rating']); ?></td>
               <td>$<?php echo htmlspecialchars($course['fees']); ?></td>
               <td><?php echo htmlspecialchars($course['tags']); ?></td>
-              <td><?php echo htmlspecialchars($course['image']); ?></td>
+              <td>
+                <?php if (!empty($course['image'])): ?>
+                  <img src="<?= htmlspecialchars($course['image']) ?>" alt="Course Image"
+                    style="width: 100px; height: auto;">
+                <?php else: ?>
+                  No image available
+                <?php endif; ?>
+              </td>
               <td>
                 <button class="btn btn-warning btn-sm edit-button" data-course-id="<?php echo $course['course_ID']; ?>"
                   data-course-name="<?php echo htmlspecialchars($course['course_name']); ?>"
@@ -146,89 +153,89 @@ try {
 
   <!-- Add course Modal -->
   <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <form action="../../Controllers/addcourse.php" method="POST" enctype="multipart/form-data" id="add-blog-form">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addBlogModalLabel">Add New Course</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="course_name" class="form-label">Course Name</label>
-            <input type="text" class="form-control" id="course_name" name="course_name" required />
-            <div id="course_name-error" class="invalid-feedback">Course name is required.</div>
-            <label id="erroraddname" class="form-label"></label>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form action="../../Controllers/addcourse.php" method="POST" enctype="multipart/form-data" id="add-blog-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addBlogModalLabel">Add New Course</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="course_name" class="form-label">Course Name</label>
+              <input type="text" class="form-control" id="course_name" name="course_name" required />
+              <div id="course_name-error" class="invalid-feedback">Course name is required.</div>
+              <label id="erroraddname" class="form-label"></label>
+            </div>
 
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="2" required></textarea>
-            <div id="description-error" class="invalid-feedback">Description is required.</div>
-          </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" name="description" rows="2" required></textarea>
+              <div id="description-error" class="invalid-feedback">Description is required.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="level" class="form-label">Level</label>
-            <select class="form-control" id="level" name="level" required>
-              <option value="" selected disabled>Select a level</option>
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="advanced">Advanced</option>
-            </select>
-            <div id="level-error" class="invalid-feedback">Please select a level.</div>
-          </div>
+            <div class="mb-3">
+              <label for="level" class="form-label">Level</label>
+              <select class="form-control" id="level" name="level" required>
+                <option value="" selected disabled>Select a level</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+              <div id="level-error" class="invalid-feedback">Please select a level.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="start_date" class="form-label">Start Date</label>
-            <input type="date" class="form-control" id="start_date" name="start_date" required />
-            <div id="start_date-error" class="invalid-feedback">Start date is required.</div>
-          </div>
+            <div class="mb-3">
+              <label for="start_date" class="form-label">Start Date</label>
+              <input type="date" class="form-control" id="start_date" name="start_date" required />
+              <div id="start_date-error" class="invalid-feedback">Start date is required.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="end_date" class="form-label">End Date</label>
-            <input type="date" class="form-control" id="end_date" name="end_date" required />
-            <div id="end_date-error" class="invalid-feedback">End date is required.</div>
-          </div>
+            <div class="mb-3">
+              <label for="end_date" class="form-label">End Date</label>
+              <input type="date" class="form-control" id="end_date" name="end_date" required />
+              <div id="end_date-error" class="invalid-feedback">End date is required.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="rate" class="form-label">Rating</label>
-            <select class="form-control" id="rate" name="rate" required>
-              <option value="0" selected disabled>Select a rating</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <div id="rate-error" class="invalid-feedback">Please select a rating.</div>
-          </div>
+            <div class="mb-3">
+              <label for="rate" class="form-label">Rating</label>
+              <select class="form-control" id="rate" name="rate" required>
+                <option value="0" selected disabled>Select a rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <div id="rate-error" class="invalid-feedback">Please select a rating.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="fees" class="form-label">Fees</label>
-            <input type="text" class="form-control" id="fees" name="fees" required />
-            <div id="fees-error" class="invalid-feedback">Fees must be provided.</div>
-          </div>
+            <div class="mb-3">
+              <label for="fees" class="form-label">Fees</label>
+              <input type="text" class="form-control" id="fees" name="fees" required />
+              <div id="fees-error" class="invalid-feedback">Fees must be provided.</div>
+            </div>
 
-          <div class="mb-3">
-            <label for="tags" class="form-label">Tags</label>
-            <input type="text" class="form-control" id="tags" name="tags" required />
-            <div id="tags-error" class="invalid-feedback">Tags are required.</div>
+            <div class="mb-3">
+              <label for="tags" class="form-label">Tags</label>
+              <input type="text" class="form-control" id="tags" name="tags" required />
+              <div id="tags-error" class="invalid-feedback">Tags are required.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input type="file" class="form-control" id="image" name="image" accept="image/*" required />
+              <div id="image-error" class="invalid-feedback">Image is required.</div>
+            </div>
           </div>
-          
-          <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*" required />
-            <div id="image-error" class="invalid-feedback">Image is required.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Course</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Add Course</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Edit course -->
   <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
@@ -274,10 +281,10 @@ try {
               <label for="editTags" class="form-label">Tags</label>
               <input type="text" class="form-control" id="editTags" name="tags" />
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="editImage" class="form-label">Image</label>
               <input type="file" class="form-control" id="editImage" name="image" accept="image/*" required />
-            </div>
+            </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -330,5 +337,3 @@ try {
 </body>
 
 </html>
-
-
