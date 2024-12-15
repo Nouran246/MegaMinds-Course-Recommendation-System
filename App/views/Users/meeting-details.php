@@ -102,14 +102,14 @@ https://templatemo.com/tm-569-edu-meeting
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li><a href="Courses.php">My Courses</a></li>
-
+<!-- 
               <li class="has-sub">
                 <a href="javascript:void(0)">Meetings</a>
                 <ul class="sub-menu">
-                  <!-- <li><a href="Courses.php">Upcoming Meetings</a></li> -->
-                  <li><a href="meeting-details.php">Meeting Details</a></li>
-                </ul>
-              </li>
+                   <li><a href="Courses.php">Upcoming Meetings</a></li> -->
+                 <!--  <li><a href="meeting-details.php">Meeting Details</a></li>
+                </ul> -->
+              </li> 
               <li><a href="cart-page.php">Cart</a></li>
               <li><a href="Courses.php">My Profile</a></li>
               <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li>

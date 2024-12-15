@@ -59,7 +59,8 @@ try {
       'end_date' => $course['end_date'],
       'rating' => $course['rating'],
       'fees' => $course['fees'],
-      'tags' => $course['tags']
+      'tags' => $course['tags'],
+      'image' => $course['image']
     ];
 
     echo "Course added to cart!" . "<br>";

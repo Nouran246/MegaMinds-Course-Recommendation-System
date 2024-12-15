@@ -5,6 +5,7 @@ include_once "../../../public/includes/DB.php";
 
 session_start();
 ?>
+
 <head>
 
   <meta charset="utf-8">
@@ -202,7 +203,8 @@ session_start();
                   <div class="price">
                     <span>$36.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../../public/images/meeting-02.jpg" alt="Online Teaching"></a>
+                  <a href="meeting-details.php"><img src="../../../public/images/meeting-02.jpg"
+                      alt="Online Teaching"></a>
                 </div>
                 <div class="down-content">
                   <div class="date">
@@ -266,53 +268,57 @@ session_start();
   </section>
   <section class="our-courses" id="courses">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading">
-                    <h2>Our Popular Courses</h2>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="owl-courses-item owl-carousel">
-                    <?php
-                    // Assuming you have a database connection $conn
-                    $query = "SELECT * FROM courses"; // Replace with your table name
-                    $result = mysqli_query($conn, $query);
-
-                    while ($course = mysqli_fetch_assoc($result)) {
-                        echo '<a href="insideCourse.php?id=' . $course['course_ID'] . '">';
-                        echo '<div class="item">';
-                        // echo '<img src="../../public/images/' . $course['image'] . '" alt="' . $course['name'] . '">';
-                        echo '<div class="down-content">';
-                        echo '<h4>' . $course['course_name'] . '</h4>';
-                        echo '<div class="info">';
-                        echo '<div class="row">';
-                        echo '<div class="col-8">';
-                        // echo '<ul>';
-                        // for ($i = 0; $i < 5; $i++) {
-                        //     if ($i < $course['rating']) {
-                        //         echo '<li><i class="fa fa-star"></i></li>';
-                        //     } else {
-                        //         echo '<li><i class="fa fa-star-o"></i></li>';
-                        //     }
-                        // }
-                        // echo '</ul>';
-                        echo '</div>';
-                        echo '<div class="col-4">';
-                        echo '<span>$' . $course['fees'] . '</span>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</a>';
-                    }
-                    ?>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Our Popular Courses</h2>
+          </div>
         </div>
+        <div class="col-lg-12">
+          <div class="owl-courses-item owl-carousel">
+            <?php
+            // Assuming you have a database connection $conn
+            $query = "SELECT * FROM courses"; // Replace with your table name
+            $result = mysqli_query($conn, $query);
+
+            while ($course = mysqli_fetch_assoc($result)) {
+              echo '<a href="insideCourse.php?id=' . $course['course_ID'] . '">';
+              echo '<div class="item">';
+              $imageData = base64_encode($course['image']); // 'image' is the BLOB column in the database
+              $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+
+              // Display the image
+              echo '<img src="' . $imageSrc . '" alt="' . $course['course_name'] . '" style="width: 100%; height: auto; border-radius: 8px;">';
+              echo '<div class="down-content">';
+              echo '<h4>' . $course['course_name'] . '</h4>';
+              echo '<div class="info">';
+              echo '<div class="row">';
+              echo '<div class="col-8">';
+              // echo '<ul>';
+              // for ($i = 0; $i < 5; $i++) {
+              //     if ($i < $course['rating']) {
+              //         echo '<li><i class="fa fa-star"></i></li>';
+              //     } else {
+              //         echo '<li><i class="fa fa-star-o"></i></li>';
+              //     }
+              // }
+              // echo '</ul>';
+              echo '</div>';
+              echo '<div class="col-4">';
+              echo '<span>$' . $course['fees'] . '</span>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</a>';
+            }
+            ?>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
 
 
@@ -611,7 +617,7 @@ session_start();
   <!--  </div>
 </div> -->
 </body>
- <script src="../../../public/js/user js/Signin_and_up.js"></script>
+<script src="../../../public/js/user js/Signin_and_up.js"></script>
 
 
 </html>
