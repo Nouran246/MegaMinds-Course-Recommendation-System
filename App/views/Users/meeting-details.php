@@ -150,8 +150,8 @@ https://templatemo.com/tm-569-edu-meeting
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
                   </div>
-                  <a href="meeting-details.php"><img src="../../public/images/AI.jpeg" alt=""></a>
-                </div>
+                  <img src="data:image/jpeg;base64,<?= base64_encode($course['image']); ?>" alt="Course Image">
+                  </div>
                 <div class="down-content">
     <a href="meeting-details.php?course_ID=<?= htmlspecialchars($course['course_ID']) ?>"><h4><?= htmlspecialchars($course['course_name']) ?></h4></a>
     
