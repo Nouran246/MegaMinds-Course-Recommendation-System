@@ -1,0 +1,9 @@
+{
+    "name": "yahia/mega-minds-course-recommendation-system",
+    "autoload": {
+        "psr-4": {
+            "Yahia\\MegaMindsCourseRecommendationSystem\\": "src/"
+        }
+    },
+    "require": {}
+}

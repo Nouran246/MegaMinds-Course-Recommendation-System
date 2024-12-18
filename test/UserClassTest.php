@@ -1,10 +1,10 @@
 <?php
-
+require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase; // Import PHPUnit's TestCase class
 
 require_once __DIR__ . '/../App/Model/UserClass.php'; // Adjust the path as needed
 
-class UserTest extends TestCase
+class UserClassTest extends TestCase
 {
     private $mockDB;
 
@@ -48,46 +48,69 @@ class UserTest extends TestCase
         $signupHandler->handle($data);
     }
 
+
+
+
+
+
+
     public function testLoginHandler()
-    {
-        $data = [
-            'Email' => 'john.doe@example.com',
-            'Password' => 'password123'
-        ];
+{
+    $data = [
+        'Email' => 'john.doe@example.com',
+        'Password' => 'password123'
+    ];
 
-        $mockConn = $this->getMockBuilder(mysqli::class)
-                         ->disableOriginalConstructor()
-                         ->getMock();
+    // Create a mock of the mysqli connection
+    $mockConn = $this->getMockBuilder(mysqli::class)
+                     ->disableOriginalConstructor()
+                     ->getMock();
 
-        $GLOBALS['conn'] = $mockConn;
+    // Create a mock of the mysqli_result object
+    $mockResult = $this->createMock(mysqli_result::class);
 
-        // Simulating the result set
-        $mockResult = $this->getMockBuilder(mysqli_result::class)
-                           ->disableOriginalConstructor()
-                           ->getMock();
+    // Mock the query method of the connection to return the mock result
+    $mockConn->expects($this->once())
+             ->method('query')
+             ->with($this->stringContains('SELECT')) // Optionally, you can check the query
+             ->willReturn($mockResult);
 
-        $mockResult->expects($this->any())
-                   ->method('num_rows')
-                   ->willReturn(1);
+    // Simulate the behavior of num_rows by mocking the fetch_assoc method
+    $mockResult->method('fetch_assoc')
+               ->willReturn([
+                   'ID' => 1,
+                   'FName' => 'John',
+                   'LName' => 'Doe',
+                   'Password' => 'password123',
+                   'usertype_id' => 1
+               ]);
 
-        $mockResult->expects($this->any())
-                   ->method('fetch_assoc')
-                   ->willReturn([
-                       'ID' => 1,
-                       'FName' => 'John',
-                       'LName' => 'Doe',
-                       'Password' => 'password123',
-                       'usertype_id' => 1
-                   ]);
+    // Mock num_rows using a separate method for the result count
+    // Use the setReturnValueMap or any similar mechanism if needed for further methods.
+    $mockResult->expects($this->once())
+               ->method('mysqli_num_rows')
+               ->willReturn(1); // Simulate that the query has one result
 
-        $mockConn->expects($this->any())
-                 ->method('query')
-                 ->willReturn($mockResult);
+    // Mock the close method to prevent errors
+    $mockConn->expects($this->any())
+             ->method('close')
+             ->willReturn(true); // Simulate a successful close
 
-        $loginHandler = new LoginHandler($mockConn);
-        $this->expectOutputString(""); // No output expected for success
-        $loginHandler->handle($data);
-    }
+    // Now we can proceed with the test
+    $loginHandler = new LoginHandler($mockConn);
+
+    // Expect no output for a successful login
+    $this->expectOutputString(""); 
+
+    // Call the handle method with the test data
+    $loginHandler->handle($data);
+}
+
+
+
+
+
+
 
     public function testEditUserHandler()
     {

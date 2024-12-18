@@ -1,7 +1,9 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
+require_once __DIR__ . '/../App/Model/CoursesClass.php';
 
-class CourseClassTest extends TestCase
+class CoursesClassTest extends TestCase
 {
     private $mockPdo;
     private $mockDbConnection;
