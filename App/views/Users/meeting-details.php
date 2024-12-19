@@ -157,7 +157,7 @@ https://templatemo.com/tm-569-edu-meeting
               <div class="meeting-single-item">
                 <div class="thumb">
                   <div class="price">
-                    <span>$14.00</span>
+          
                   </div>
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
@@ -174,7 +174,6 @@ https://templatemo.com/tm-569-edu-meeting
                   <p><strong>Level:</strong> <?= htmlspecialchars($course['level']) ?></p>
                   <p><strong>Start Date:</strong> <?= htmlspecialchars($course['start_date']) ?></p>
                   <p><strong>End Date:</strong> <?= htmlspecialchars($course['end_date']) ?></p>
-                  <p><strong>Rating:</strong> <?= htmlspecialchars($course['rating']) ?>/10</p>
                   <p><strong>Fees:</strong> $<?= htmlspecialchars($course['fees']) ?></p>
                   <p><strong>Tags:</strong> <?= htmlspecialchars($course['tags']) ?></p>
 

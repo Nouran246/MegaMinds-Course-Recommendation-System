@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="meeting-single-item">
                 <div class="thumb">
                   <div class="price">
-                    <span>$20.60</span>
+
                   </div>
                   <div class="date">
                     <h6>Nov <span>12</span></h6>
