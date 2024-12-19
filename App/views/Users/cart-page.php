@@ -271,8 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                   placeholder="Enter account number">
                               </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Pay Now</button>
-                          </form>
+                            <button type="button" class="btn btn-success" onclick="redirectToPaymentPage()">Pay Now</button>                          </form>
                         </div>
                       </div>
                     </div>
@@ -318,6 +317,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <script>
     //according to loftblog tut
+    function redirectToPaymentPage() {
+        // Redirect to the desired page after the button is clicked
+        var redirectUrl = '../../../app/views/Users/InsideCourse.php'; // Replace with your path
+        window.location.href = redirectUrl;
+    }
     $('.nav li:first').addClass('active');
 
     var showSection = function showSection(section, isAnimate) {
