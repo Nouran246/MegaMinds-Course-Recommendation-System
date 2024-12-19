@@ -178,7 +178,6 @@ try {
                             <li class="list-group-item" data-index="3">Lesson 4</li>
                             <li class="list-group-item" data-index="4">Lesson 5</li>
                             <li class="list-group-item" data-index="5">Lesson 6</li>
-                            <li class="list-group-item" data-index="6">Lesson 7</li>
                         </ul>
                     </nav>
 

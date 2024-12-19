@@ -195,7 +195,7 @@ $menu_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
               <li><a href="#">Phasellus nec sapien</a></li>
             </ul>
             <div class="main-button-red">
-              <a href="meetings.php">All Upcoming Meetings</a>
+              <a href="">All Upcoming Meetings</a>
             </div>
           </div>
         </div>
@@ -207,7 +207,7 @@ $menu_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
                   <div class="price">
                     <span>$22.00</span>
                   </div>
-                  <a href="meeting-details.php"><img src="../../../public/images/meeting-01.jpg"
+                  <a href=""><img src="../../../public/images/meeting-01.jpg"
                       alt="New Lecturer Meeting"></a>
                 </div>
                 <div class="down-content">

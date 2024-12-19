@@ -93,37 +93,33 @@ var checkSection = function checkSection() {
 
 var lectures = [
   {
-      title: "Lesson 1: Basics",
+      title: "Lesson 1: ",
       description: "Brief description of the Basics lecture content.",
-      videoId: "X1CgO3mV9SE" // Short video ID 1 (accessible)
+      videoId: "OmtkvAp2OL0?si=QA_IgBAersk43wLC" // Short video ID 1 (accessible)
   },
   {
-      title: "Lesson 2: Advanced Topics",
+      title: "Lesson 2: ",
       description: "Overview of advanced topics in Computer Science.",
-      videoId: "M7lc1UVf-VE" // Short video ID 2 (accessible)
+      videoId: "Ygboi9hrwN0?si=THecYHUrt-uyDKt_-VE" // Short video ID 2 (accessible)
   },
   {
-      title: "Lesson 3: Data Structures",
+      title: "Lesson 3: ",
       description: "Introduction to various data structures.",
-      videoId: "BBvod49uySQ" // Short video ID 3 (accessible)
+      videoId: "fC46nIJOQWY?si=ji2eO5KvrYFcctED" // Short video ID 3 (accessible)
   },
   {
-      title: "Lesson 4: Object Oriented Programming",
+      title: "Lesson 4: ",
       description: "Introduction to various data structures.",
-      videoId: "9bZkp7q19f0" // Short video ID 3 (accessible)
+      videoId: "9aA2YAcFs0A?si=sDpM77YDCrUVe-wl" // Short video ID 3 (accessible)
   } , {
-      title: "Lesson 5: Operating Systems",
+      title: "Lesson 5: ",
       description: "Introduction to various data structures.",
-      videoId: "X1CgO3mV9SE" // Short video ID 3 (accessible)
+      videoId: "yH4N5LdK5WY?si=VVMtPPFstoh6eGIc" // Short video ID 3 (accessible)
   }  ,{
-      title: "Lesson 6: Artificial Intelligence",
+      title: "Lesson 6: ",
       description: "Introduction to various data structures.",
-      videoId: "sNJYdAPK06Q" // Short video ID 3 (accessible)
-  } , {
-      title: "Lesson 7: Machine Learning",
-      description: "Introduction to various data structures.",
-      videoId: "llByJkqSdlE" // Short video ID 3 (accessible)
-  }
+      videoId: "rJYSqQoCyjQ?si=QF5CBdDE0M5GGQt-" // Short video ID 3 (accessible)
+  } 
 ];
 var currentLectureIndex = 0;
 
