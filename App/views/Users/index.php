@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+// Include the database connection file
 include_once "../../../public/includes/DB.php";
 
+// Start the session
 session_start();
+
+// Query to fetch the first 3 menu items from the 'menu' table
+$query = "SELECT * FROM menu LIMIT 3";
+$result = mysqli_query($conn, $query);
+
+// Check if any rows are returned
+if (!$result) {
+    die("Error fetching menu items: " . mysqli_error($conn));
+}
+
+// Fetch the menu items into an array
+$menu_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// Close the database connection
+
 ?>
 
 <head>
@@ -34,23 +51,31 @@ session_start();
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.php" class="logo">
-              MEGAMINDS
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li><a href="#courses">Courses</a></li>
-              <li><a href="#contact">Contact Us</a></li>
-              <li><a href="login.php">Sign In</a></li>
-            </ul>
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
+        <nav class="main-nav">
+    <!-- ***** Logo Start ***** -->
+    <a href="index.php" class="logo">
+      MEGAMINDS
+    </a>
+    <!-- ***** Logo End ***** -->
+    <!-- ***** Menu Start ***** -->
+    <ul class="nav">
+        <?php
+        // Loop through the fetched menu items and display each one
+        if (isset($menu_items) && is_array($menu_items)) {
+            foreach ($menu_items as $item) {
+                // Assuming your 'menu' table has columns 'name' and 'href'
+                echo "<li><a href='" . htmlspecialchars($item['href']) . "'>" . htmlspecialchars($item['name']) . "</a></li>";
+            }
+        } else {
+            echo "No menu items available.";
+        }
+        ?>
+    </ul>
+    <a class='menu-trigger'>
+      <span>Menu</span>
+    </a>
+    <!-- ***** Menu End ***** -->
+</nav>
         </div>
       </div>
     </div>
