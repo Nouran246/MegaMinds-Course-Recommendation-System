@@ -4,7 +4,17 @@
 include_once "../../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
 include "../../Model/UserClass.php";
 include "../../Model/CoursesClass.php";
+// Query to fetch the specific menu items: My Courses, Cart, My Profile, and Sign out
+$query = "SELECT * FROM menu WHERE name IN ('My Courses', 'Cart', 'My Profile', 'Sign out')";
+$result = mysqli_query($conn, $query);
 
+// Check if any rows are returned
+if (!$result) {
+    die("Error fetching menu items: " . mysqli_error($conn));
+}
+
+// Fetch the menu items into an array
+$menu_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
 // Database connection
 $servername = "localhost";
 $username = "root";
@@ -129,20 +139,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <nav class="main-nav">
-            <a href="index.php" class="logo">
-              MegaMinds
-            </a>
-            <ul class="nav">
-              <li><a href="Courses.php">My Courses</a></li>
-              <li><a href="cart-page.php" class="active">My Cart</a></li>
-              <li><a href="profile.php">My Profile</a></li>
-              <li><a href="../../Controllers/signout.php?action=signout">Sign out</a></li>
-            </ul>
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
-          </nav>
+        <nav class="main-nav">
+    <!-- ***** Logo Start ***** -->
+    <a href="index.php" class="logo">
+        MegaMinds
+    </a>
+    <!-- ***** Logo End ***** -->
+    <!-- ***** Menu Start ***** -->
+    <ul class="nav">
+        <?php
+        // Loop through the fetched menu items and display each one
+        if (isset($menu_items) && is_array($menu_items)) {
+            foreach ($menu_items as $index => $item) {
+                // Set the 'active' class on the first item as an example, you can adjust it as needed
+                $active_class = ($index == 0) ? 'class="active"' : '';
+                echo "<li><a href='" . htmlspecialchars($item['href']) . "' $active_class>" . htmlspecialchars($item['name']) . "</a></li>";
+            }
+        } else {
+            echo "No menu items available.";
+        }
+        ?>
+    </ul>
+    <a class='menu-trigger'>
+        <span>Menu</span>
+    </a>
+    <!-- ***** Menu End ***** -->
+</nav>
         </div>
       </div>
     </div>

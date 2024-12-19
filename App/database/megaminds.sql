@@ -154,6 +154,24 @@ CREATE TABLE `usertype_pages` (
   `PageID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Create the menu table with 'id', 'name', and 'href' columns
+CREATE TABLE menu (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    href VARCHAR(255) NOT NULL
+);
+
+-- Insert the menu items along with their corresponding href values
+INSERT INTO menu (name, href) VALUES
+('Courses', '#courses'),
+('Contact Us', '#contact'),
+('Sign In', 'login.php'),
+('My Courses', 'Courses.php'),
+('Cart', 'cart-page.php'),
+('My Profile', 'profile.php'),
+('Sign out', '../../Controllers/signout.php?action=signout');
+
+
 --
 -- Indexes for dumped tables
 --
