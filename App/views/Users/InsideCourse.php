@@ -71,16 +71,24 @@ try {
 }
 
 // Query to fetch the specific menu items: My Courses, Cart, My Profile, and Sign out
+// Fetch menu items using PDO
 $query = "SELECT * FROM menu WHERE name IN ('My Courses', 'Cart', 'My Profile', 'Sign out')";
-$result = mysqli_query($conn, $query);
 
-// Check if any rows are returned
-if (!$result) {
-    die("Error fetching menu items: " . mysqli_error($conn));
+try {
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+
+    // Fetch the menu items into an array
+    $menu_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$menu_items) {
+        echo "No menu items found.";
+    }
+} catch (PDOException $e) {
+    echo "Error fetching menu items: " . $e->getMessage();
+    exit;
 }
 
-// Fetch the menu items into an array
-$menu_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
