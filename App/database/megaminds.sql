@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2024 at 02:42 PM
+-- Generation Time: Dec 19, 2024 at 09:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -154,23 +154,16 @@ CREATE TABLE `usertype_pages` (
   `PageID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Create the menu table with 'id', 'name', and 'href' columns
-CREATE TABLE menu (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    href VARCHAR(255) NOT NULL
-);
+-- --------------------------------------------------------
 
--- Insert the menu items along with their corresponding href values
-INSERT INTO menu (name, href) VALUES
-('Courses', '#courses'),
-('Contact Us', '#contact'),
-('Sign In', 'login.php'),
-('My Courses', 'Courses.php'),
-('Cart', 'cart-page.php'),
-('My Profile', 'profile.php'),
-('Sign out', '../../Controllers/signout.php?action=signout');
+--
+-- Table structure for table `user_courses`
+--
 
+CREATE TABLE `user_courses` (
+  `user_ID` int(11) NOT NULL,
+  `course_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -208,6 +201,13 @@ ALTER TABLE `usertype_pages`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `role` (`usertype_id`),
   ADD KEY `PageID` (`PageID`);
+
+--
+-- Indexes for table `user_courses`
+--
+ALTER TABLE `user_courses`
+  ADD PRIMARY KEY (`user_ID`,`course_ID`),
+  ADD KEY `course_ID` (`course_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -252,6 +252,20 @@ ALTER TABLE `usertype_pages`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_fk` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`ID`);
+
+--
+-- Constraints for table `usertype_pages`
+--
+ALTER TABLE `usertype_pages`
+  ADD CONSTRAINT `fk_usertype_pages_page_id` FOREIGN KEY (`PageID`) REFERENCES `pages` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usertype_pages_usertype_id` FOREIGN KEY (`usertype_id`) REFERENCES `usertype` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_courses`
+--
+ALTER TABLE `user_courses`
+  ADD CONSTRAINT `user_courses_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_courses_ibfk_2` FOREIGN KEY (`course_ID`) REFERENCES `courses` (`course_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
