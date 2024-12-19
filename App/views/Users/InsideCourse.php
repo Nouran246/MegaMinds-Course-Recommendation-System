@@ -154,13 +154,13 @@ try {
                     <nav class="col-md-3">
                         <h5>Course Outline</h5>
                         <ul class="list-group">
-                            <li class="list-group-item active" data-index="0">Lesson 1: Basics</li>
-                            <li class="list-group-item" data-index="1">Lesson 2: What is Ai?</li>
-                            <li class="list-group-item" data-index="2">Lesson 3: PSO</li>
-                            <li class="list-group-item" data-index="3">Lesson 4: Genetics Algorithms</li>
-                            <li class="list-group-item" data-index="4">Lesson 5: Expert Systems</li>
-                            <li class="list-group-item" data-index="5">Lesson 6: Artificial Intelligence</li>
-                            <li class="list-group-item" data-index="6">Lesson 7: Into to Machine Learning</li>
+                            <li class="list-group-item active" data-index="0">Lesson 1</li>
+                            <li class="list-group-item" data-index="1">Lesson 2</li>
+                            <li class="list-group-item" data-index="2">Lesson 3</li>
+                            <li class="list-group-item" data-index="3">Lesson 4</li>
+                            <li class="list-group-item" data-index="4">Lesson 5</li>
+                            <li class="list-group-item" data-index="5">Lesson 6</li>
+                            <li class="list-group-item" data-index="6">Lesson 7</li>
                         </ul>
                     </nav>
 
