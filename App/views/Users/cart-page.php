@@ -271,7 +271,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                   placeholder="Enter account number">
                               </div>
                             </div>
-                            <button type="button" class="btn btn-success" onclick="redirectToPaymentPage()">Pay Now</button>                          </form>
+                            <button type="button" class="btn btn-success" onclick="redirectToPaymentPage()">Pay Now</button>      
+                            <div id="messageArea" style="margin-top: 10px;"></div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -318,11 +320,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script>
     //according to loftblog tut
     function redirectToPaymentPage() {
-        // Redirect to the desired page after the button is clicked
+        // Display the success message
+        var messageArea = document.getElementById('messageArea');
+        var successMessage = document.createElement('div');
+        successMessage.textContent = "Course Purchased";
+        successMessage.style.color = 'green';
+        successMessage.style.fontWeight = 'bold';
+        successMessage.style.marginTop = '10px';
+        messageArea.appendChild(successMessage);
+
+        // Set a timeout to remove the message after 2 seconds
+        setTimeout(function() {
+            successMessage.remove();
+              // Redirect to the desired page after the button is clicked
         var redirectUrl = '../../../app/views/Users/InsideCourse.php'; // Replace with your path
         window.location.href = redirectUrl;
+        }, 2000);
+
+      
     }
-    $('.nav li:first').addClass('active');
 
     var showSection = function showSection(section, isAnimate) {
       var
