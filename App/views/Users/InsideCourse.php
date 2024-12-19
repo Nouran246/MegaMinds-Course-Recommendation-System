@@ -74,7 +74,7 @@ session_start();
             <div class="row">
                 <div class="col-lg-12">
                     <h6>Improve your programming knowledge </h6>
-                    <h2>Introduction to Computer Science </h2>
+                    <h2>Introduction to Artificial intelligence </h2>
                 </div>
             </div>
         </div>
@@ -90,12 +90,12 @@ session_start();
                         <h5>Course Outline</h5>
                         <ul class="list-group">
                             <li class="list-group-item active" data-index="0">Lesson 1: Basics</li>
-                            <li class="list-group-item" data-index="1">Lesson 2: Advanced Topics</li>
-                            <li class="list-group-item" data-index="2">Lesson 3: Data Structures</li>
-                            <li class="list-group-item" data-index="3">Lesson 4: Object Oriented Programming</li>
-                            <li class="list-group-item" data-index="4">Lesson 5: Operating Systems</li>
+                            <li class="list-group-item" data-index="1">Lesson 2: What is Ai?</li>
+                            <li class="list-group-item" data-index="2">Lesson 3: PSO</li>
+                            <li class="list-group-item" data-index="3">Lesson 4: Genetics Algorithms</li>
+                            <li class="list-group-item" data-index="4">Lesson 5: Expert Systems</li>
                             <li class="list-group-item" data-index="5">Lesson 6: Artificial Intelligence</li>
-                            <li class="list-group-item" data-index="6">Lesson 7: Machine Learning</li>
+                            <li class="list-group-item" data-index="6">Lesson 7: Into to Machine Learning</li>
                         </ul>
                     </nav>
 
