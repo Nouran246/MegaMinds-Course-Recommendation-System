@@ -1,10 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include_once "../../../public/includes/DB.php"; // Make sure DB.php has the necessary connection details
+include "../../Model/UserClass.php";
+include "../../Model/CoursesClass.php";
 
-<head><?php
-include_once "../../../public/includes/DB.php";
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "megaminds";
 
-session_start();
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+  die();
+}
+
+// Create instances of User and Course classes
+$user = new User($conn);
+$c = new Course($conn);
+
+// Retrieve user ID from session
+$user_id = $_SESSION['user_id'];
+
+// Ensure course_ID is set from session or URL
+if (isset($_GET['course_ID'])) {
+  $course_id = $_GET['course_ID'];
+  $_SESSION['course_ID'] = $course_id; // Optionally store course_ID in session
+} elseif (isset($_SESSION['course_ID'])) {
+  $course_id = $_SESSION['course_ID'];
+} else {
+  echo "No course selected.";
+  exit;
+}
+// echo $user_id . '<br>';
+// echo $course_id . '<br>';
+// Fetch course details
+try {
+  $stmt = $conn->prepare("SELECT * FROM courses WHERE course_ID = :course_id");
+  $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+  $stmt->execute();
+  $course = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($course) {
+    if (!isset($_SESSION['cart'])) {
+      $_SESSION['cart'] = [];
+    }
+
+    // Add the course to the cart
+    $_SESSION['cart'][$course['course_ID']] = [
+      'course_name' => $course['course_name'],
+      'description' => $course['description'],
+      'level' => $course['level'],
+      'start_date' => $course['start_date'],
+      'end_date' => $course['end_date'],
+      'rating' => $course['rating'],
+      'fees' => $course['fees'],
+      'tags' => $course['tags'],
+      'image' => $course['image']
+    ];
+
+  } else {
+    echo "Course not found.";
+  }
+} catch (PDOException $e) {
+  echo "Error fetching course data: " . $e->getMessage();
+}
 ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -74,8 +138,9 @@ session_start();
             <div class="row">
                 <div class="col-lg-12">
                     <h6>Improve your programming knowledge </h6>
-                    <h2>Introduction to Artificial intelligence </h2>
-                </div>
+                    <a href="meeting-details.php?course_ID=<?= htmlspecialchars($course['course_ID']) ?>">
+                      <h2><?= htmlspecialchars($course['course_name']) ?></h2>
+                    </a>                </div>
             </div>
         </div>
     </section>
