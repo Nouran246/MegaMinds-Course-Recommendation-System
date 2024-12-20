@@ -56,58 +56,48 @@ try {
   $course = $stmt->fetch(PDO::FETCH_ASSOC);
 
   if ($course) {
-    if (!isset($_SESSION['cart'])) {
-      $_SESSION['cart'] = [];
-    }
+      if (!isset($_SESSION['cart'])) {
+          $_SESSION['cart'] = [];
+      }
 
-    // Add the course to the cart
-    $_SESSION['cart'][$course['course_ID']] = [
-      'course_name' => $course['course_name'],
-      'description' => $course['description'],
-      'level' => $course['level'],
-      'start_date' => $course['start_date'],
-      'end_date' => $course['end_date'],
-      'rating' => $course['rating'],
-      'fees' => $course['fees'],
-      'tags' => $course['tags'],
-      'image' => $course['image']
-    ];
+      // Add the course to the cart
+      $_SESSION['cart'][$course['course_ID']] = [
+          'course_name' => $course['course_name'],
+          'description' => $course['description'],
+          'level' => $course['level'],
+          'start_date' => $course['start_date'],
+          'end_date' => $course['end_date'],
+          'rating' => $course['rating'],
+          'fees' => $course['fees'],
+          'tags' => $course['tags']
+      ];
 
-    echo "Course added to cart!" . "<br>";
+      // echo "Course added to cart!";
   } else {
-    echo "Course not found.";
+      // echo "Course not found.";
   }
 } catch (PDOException $e) {
   echo "Error fetching course data: " . $e->getMessage();
 }
-// echo $user_id . '<br>';
-// echo $course_id . '<br>';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $paymentMethod = $_POST['paymentMethod'] ?? null;
-  $user_id = $_SESSION['user_id'] ?? null;
-  $course_id = $_SESSION['course_ID'] ?? null;
+  // Assuming form fields have been validated
+  $user_id = $_POST['user_id'];
+  $course_id = $_POST['course_id'];
 
-  // Debugging: Sanitize and output for testing (remove in production)
-  // echo "User ID: " . htmlspecialchars($user_id) . "<br>";
-  // echo "Course ID: " . htmlspecialchars($course_id) . "<br>";
-
-  // Validate input
-  if ($user_id && $course_id) {
-    try {
-      // Corrected SQL query
-      $stmt = $conn->prepare("INSERT INTO user_courses (user_id, course_ID) VALUES (:user_id, :course_id)");
-      $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-      $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+  // Insert into database or call payment gateway here
+  try {
+      // Example: Insert into a database for user course subscription
+      $stmt = $conn->prepare("INSERT INTO user_courses (user_id, course_id) VALUES (:user_id, :course_id)");
+      $stmt->bindParam(':user_id', $user_id);
+      $stmt->bindParam(':course_id', $course_id);
       $stmt->execute();
-
-      echo "Course successfully added!";
-    } catch (PDOException $e) {
-      // Log the error for debugging
-      error_log("Error: " . $e->getMessage());
-      // echo "Something went wrong. Please try again.";
-    }
-  } else {
-    echo "All fields are required.";
+      
+      // Redirect to prevent form resubmission
+      // header("Location: " . $_SERVER['PHP_SELF']);
+      exit; // Always exit after a redirect
+  } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
   }
 }
 
@@ -238,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <!-- Payment Method Dropdown -->
                             <div class="mb-3">
                               <label for="paymentMethod" class="form-label">Payment Method</label>
-                              <select class="form-control" id="paymentMethod">
+                              <select class="form-control" id="paymentMethod" required>
                                 <option>Select Payment Method</option>
                                 <option value="creditCard">Credit Card</option>
                                 <option value="paypal">PayPal</option>
@@ -251,32 +241,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               <div class="mb-3">
                                 <label for="cardNumber" class="form-label">Credit Card Number</label>
                                 <input type="text" class="form-control" id="cardNumber"
-                                  placeholder="Enter credit card number">
+                                  placeholder="Enter credit card number" required>
                               </div>
                               <div class="mb-3">
                                 <label for="cardName" class="form-label">Cardholder Name</label>
-                                <input type="text" class="form-control" id="cardName" placeholder="Enter name on card">
+                                <input type="text" class="form-control" id="cardName" placeholder="Enter name on card" required>
                               </div>
                               <div class="mb-3">
                                 <label for="expiryDate" class="form-label">Expiry Date</label>
-                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
                               </div>
                               <div class="mb-3">
                                 <label for="cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cvv" placeholder="3-digit code">
+                                <input type="text" class="form-control" id="cvv" placeholder="3-digit code" required>
                               </div>
                             </div>
 
 
                             <div id="PayPalFields">
                               <div class="mb-3">
-                                <label for="cardNumber" class="form-label">Account Number</label>
-                                <input type="text" class="form-control" id="cardNumber"
-                                  placeholder="Enter account number">
+                                <label for="ppcardNumber" class="form-label">Account Number</label>
+                                <input type="text" class="form-control" id="ppcardNumber"
+                                  placeholder="Enter account number" required>
                               </div>
                               <div class="mb-3">
-                                <label for="cardName" class="form-label">Account Name</label>
-                                <input type="text" class="form-control" id="cardName" placeholder="Enter account name">
+                                <label for="ppcardName" class="form-label">Account Name</label>
+                                <input type="text" class="form-control" id="ppcardName" placeholder="Enter account name" required>
                               </div>
                             </div>
 
@@ -284,16 +274,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div id="BanckTransFields">
                               <div class="mb-3">
                                 <div class="mb-3">
-                                  <label for="cardName" class="form-label">Account Name</label>
-                                  <input type="text" class="form-control" id="cardName"
-                                    placeholder="Enter account name">
+                                  <label for="bbcardName" class="form-label">Account Name</label>
+                                  <input type="text" class="form-control" id="bbcardName"
+                                    placeholder="Enter account name" required>
                                 </div>
-                                <label for="cardNumber" class="form-label">Account Number</label>
-                                <input type="text" class="form-control" id="cardNumber"
-                                  placeholder="Enter account number">
+                                <label for="bbcardNumber" class="form-label">Account Number</label>
+                                <input type="text" class="form-control" id="bbcardNumber"
+                                  placeholder="Enter account number" required>
                               </div>
                             </div>
-                            <button type="button" class="btn btn-success" onclick="redirectToPaymentPage()">Pay Now</button>      
+                            <button type="submit" class="btn btn-success" onclick='addANDredirect()'>Pay Now</button>
                             <div id="messageArea" style="margin-top: 10px;"></div>
                           </form>
                         </div>
@@ -340,8 +330,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
   <script>
+
+function addANDredirect() {
+    var done = addUserCourse(); // First add the course
+
+    if (done) {
+        // After the course is added, call redirectToPaymentPage
+        setTimeout(function() {
+            redirectToPaymentPage();
+        }, 10000); // Wait 10 seconds before redirecting
+    } else {
+        return; // Stop if course addition failed
+    }
+}
     //according to loftblog tut
     function redirectToPaymentPage() {
+    // Call addUserCourse() to process the payment and course addition
         // Display the success message
         var messageArea = document.getElementById('messageArea');
         var successMessage = document.createElement('div');
@@ -351,16 +355,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         successMessage.style.marginTop = '10px';
         messageArea.appendChild(successMessage);
 
-        // Set a timeout to remove the message after 2 seconds
+        // Set a timeout to remove the message after 2 seconds and redirect
         setTimeout(function() {
             successMessage.remove();
-              // Redirect to the desired page after the button is clicked
-        var redirectUrl = '../../../app/views/Users/InsideCourse.php'; // Replace with your path
-        window.location.href = redirectUrl;
+            // Redirect to the desired page after the button is clicked
+            var redirectUrl = '../../../app/views/Users/InsideCourse.php'; // Replace with your path
+            window.location.href = redirectUrl;
         }, 2000);
-
-      
-    }
+}
 
     var showSection = function showSection(section, isAnimate) {
       var
@@ -430,37 +432,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hide all fields on page load
     hideAllFields();
 
-    // Function to add course and user IDs into the users_courses table
     function addUserCourse() {
-      consol.log("HELLO THERE");
-      var userID = <?php echo $_SESSION['user_id']; ?>;
-      var courseID = <?php echo isset($_SESSION['course_ID']) ? $_SESSION['course_ID'] : 0; ?>;
-      consol.log("AHHHHHHH THERE");
-      // Create a hidden form element
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = ''; // Submit to the current page
+    // Get the values of the payment fields
+    var creditCardNumber = document.getElementById('cardNumber').value;
+    var cardName = document.getElementById('cardName').value;
+    var expiryDate = document.getElementById('expiryDate').value;
+    var cvv = document.getElementById('cvv').value;
 
-      // Create hidden input fields for user_id and course_id
-      var userIDInput = document.createElement('input');
-      userIDInput.type = 'hidden';
-      userIDInput.name = 'user_id';
-      userIDInput.value = userID;
+    var paypalEmail = document.getElementById('ppcardNumber').value;
+    var paypalPassword = document.getElementById('ppcardName').value;
 
-      var courseIDInput = document.createElement('input');
-      courseIDInput.type = 'hidden';
-      courseIDInput.name = 'course_id';
-      courseIDInput.value = courseID;
+    var bankAccount = document.getElementById('bbcardNumber').value;
+    var bankRouting = document.getElementById('bbcardName').value;
 
-      // Append the inputs to the form
-      form.appendChild(userIDInput);
-      form.appendChild(courseIDInput);
-
-      // Append the form to the body and submit it
-      document.body.appendChild(form);
-      form.submit();
+    // Validate payment fields for Credit Card method
+    if (document.getElementById('creditCardFields').style.display !== 'none') {
+        if (!creditCardNumber || !cardName || !expiryDate || !cvv) {
+            alert("Please fill in all payment fields for Credit Card.");
+            return false;
+        }
     }
 
+    // Validate payment fields for PayPal method
+    if (document.getElementById('PayPalFields').style.display !== 'none') {
+        if (!paypalEmail || !paypalPassword) {
+            alert("Please fill in all payment fields for PayPal.");
+            return false;
+        }
+    }
+
+    // Validate payment fields for Bank Transfer method
+    if (document.getElementById('BanckTransFields').style.display !== 'none') {
+        if (!bankAccount || !bankRouting) {
+            alert("Please fill in all payment fields for Bank Transfer.");
+            return false;
+        }
+    }
+
+    // Get the user ID and course ID from PHP session
+    var userID = <?php echo $_SESSION['user_id']; ?>;
+    var courseID = <?php echo isset($_SESSION['course_ID']) ? $_SESSION['course_ID'] : 0; ?>;
+
+    // Prepare data to be sent with AJAX
+    var formData = new FormData();
+    formData.append('user_id', userID);
+    formData.append('course_id', courseID);
+
+    // Send the form data to the server using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '', true);  // The current page is where the form will be submitted
+
+    // Set up a function to handle the server response
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            // Success: Display the success message and redirect
+            redirectToPaymentPage();
+        } else {
+            alert('An error occurred. Please try again.');
+        }
+    };
+
+    // Send the request with the form data
+    xhr.send(formData);
+
+    return false;  // Prevent the page from reloading
+}
 
     // Show the correct fields based on the selected payment method
     paymentMethodSelect.addEventListener('change', function () {
