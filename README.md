@@ -46,9 +46,9 @@ algorithms and improve future suggestions.
 Admins and instructors can access aggregated feedback to identify trends and enhance courseofferings.
 ## Landing Page
 ![Screenshot 2024-12-19 183533](https://github.com/user-attachments/assets/7d9270b1-3016-40dd-8cc7-90d2ffe06042)
-![Screenshot 2024-12-19 184317](https://github.com/user-attachments/assets/627f4541-56ba-43e1-b0e2-a4a82fede462)
-![Screenshot 2024-12-19 184303](https://github.com/user-attachments/assets/39c6f742-5eeb-4898-b5bd-3750d36da712)
 ![Screenshot 2024-12-19 184234](https://github.com/user-attachments/assets/d30f3e15-4a1e-4832-89d0-d37bba0a1ec4)
+
+![Screenshot 2024-12-19 184303](https://github.com/user-attachments/assets/39c6f742-5eeb-4898-b5bd-3750d36da712)
 
 ![Screenshot 2024-12-19 184317](https://github.com/user-attachments/assets/0c18314b-112f-4c7b-899a-30ff774b953d)
 
