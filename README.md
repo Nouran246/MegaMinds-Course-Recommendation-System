@@ -2,9 +2,7 @@
 
  Working Method:
      Agile -> Kanban
-     
-    https://trello.com/b/MzcCsVLv/software-project
-     
+          
 ## Description:
 
 Develop a course recommendation system that suggests relevant courses or programs to students based on their
