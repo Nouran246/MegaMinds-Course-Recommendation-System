@@ -44,6 +44,7 @@ o The system can suggest additional courses based on student progress and evolvi
 Students can provide feedback on course recommendations and their experiences, allowing the system to refine its
 algorithms and improve future suggestions.
 Admins and instructors can access aggregated feedback to identify trends and enhance courseofferings.
+![Screenshot 2024-12-19 183533](https://github.com/user-attachments/assets/7d9270b1-3016-40dd-8cc7-90d2ffe06042)
 
 ## Authors
 - [@Nouran Hassan](https://github.com/Nouran246)
