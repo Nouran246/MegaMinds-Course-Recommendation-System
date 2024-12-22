@@ -11,27 +11,27 @@ decisions about their educational pathways, enhancing their overall learning exp
 
 ## Key Features:
 
-1. User Registration & Authentication:
+### 1. User Registration & Authentication:
 o Users can sign up as students or admins.
 o Implement secure access.
-2. Admin Dashboard:
+### 2. Admin Dashboard:
 o Admins can manage users (students and courses), oversee course offerings, and configure platformsettings.
 o View analytics on student course enrollments and overall engagement.
-3. User Profile Creation:
+### 3. User Profile Creation:
 o Students can create profiles that include their interests, career goals, academic history, and preferred learning
 styles.
-4. Course Suggestions:
+### 4. Course Suggestions:
 o The system has Chatbot algorithm to analyze student profiles and performance data, generating
 personalized course recommendations.
 o Suggestions are based on a combination of student interests, previous courses taken, and market demand for
 specific skills.
 o The platform provides insights into course content and objectives to help students make informedchoices.
-5. Discussion Forum:
+### 5. Discussion Forum:
 o A forum allows students to discuss course recommendations, share experiences, and seek advice from peers
 and instructors.
 o Instructors can participate in discussions to provide further insights on recommended courses.
 o The system can suggest additional courses based on student progress and evolving interests.
-6. Feedback Mechanism:
+### 6. Feedback Mechanism:
 Students can provide feedback on course recommendations and their experiences, allowing the system to refine its algorithms and improve future suggestions.
 ## Landing Page
 
