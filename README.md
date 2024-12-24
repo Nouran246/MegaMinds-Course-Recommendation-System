@@ -1,4 +1,10 @@
 # Course Recommendation System
+## Authors
+- [@Nouran Hassan](https://github.com/Nouran246)
+- [@Malak Mohamed](https://github.com/MalakMohameed)
+- [@Yahia-Elshobokshy](https://github.com/Yahia-Elshobokshy)
+- [@Laila Amgad](https://github.com/Laila4563)
+- [@Roaa Khaled](https://github.com/Rowlkh)
 
  Working Method:
      Agile -> Kanban
@@ -64,9 +70,3 @@ https://github.com/user-attachments/assets/339e70f9-0369-4d94-a55a-6e6210c1e210
 ![Screenshot 2024-12-19 193600](https://github.com/user-attachments/assets/15a1b533-121c-4034-a793-12bd2ea00c8f)
 
 
-## Authors
-- [@Nouran Hassan](https://github.com/Nouran246)
-- [@Malak Mohamed](https://github.com/MalakMohameed)
-- [@Yahia-Elshobokshy](https://github.com/Yahia-Elshobokshy)
-- [@Laila Amgad](https://github.com/Laila4563)
-- [@Roaa Khaled](https://github.com/Rowlkh)
